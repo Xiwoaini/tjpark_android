@@ -10,14 +10,29 @@
         android:supportsRtl="true"
 
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <!--应用程序初始页面的设定-->
+        <activity android:name=".CarLifeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--声明所有activity用于跳转-->
+        <activity android:name=".AddCarActivity"></activity>
+        <!--<activity android:name=".CA"></activity>-->
+        <activity android:name=".LoginActivity"></activity>
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+        <!--<activity android:name=".LoginActivity"></activity>-->
+
+
     </application>
 
+    <!--访问网络-->
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>

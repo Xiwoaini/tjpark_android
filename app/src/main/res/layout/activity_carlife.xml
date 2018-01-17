@@ -4,9 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.MainActivity">
-    <!--我的-->
-
+    tools:context="tjpark.tjsinfo.com.tjpark.CarLifeActivity">
+    <!--车生活，tabbar的第三页-->
+    <Button
+        android:id="@+id/button1"
+    android:layout_width="87dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="10dp"
+    android:text="注册"
+  />
+<!--<Button-->
+        <!--android:id="@+id/button2"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button3"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button4"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button5"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button6"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button7"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button8"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button9"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button10"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button11"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+    <!--<Button-->
+        <!--android:id="@+id/button12"-->
+        <!--android:layout_width="87dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="注册"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
 
 
 </android.support.constraint.ConstraintLayout>
