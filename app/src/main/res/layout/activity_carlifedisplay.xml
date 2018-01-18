@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.MainActivity">
+    tools:context="tjpark.tjsinfo.com.tjpark.CarLifeDisPlayActivity">
     <!--车生活具体要显示的网页内容-->
-    <!--<WebView-->
-        <!--android:id="@+id/webView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"></WebView>-->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></WebView>
 
 
 

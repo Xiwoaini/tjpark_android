@@ -1,5 +1,6 @@
 package tjpark.tjsinfo.com.tjpark.util;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedInputStream;
@@ -56,6 +57,41 @@ public class NetConnection  {
             e.printStackTrace();
         }
         return object;
+    }
+    /**
+     * 发起http请求并获取结果
+     * @param requestUrl 请求地址
+     */
+
+    public static JsonArray getJsonArray(String requestUrl){
+
+        String res="";
+        JsonArray jsonArray = null;
+        StringBuffer buffer = new StringBuffer();
+        try{
+            URL url = new URL(TjParkUtils.windowIp+requestUrl);
+            HttpURLConnection urlCon= (HttpURLConnection)url.openConnection();
+
+            if(200==urlCon.getResponseCode()){
+                InputStream is = urlCon.getInputStream();
+                InputStreamReader isr = new InputStreamReader(is,"utf-8");
+                BufferedReader br = new BufferedReader(isr);
+
+                String str = null;
+                while((str = br.readLine())!=null){
+                    buffer.append(str);
+                }
+                br.close();
+                isr.close();
+                is.close();
+                res = buffer.toString();
+                JsonParser parse =new JsonParser();
+                jsonArray = (JsonArray) parse.parse(res);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return jsonArray;
     }
 
 

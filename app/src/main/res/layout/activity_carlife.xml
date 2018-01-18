@@ -8,99 +8,102 @@
     <!--车生活，tabbar的第三页-->
     <Button
         android:id="@+id/button1"
-    android:layout_width="87dp"
-    android:layout_height="40dp"
-    android:layout_marginTop="10dp"
-    android:text="注册"
-  />
-<!--<Button-->
-        <!--android:id="@+id/button2"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button3"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button4"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button5"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button6"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button7"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button8"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button9"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button10"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button11"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
-    <!--<Button-->
-        <!--android:id="@+id/button12"-->
-        <!--android:layout_width="87dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="注册"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/editText2" />-->
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="注册"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="145dp" />
+
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="244dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="269dp"
+        tools:layout_editor_absoluteY="244dp" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="357dp" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="357dp" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="270dp"
+        tools:layout_editor_absoluteY="357dp" />
 
 
 </android.support.constraint.ConstraintLayout>

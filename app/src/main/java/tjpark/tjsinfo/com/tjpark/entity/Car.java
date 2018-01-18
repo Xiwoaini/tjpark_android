@@ -1,10 +1,13 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import com.google.gson.JsonElement;
+
 /**
  * Created by panning on 2018/1/15.
  */
 
-public class Car {
+public class Car  {
+
     private String id;
     private String place_number;
     private String customer_id;

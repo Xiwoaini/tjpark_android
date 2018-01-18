@@ -8,6 +8,9 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        ndk { abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            }
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,6 +32,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation files('libs/ksoap2-android-assembly-3.6.2-jar-with-dependencies.jar')
     implementation files('libs/gson-2.2.4.jar')
-
-
+    implementation files('libs/BaiduLBS_Android.jar')
 }

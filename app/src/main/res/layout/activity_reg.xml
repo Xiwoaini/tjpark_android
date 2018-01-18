@@ -4,6 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.MainActivity">
+    tools:context="tjpark.tjsinfo.com.tjpark.RegActivity">
 
+
+    <EditText
+        android:id="@+id/regPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:hint="请输入手机号"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/regCode"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="请输入验证码"
+        android:inputType="numberSigned"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <Button
+        android:id="@+id/regGetCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取验证码"
+        tools:layout_editor_absoluteX="205dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <EditText
+        android:id="@+id/regPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="请设置密码"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="140dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我已阅读并同意《天津停车协议》"
+        android:textColor="#3399ff"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="198dp" />
+
+
+
+    <Button
+        android:id="@+id/regBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="248dp" />
 </android.support.constraint.ConstraintLayout>
