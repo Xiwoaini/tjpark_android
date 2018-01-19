@@ -35,7 +35,7 @@
 
 
         <!--应用程序初始页面的设定-->
-        <activity android:name=".MyCarActivity">
+        <activity android:name=".OrdersActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
