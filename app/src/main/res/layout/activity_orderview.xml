@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--订单页-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <!--订单生成时间-->
+            <TextView
+                android:id="@+id/order_inTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="订单生成时间"
+                />
+            <!--停车场名称-->
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/order_placeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="停车场名称"
+                />
+        </TableRow>
+        <TableRow>
+            <!--停车时间-->
+            <TextView
+                android:id="@+id/order_parkTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="停车时间"
+                />
+            <!--订单状态-->
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="订单状态"
+                />
+        </TableRow>
+        <TableRow>
+            <!--停车费-->
+            <TextView
+                android:id="@+id/order_realParkFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="停车费"
+                />
+        </TableRow>
+        <TableRow>
+            <!--车牌号-->
+            <TextView
+                android:id="@+id/order_placeNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="车牌号"
+                />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
+

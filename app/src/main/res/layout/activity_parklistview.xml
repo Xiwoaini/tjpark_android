@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--附近停车场-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <ImageView
+                android:id="@+id/fruid_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/hongp"
+
+                android:layout_marginLeft="10dip"
+                />
+<!--停车场名称-->
+    <TextView
+        android:id="@+id/parkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ssss"
+          />
+    <!--空闲车位-->
+    <TextView
+        android:id="@+id/kongXian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="空闲车位"
+         />
+        </TableRow>
+    <TableRow>
+    <!--距离-->
+    <TextView
+        android:id="@+id/parkDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="5Km"
+        android:layout_marginLeft="10dip" />
+    <!--地址-->
+    <TextView
+        android:id="@+id/parkAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="天津市河西区"
+        android:layout_marginLeft="10dip" />
+    <!--具体空闲车位数-->
+    <TextView
+        android:id="@+id/spaceNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="30"
+        android:layout_marginLeft="10dip" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
+
+
