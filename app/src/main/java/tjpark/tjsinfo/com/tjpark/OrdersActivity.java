@@ -1,6 +1,7 @@
 package tjpark.tjsinfo.com.tjpark;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,10 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.baidu.mapapi.model.LatLng;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,11 +76,12 @@ public class OrdersActivity  extends AppCompatActivity {
                     order.setPlace_id(jso.get("place_id").toString().replace("\"",""));
                     order.setPlace_name(jso.get("place_name").toString().replace("\"",""));
                     order.setPlace_number(jso.get("place_number").toString().replace("\"",""));
-
                     order.setPark_time(jso.get("park_time").toString().replace("\"",""));
                     order.setReal_park_fee(jso.get("real_park_fee").toString().replace("\"",""));
                     order.setStatus(jso.get("status").toString().replace("\"",""));
                     order.setIn_time(jso.get("in_time").toString().replace("\"",""));
+                    order.setOut_time(jso.get("out_time").toString().replace("\"",""));
+
 
                     //TODO:其他的属性，需要在此添加
 
@@ -117,11 +122,14 @@ public class OrdersActivity  extends AppCompatActivity {
     class ListViewListener implements   AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //position指点击的行数,从第0行开始算
-            Log.v("第",position+"行被点击了。");
+            //position指点击的行数,从第0行开始
+//            跳转
+            Intent intent = new Intent();
+            intent.setClass(OrdersActivity.this, DetailActivity.class);
+            //传值,数据少的情况下
 
-
-
+            intent.putExtra("detail",orderList.get(position));
+            startActivity(intent);
 
         }
     }

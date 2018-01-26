@@ -35,7 +35,7 @@
 
 
         <!--应用程序初始页面的设定-->
-        <activity android:name=".OrdersActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,18 +46,14 @@
         <activity android:name=".AddCarActivity"></activity>
         <activity android:name=".ParkListActivity"></activity>
         <activity android:name=".MainActivity"></activity>
-        <!--<activity android:name=".OrdersActivity"></activity>-->
+        <activity android:name=".DetailActivity"></activity>
         <activity android:name=".CarLifeDisPlayActivity"></activity>
         <activity android:name=".ShareReleaseActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <!--<activity android:name=".LoginActivity"></activity>-->
         <activity android:name=".PersonActivity"></activity>
         <activity android:name=".RegActivity"></activity>
         <activity android:name=".MyShareActivity"></activity>
         <activity android:name=".CarLifeActivity"></activity>
-
-
-
-
     </application>
 
     <!--访问网络-->

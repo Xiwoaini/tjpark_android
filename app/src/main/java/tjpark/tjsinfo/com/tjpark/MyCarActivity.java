@@ -1,11 +1,14 @@
 package tjpark.tjsinfo.com.tjpark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -47,7 +50,12 @@ public class MyCarActivity  extends AppCompatActivity {
         //为listView赋值
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,getData()));
 
-        setContentView(listView);
+
+        ListViewListener listViewListener =new ListViewListener();
+        listView.setOnItemClickListener(listViewListener);
+
+
+
     }
 
     //新线程进行网络请求
@@ -75,18 +83,14 @@ public class MyCarActivity  extends AppCompatActivity {
                 car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
                 myCarList.add(car);
                 i++;
-//                Log.v("1",""+jso.get("place_number"));
+
             }
             i=0;
-            //全部返回的字符串内容
-//
 
-//            System.out.println(jsonArray.size());
-//            String result = jsonArray.get("result").toString();
 
             Message msg = new Message();
             Bundle data = new Bundle();
-//            data.putString("value",result);
+
             msg.setData(data);
             handler.sendMessage(msg);
         }
@@ -98,6 +102,7 @@ public class MyCarActivity  extends AppCompatActivity {
             super.handleMessage(msg);
             Bundle data = msg.getData();
             String val = data.getString("value");
+            setContentView(listView);
 
 
         }
@@ -112,5 +117,24 @@ public class MyCarActivity  extends AppCompatActivity {
         }
         return data;
     }
+
+
+    //内部类，负责监听listview点击某行事件
+    class ListViewListener implements   AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //position指点击的行数,从第0行开始
+//            跳转
+            Intent intent = new Intent();
+            intent.setClass(MyCarActivity.this, AddCarActivity.class);
+            //传值,数据少的情况下
+            intent.putExtra("car",myCarList.get(position));
+
+            startActivity(intent);
+
+        }
+    }
+
+
 
 }

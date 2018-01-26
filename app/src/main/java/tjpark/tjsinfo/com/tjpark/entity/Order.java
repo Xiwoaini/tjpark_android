@@ -1,10 +1,12 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/1/15.
  */
 //订单实体类
-public class Order {
+public class Order implements Serializable {
     private String id;
     private String place_id;
     private String place_name;

@@ -66,8 +66,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
-
-
+    <Button
+        android:id="@+id/tanBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="弹框"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="304dp" />
 
 
 </android.support.constraint.ConstraintLayout>

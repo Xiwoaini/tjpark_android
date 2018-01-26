@@ -2,11 +2,13 @@ package tjpark.tjsinfo.com.tjpark.entity;
 
 import com.google.gson.JsonElement;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/1/15.
  */
 
-public class Car  {
+public class Car  implements Serializable {
 
     private String id;
     private String place_number;

@@ -5,6 +5,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
@@ -112,9 +113,9 @@ private List<Park> parkList = new LinkedList<Park>();
                     BitmapDescriptor bitmap = BitmapDescriptorFactory
                             .fromResource(R.drawable.huiqipao);
                     //创建OverlayOptions属性 .icon后面的为图片样子
-                    OverlayOptions option1 =  new MarkerOptions()
-                            .position(point1).icon(bitmap).title("当前位置").alpha(Float.parseFloat(parkList.get(i).getId()));
-                    options.add(option1);
+//                    OverlayOptions option1 =  new MarkerOptions()
+//                            .position(point1).icon(bitmap).title("当前位置").alpha(Float.parseFloat(parkList.get(i).getId()));
+//                    options.add(option1);
                 }
             }
         }

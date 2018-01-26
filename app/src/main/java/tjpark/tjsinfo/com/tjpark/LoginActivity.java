@@ -2,19 +2,16 @@ package tjpark.tjsinfo.com.tjpark;
 
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,6 +33,7 @@ public class LoginActivity  extends AppCompatActivity {
     private  TextView password;
     private Button regBtn;
     private Button loginBtn;
+    private Button tanBtn;
     private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +45,16 @@ public class LoginActivity  extends AppCompatActivity {
         password = (EditText)findViewById(R.id.editText2);
         regBtn = (Button)findViewById(R.id.button5);
         loginBtn = (Button)findViewById(R.id.button6);
+        tanBtn = (Button)findViewById(R.id.tanBtn);
+        tanBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(LoginActivity.this);
+                dialog.setContentView(R.layout.activity_markerblue);
+                dialog.show();
+            }
+        });
         //对登录按钮进行监听
         LoginBtn lb = new LoginBtn();
         loginBtn.setOnClickListener(lb);
