@@ -19,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    百度地图设置so文件位置
+    sourceSets{
+        main{
+            jniLibs.srcDirs 'libs'
+        }
+    }
 }
 
 dependencies {

@@ -68,9 +68,11 @@ private List<Park> parkList = new LinkedList<Park>();
             if  (parkList.get(i).getSpace_num().equals("0")){
                 BitmapDescriptor bitmap = BitmapDescriptorFactory
                         .fromResource(R.drawable.huiqipao);
+
                 //创建OverlayOptions属性 .icon后面的为图片样子
                 OverlayOptions option1 =  new MarkerOptions()
-                        .position(point1).icon(bitmap);
+                        .position(point1).icon(bitmap).title(parkList.get(i).getPlace_name());
+
                 options.add(option1);
             }
             else{
@@ -82,7 +84,7 @@ private List<Park> parkList = new LinkedList<Park>();
                             .fromResource(R.drawable.lanqipao);
                     //创建OverlayOptions属性 .icon后面的为图片样子
                     OverlayOptions option1 =  new MarkerOptions()
-                            .position(point1).icon(bitmap);
+                            .position(point1).icon(bitmap).title(parkList.get(i).getPlace_name());
                     options.add(option1);
                 }
                 //黄色停车场，充电
@@ -92,7 +94,7 @@ private List<Park> parkList = new LinkedList<Park>();
                             .fromResource(R.drawable.huangqipao);
                     //创建OverlayOptions属性 .icon后面的为图片样子
                     OverlayOptions option1 =  new MarkerOptions()
-                            .position(point1).icon(bitmap);
+                            .position(point1).icon(bitmap).title(parkList.get(i).getPlace_name());
                     options.add(option1);
                 }
                 //绿色停车场，共享
@@ -102,7 +104,7 @@ private List<Park> parkList = new LinkedList<Park>();
                             .fromResource(R.drawable.lvqipao);
                     //创建OverlayOptions属性 .icon后面的为图片样子
                     OverlayOptions option1 =  new MarkerOptions()
-                            .position(point1).icon(bitmap);
+                            .position(point1).icon(bitmap).title(parkList.get(i).getPlace_name());
                     options.add(option1);
                 }
                 //当前用户位置
@@ -111,24 +113,26 @@ private List<Park> parkList = new LinkedList<Park>();
                             .fromResource(R.drawable.huiqipao);
                     //创建OverlayOptions属性 .icon后面的为图片样子
                     OverlayOptions option1 =  new MarkerOptions()
-                            .position(point1).icon(bitmap);
+                            .position(point1).icon(bitmap).title("当前位置").alpha(Float.parseFloat(parkList.get(i).getId()));
                     options.add(option1);
                 }
             }
-
-
-
         }
     }
 
-    //marker监听
+    //marker监听,当点击停车场的时候会触发此事件
     BaiduMap.OnMarkerClickListener listener = new BaiduMap.OnMarkerClickListener() {
         /**
          * 地图 Marker 覆盖物点击事件监听函数
          * @param marker 被点击的 marker
          */
         public boolean onMarkerClick(Marker marker){
-//            Log.v("1","hahha");
+
+            Log.v("车场名字",marker.getTitle());
+
+
+
+
 
 
             return true;

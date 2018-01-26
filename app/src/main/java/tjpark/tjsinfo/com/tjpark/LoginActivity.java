@@ -3,6 +3,7 @@ package tjpark.tjsinfo.com.tjpark;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +36,7 @@ public class LoginActivity  extends AppCompatActivity {
     private  TextView password;
     private Button regBtn;
     private Button loginBtn;
-
+    private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,10 @@ public class LoginActivity  extends AppCompatActivity {
         LoginBtn lb = new LoginBtn();
         loginBtn.setOnClickListener(lb);
 
+        //对注册按钮进行监听
+        RegBtn rg = new RegBtn();
+        regBtn.setOnClickListener(rg);
+
     }
 
 
@@ -59,11 +65,12 @@ public class LoginActivity  extends AppCompatActivity {
             super.handleMessage(msg);
             Bundle data = msg.getData();
             String val = data.getString("value");
+            val =  val.replace("\"","");
             if (val.equals("\"1\"")){
                 //还没有被注册
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("提示")
-                        .setMessage("此用户还没有呗注册!")
+                        .setMessage("此用户还没有被注册!")
                         .setPositiveButton("确定", null)
                         .show();
             }
@@ -76,11 +83,22 @@ public class LoginActivity  extends AppCompatActivity {
                         .show();
             }
             else{
-                //成功登陆，进行跳转
-//                Intent intent = new Intent();
-//          //(当前Activity，目标Activity)
-//                intent.setClass(LoginActivity.this, PersonActivity.class);
-//                startActivity(intent);
+                //成功登陆，保存账户，进行跳转
+                mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                //存储到本地
+                SharedPreferences.Editor edit = mSharedPreferences.edit();
+                edit.putString("personName", username.getText().toString());//这是存数据
+                edit.putString("password", password.getText().toString());//这是存数据
+                edit.putString("personID", val.replace("\"",""));//这是存数据
+                edit.commit();//这是将数据提交
+//        mSharedPreferences.getString("loginName","");//这是获取值loginName
+//        mSharedPreferences.getString("password","");
+
+
+                Intent intent = new Intent();
+          //(当前Activity，目标Activity)
+                intent.setClass(LoginActivity.this, TabBarActivity.class);
+                startActivity(intent);
 
             }
 
@@ -130,6 +148,21 @@ public class LoginActivity  extends AppCompatActivity {
                 //安卓访问http需要在子线程中进行
                 new Thread(runnable).start();
             }
+
+        }
+
+    }
+    //内部类，负责监听注册按钮
+    class RegBtn implements View.OnClickListener{
+        //监听方法
+        @Override
+        public void onClick(View view) {
+            //跳转代码
+            Intent intent = new Intent();
+//          //(当前Activity，目标Activity)
+                intent.setClass(LoginActivity.this, RegActivity.class);
+                startActivity(intent);
+
 
         }
 

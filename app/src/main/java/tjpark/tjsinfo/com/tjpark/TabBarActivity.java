@@ -3,6 +3,14 @@ package tjpark.tjsinfo.com.tjpark;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.TextView;
 
 import com.hjm.bottomtabbar.BottomTabBar;
 
@@ -17,7 +25,7 @@ import tjpark.tjsinfo.com.tjpark.fragment.TwoFragment;
 
 public class TabBarActivity extends FragmentActivity {
 
-    private  BottomTabBar mBottomTabBar;
+    private BottomTabBar mBottomTabBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +44,5 @@ public class TabBarActivity extends FragmentActivity {
                 .isShowDivider(false);
 
     }
-
-
-
 
 }
