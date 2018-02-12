@@ -3,31 +3,63 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent" >
+
+    <!--标题及撤回按钮-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="车牌编辑"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-50dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="onBackPressed"
+        />
+
 <!--添加车辆-->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+          android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
         android:text="请输入车牌号" />
 
     <EditText
         android:id="@+id/addCar_PlateNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:inputType="none"
         android:hint="请务必输入真实有效的车牌号" />
 
     <Button
         android:id="@+id/addCar_SaveBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
         android:text="保存" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:text="请绑定真实有效的车牌号,否则无法正常使用车牌的自动付款功能。" />
 
 

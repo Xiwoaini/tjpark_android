@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <!--标题及撤回按钮-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="附近停车场"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-50dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="onBackPressed"
+        />
     <ListView
         android:id="@+id/parkListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp">
     </ListView>
 
 </LinearLayout>

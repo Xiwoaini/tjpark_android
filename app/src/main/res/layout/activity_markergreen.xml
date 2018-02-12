@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/green_placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="停车场名称"
         />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/green_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -23,14 +23,14 @@
         />
     <TableRow>
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/green_placeDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="停车场地址"
+        android:text="距离"
         />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/green_placeAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -38,7 +38,7 @@
         />
     </TableRow>
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/green_shareNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -46,17 +46,17 @@
         />
     <TableRow>
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/green_parkDaoHang"
         android:layout_width="87dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:background="#3DC9CE"
         android:text="导航"
          />
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/green_parkDetail"
         android:layout_width="87dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:background="#3DC9CE"
         android:text="详情"
         />
     </TableRow>

@@ -25,7 +25,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tjpark.tjsinfo.com.tjpark.entity.Car;
+import tjpark.tjsinfo.com.tjpark.util.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
+import tjpark.tjsinfo.com.tjpark.util.ParkAdapter;
 
 /**
  * Created by panning on 2018/1/12.
@@ -34,7 +36,7 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 public class MyCarActivity  extends AppCompatActivity {
 
     private ListView listView;
-    private static List<Car> myCarList = new LinkedList<Car>();
+    private   List<Car> myCarList = new LinkedList<Car>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +46,10 @@ public class MyCarActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_mycar);
 
         //获取listView，
-        listView = (ListView)findViewById(R.id.listView);
-        listView = new ListView(this);
-
-        //为listView赋值
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,getData()));
+        listView = (ListView)findViewById(R.id.carListView);
 
 
-        ListViewListener listViewListener =new ListViewListener();
-        listView.setOnItemClickListener(listViewListener);
+
 
 
 
@@ -85,6 +82,7 @@ public class MyCarActivity  extends AppCompatActivity {
                 i++;
 
             }
+
             i=0;
 
 
@@ -101,8 +99,14 @@ public class MyCarActivity  extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle data = msg.getData();
-            String val = data.getString("value");
-            setContentView(listView);
+
+
+            CarAdapter adapter = new CarAdapter(MyCarActivity.this, R.layout.activity_mycarview,myCarList);
+            //为listView赋值
+            listView.setAdapter(adapter);
+            ListViewListener listViewListener =new ListViewListener();
+            listView.setOnItemClickListener(listViewListener);
+
 
 
         }
@@ -113,6 +117,7 @@ public class MyCarActivity  extends AppCompatActivity {
 
         List<String> data = new ArrayList<String>();
         for(int i =0;i<myCarList.size();i++){
+
             data.add(myCarList.get(i).getPlace_number());
         }
         return data;

@@ -1,19 +1,21 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.feiqi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+import tjpark.tjsinfo.com.tjpark.CarLifeDisPlayActivity;
+import tjpark.tjsinfo.com.tjpark.R;
 
 /**
  * Created by panning on 2018/1/12.
  */
 
 //车生活的12个按钮
-public class CarLifeActivity  extends AppCompatActivity {
+public class CarLifeActivity  extends FragmentActivity {
 
     //绑定控件属性
     private ImageButton carLifeBtn1;
@@ -46,11 +48,13 @@ public class CarLifeActivity  extends AppCompatActivity {
         carLifeBtn11 = (ImageButton) findViewById(R.id.imgBtn11);
         carLifeBtn12 = (ImageButton) findViewById(R.id.imgBtn12);
 
+
 //        //对12个按钮进行监听
                 carLifeBtn1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+                Log.v("被点击","按钮1");
                 CarLifeDisPlayActivity.strUrl = "http://m.weizhang8.cn/";
                 Intent intent = new Intent();
 

@@ -27,8 +27,6 @@ public class AddCarActivity  extends AppCompatActivity {
     private Button addCar_SaveBtn;
      private Car car;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

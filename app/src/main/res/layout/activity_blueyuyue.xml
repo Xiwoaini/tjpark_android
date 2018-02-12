@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <!--标题及撤回按钮-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="预约车位"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-45dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="onBackPressed"
+        />
+
+    <!--订单详情-->
+    <!--车场名称-->
+    <TextView
+        android:id="@+id/blue_yuYueParkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+        android:text="未知"
+          />
+
+    <!--距离-->
+    <TextView
+        android:id="@+id/blue_yuYueDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:text="未知"
+        />
+    <!--类型-->
+    <TextView
+        android:id="@+id/blue_yuYueType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:text="未知"
+        />
+    <!--地址-->
+    <TextView
+        android:id="@+id/blue_yuYueAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="5dp"
+        android:text="未知"
+        />
+    <!--横线-->
+    <View  android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        android:layout_marginTop="3dp"
+
+        />
+    <!--预约入场-->
+    <TextView
+        android:id="@+id/detail_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textSize="8pt"
+        android:layout_marginTop="3dp"
+        android:text="预约入场"
+        />
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+    <TableRow>
+    <!--选择车辆-->
+
+    <ImageView
+        android:id="@+id/mycar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/mycar"
+        android:layout_marginLeft="5dp"
+         />
+    <Button
+        android:id="@+id/blue_yuYueCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="blue_yuYueCar"
+        android:text="选择车辆"
+        android:layout_marginLeft="3dp"
+        android:textColor="#FF4040"
+        android:background="#FFFFFF"
+        />
+    </TableRow>
+        <TableRow >
+    <!--选择时间-->
+    <ImageView
+        android:id="@+id/myticket"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/myticket"
+        android:layout_marginLeft="5dp"
+
+        />
+    <Button
+        android:id="@+id/blue_yuYueTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="blue_yuYueTime"
+        android:layout_marginLeft="3dp"
+        android:text="选择时间"
+        android:textColor="#FF4040"
+        android:background="#FFFFFF"
+        />
+        </TableRow>
+        <TableRow >
+    <!--具体金额-->
+    <ImageView
+        android:id="@+id/qianian"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/qian"
+        android:layout_marginLeft="5dp"
+        />
+            <TextView
+                android:id="@+id/blue_yuYueMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:text="预约金额"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <!--预约车位按钮-->
+    <Button
+        android:id="@+id/blue_yuYueBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:onClick="blue_yuYueBtn"
+        android:text="预约车位"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+         />
+
+
+
+
+</LinearLayout>

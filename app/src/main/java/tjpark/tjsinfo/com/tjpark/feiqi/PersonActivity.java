@@ -1,33 +1,36 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.feiqi;
 
-import android.app.Activity;
-import android.app.ListActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.Menu;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import tjpark.tjsinfo.com.tjpark.LoginActivity;
+import tjpark.tjsinfo.com.tjpark.MyCarActivity;
+import tjpark.tjsinfo.com.tjpark.MyShareActivity;
+import tjpark.tjsinfo.com.tjpark.R;
+import tjpark.tjsinfo.com.tjpark.ShareReleaseActivity;
+
 
 /**
  * Created by panning on 2018/1/12.
  */
-
+//'我的'页面控制类，被(OneFragment代替)
 public class PersonActivity extends FragmentActivity {
     private SharedPreferences mSharedPreferences;
     //登录状态
@@ -50,7 +53,7 @@ public class PersonActivity extends FragmentActivity {
         String username=mSharedPreferences.getString("loginName","");
         String password=mSharedPreferences.getString("password","");
 
-        System.out.print("值为:"+username);
+//        System.out.print("值为:"+username);
         if ((username!="")&&(password!="")){
             textStatus.setText("已登录");
             btnStatus.setText("退出");

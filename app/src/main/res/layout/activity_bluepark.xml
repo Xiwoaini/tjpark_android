@@ -1,12 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.BlueParkActivity">
+    android:orientation="vertical"
+android:layout_height="match_parent" >
+    <!--标题及撤回按钮-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="车牌编辑"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-45dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="onBackPressed"
+        />
     <!--普通停车场详情-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/bluePark_placeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
+                android:text="停车场名称"
+                />
+
+            <TextView
+                android:id="@+id/bluePark_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="距离"
+                />
+            <TextView
+                android:id="@+id/bluePark_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="类型"
+                />
+            <TextView
+                android:id="@+id/bluePark_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="地址"
+                />
+            <!--横线-->
+            <View  android:layout_height="1px"
+                android:layout_width="match_parent"
+                android:background="#BFBFBF"
+                />
+
+            <TableLayout
+                android:id="@+id/pay_selectMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
 
 
+            <TextView
+                android:id="@+id/bluePark_JFSD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="计费时段"
+                />
+                <TableRow>
+            <TextView
+                android:id="@+id/bluePark_JTSJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="具体时间"
+                />
+                    <TextView
+                        android:id="@+id/bluePark_JTLX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="具体类型"
+                        />
+                </TableRow>
+            <!--横线-->
+                <View  android:layout_height="1px"
+                    android:layout_width="match_parent"
+                    android:background="#BFBFBF"
+                    />
+            <TextView
+                android:id="@+id/bluePark_SFGZ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="收费规则"
+                />
+                <TableRow>
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/qian"
+                         />
+            <TextView
+                android:id="@+id/bluePark_JTGZ1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="1小时   6.0元/小时     "
+                />
+                    <TextView
+                        android:id="@+id/bluePark_JTGZ2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="具体时间"
+                        />
+                </TableRow>
 
-</android.support.constraint.ConstraintLayout>
+
+            <View  android:layout_height="1px"
+                android:layout_width="match_parent"
+                android:background="#BFBFBF"
+                />
+            <TableRow>
+
+            <Button
+                android:id="@+id/bluePark_daoHang"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:onClick="daoHang"
+                android:text="导航"
+                android:textColor="#FFFFFF"
+                android:background="#3DC9CE"
+                />
+            <Button
+                android:id="@+id/bluePark_yuYue"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:onClick="bluePark_yuYue"
+                android:text="预约"
+                android:textColor="#FFFFFF"
+                android:background="#3DC9CE"
+                 />
+
+            </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

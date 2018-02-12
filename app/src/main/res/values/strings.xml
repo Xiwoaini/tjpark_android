@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Tjpark</string>
+    <!--<string name="app_name">Tjpark</string>-->
+    <!-- 兼容主题 深色主题 activity背景默认黑色，字体默认白色-->
+    <!--<style name="AppTheme" parent="Theme.AppCompat">-->
+    <!--</style>-->
+
+    <!--&lt;!&ndash; 兼容主题 浅色主题 activity背景默认白色 字体默认黑色 &ndash;&gt;-->
+    <!--<style name="AppTheme2" parent="Theme.AppCompat.Light">-->
+    <!--</style>-->
+
+    <!--&lt;!&ndash; 兼容主题 深色主题 无Actionbar&ndash;&gt;-->
+    <!--<style name="AppTheme3" parent="Theme.AppCompat.NoActionBar">-->
+    <!--</style>-->
+
+    <!--&lt;!&ndash; 兼容主题 浅色主题 无Actionbar&ndash;&gt;-->
+    <!--<style name="AppTheme4" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--</style>-->
+
 </resources>

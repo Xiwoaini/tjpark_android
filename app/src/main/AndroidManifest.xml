@@ -15,14 +15,22 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
+    <!--支付宝相关权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme">
+
         <!--BaiDuMap-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -35,7 +43,7 @@
 
 
         <!--应用程序初始页面的设定-->
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,17 +51,39 @@
             </intent-filter>
         </activity>
         <!--声明所有activity用于跳转-->
+        <activity android:name=".TabBarActivity"></activity>
         <activity android:name=".AddCarActivity"></activity>
         <activity android:name=".ParkListActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".BlueParkActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".CarLifeDisPlayActivity"></activity>
         <activity android:name=".ShareReleaseActivity"></activity>
-        <!--<activity android:name=".LoginActivity"></activity>-->
-        <activity android:name=".PersonActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".BlueYuYueActivity"></activity>
         <activity android:name=".RegActivity"></activity>
         <activity android:name=".MyShareActivity"></activity>
-        <activity android:name=".CarLifeActivity"></activity>
+        <activity android:name=".util.PayDemoActivity"></activity>
+        <activity android:name=".MyCarActivity"></activity>
+        <activity android:name=".YellowParkActivity"></activity>
+        <activity android:name=".GreenParkActivity"></activity>
+
+
+
+        <!--支付宝相关activity-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
     </application>
 
     <!--访问网络-->

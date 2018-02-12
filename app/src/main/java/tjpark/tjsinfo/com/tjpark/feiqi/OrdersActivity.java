@@ -1,43 +1,33 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.feiqi;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
-import com.baidu.mapapi.model.LatLng;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import tjpark.tjsinfo.com.tjpark.entity.Car;
+import tjpark.tjsinfo.com.tjpark.DetailActivity;
+import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Order;
-import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 import tjpark.tjsinfo.com.tjpark.util.OrderAdapter;
-import tjpark.tjsinfo.com.tjpark.util.ParkAdapter;
 
 /**
  * Created by panning on 2018/1/12.
  */
 
+
+//订单页控制，目前没作用(TwoFragment代替)
 public class OrdersActivity  extends AppCompatActivity {
     private ListView listView;
     private  List<Order> orderList = new LinkedList<Order>();

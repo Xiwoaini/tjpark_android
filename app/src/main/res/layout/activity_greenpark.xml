@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tjpark.tjsinfo.com.tjpark.GreenParkActivity">
+
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TableRow>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="150dp"
+            android:src="@drawable/gxcwtb" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+        <TextView
+            android:id="@+id/greenPark_placeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:text="停车场名称"
+            />
+        <TextView
+            android:id="@+id/greenPark_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="距离"
+            />
+        <TextView
+            android:id="@+id/greenPark_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="停车场地址"
+            android:layout_marginLeft="5dp"
+            />
+        </LinearLayout>
+    </TableRow>
+    <!--横线-->
+    <View  android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        />
+</TableLayout>
+
+</LinearLayout>
     <!--共享停车场详情-->
-
-
-
-</android.support.constraint.ConstraintLayout>

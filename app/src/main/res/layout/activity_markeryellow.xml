@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="停车场名称"
         />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -23,14 +23,14 @@
         />
         <TableRow>
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/yellow_placeDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="停车场距离"
                 />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_placeAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -39,14 +39,14 @@
         </TableRow>
         <TableRow>
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_placeFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="收费标准"
         />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_placeNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -55,14 +55,14 @@
         </TableRow>
         <TableRow>
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_CDFY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="充电费用"
         />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yellow_kongXian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -71,17 +71,17 @@
         </TableRow>
         <TableRow>
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/yellow_parkDaoHang"
         android:layout_width="87dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:background="#3DC9CE"
         android:text="导航"
          />
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/yellow_parkDetail"
         android:layout_width="87dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:background="#3DC9CE"
         android:text="详情"
         />
         </TableRow>

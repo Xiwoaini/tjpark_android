@@ -4,16 +4,41 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.RegActivity">
+    >
+
+    <!--标题及撤回按钮-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="车牌编辑"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-50dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="onBackPressed"
+        />
 
 
     <EditText
-        android:layout_gravity="center"
         android:id="@+id/regPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:ems="10"
         android:inputType="numberSigned"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:hint="请输入手机号"
           />
 
@@ -24,18 +49,22 @@
         <TableRow>
         <EditText
             android:id="@+id/regCode"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
             android:ems="10"
             android:hint="请输入验证码"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
             android:inputType="numberSigned"
             />
 
         <Button
             android:id="@+id/regGetCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="50dp"
             android:text="获取验证码"
+            android:textColor="#FFFFFF"
+            android:background="#3DC9CE"
             />
         </TableRow>
     </TableLayout>
@@ -43,11 +72,12 @@
 
     <EditText
         android:id="@+id/regPwd"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="请设置密码"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:inputType="textPassword"
       />
 
@@ -55,20 +85,19 @@
         android:id="@+id/radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
         android:checked="true"
         android:text="我已阅读并同意《天津停车协议》"
         android:textColor="#3399ff"
-
          />
-
-
-
     <Button
         android:id="@+id/regBtn"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
         android:text="注册"
     />
 </LinearLayout>

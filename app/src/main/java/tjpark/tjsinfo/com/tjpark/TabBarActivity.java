@@ -1,5 +1,6 @@
 package tjpark.tjsinfo.com.tjpark;
 
+import android.app.Application;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +13,7 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.hjm.bottomtabbar.BottomTabBar;
 
 import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
@@ -30,16 +32,18 @@ public class TabBarActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbar);
+        SDKInitializer.initialize(getApplicationContext());
         mBottomTabBar = (BottomTabBar) findViewById(R.id.bottom_tab_bar);
         mBottomTabBar.init(getSupportFragmentManager())
                 .setImgSize(50,50)
                 .setFontSize(8)
                 .setTabPadding(4,6,10)
-                .setChangeColor(Color.DKGRAY,Color.RED)
-                .addTabItem("首页", R.mipmap.ic_launcher, OneFragment.class)
-                .addTabItem("订单", R.mipmap.ic_launcher, TwoFragment.class)
-                .addTabItem("更多", R.mipmap.ic_launcher, ThreeFragment.class)
-                .addTabItem("我的", R.mipmap.ic_launcher, FourFragment.class)
+                .setChangeColor(Color.BLUE,Color.DKGRAY)
+                .addTabItem("首页",R.drawable.iconsy,R.drawable.iconsy, OneFragment.class)
+                .addTabItem("订单", R.drawable.icondd,R.drawable.icondd, TwoFragment.class)
+                .addTabItem("更多",R.drawable.iconyy, R.drawable.iconyy, ThreeFragment.class)
+                .addTabItem("我的",R.drawable.iconwd, R.drawable.iconwd, FourFragment.class)
+//                .setTabBarBackgroundResource(R.mipmap.ic_launcher)
                 .setTabBarBackgroundColor(Color.WHITE)
                 .isShowDivider(false);
 

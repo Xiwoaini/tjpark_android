@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.MyCarActivity">
+    android:orientation="vertical"
+     >
+    <!--标题及撤回按钮-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="我的车辆"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-45dp"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:text="返回"
+        android:onClick="onBackPressed"
+        />
+
 <!--我的车辆-->
 
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="333dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加车牌后，在只能停车场，在支付方式中开启免密支付，离开停车场可实现自动扣费，无需缴纳押金"
         tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="16dp" />
-
+        tools:layout_editor_absoluteY="16dp"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
     <ListView
-        android:id="@+id/listView"
-        android:layout_width="368dp"
-        android:layout_height="441dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="62dp" />
-</android.support.constraint.ConstraintLayout>
+        android:id="@+id/carListView"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        />
+
+</LinearLayout>

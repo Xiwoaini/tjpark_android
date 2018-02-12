@@ -1,78 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.LoginActivity">
+     >
     <!--登录 #40E0D0-->
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
         android:text="登 录"
         android:textColor="#FFFFFF"
-        android:textSize="15pt"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText2"
+        android:background="#3DC9CE"
+        android:textSize="12pt"
+        />
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
-
+        android:layout_height="40dp"
+        android:layout_marginTop="-45dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:onClick="onBackPressed"
+        />
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="请输入账号/手机号"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
+        android:inputType="numberSigned"
+        />
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="请输入账号"
-        android:inputType="numberSigned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+       />
+
+
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="87dp"
+        android:layout_width="95dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:text="注册"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        android:layout_marginLeft="15dp"
+        android:background="#FFFFFF"
 
+        android:text="注册新用户"
+         />
+    <View  android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        />
     <Button
         android:id="@+id/button6"
-        android:layout_width="92dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#3DC9CE"
+        android:textColor="#FFFFFF"
         android:text="登录"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/tanBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="弹框"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="304dp" />
+        />
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

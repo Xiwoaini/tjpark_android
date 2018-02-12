@@ -2,6 +2,7 @@ package tjpark.tjsinfo.com.tjpark;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * Created by panning on 2018/1/12.
@@ -14,4 +15,5 @@ public class MyShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshare);
     }
+
 }

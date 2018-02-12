@@ -11,6 +11,7 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,15 +29,17 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 //登录管理类
 public class LoginActivity  extends AppCompatActivity {
 
+//    13952775231
     //绑定控件属性
     private TextView username;
     private  TextView password;
     private Button regBtn;
     private Button loginBtn;
-    private Button tanBtn;
+
     private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -45,16 +48,8 @@ public class LoginActivity  extends AppCompatActivity {
         password = (EditText)findViewById(R.id.editText2);
         regBtn = (Button)findViewById(R.id.button5);
         loginBtn = (Button)findViewById(R.id.button6);
-        tanBtn = (Button)findViewById(R.id.tanBtn);
-        tanBtn.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(LoginActivity.this);
-                dialog.setContentView(R.layout.activity_markerblue);
-                dialog.show();
-            }
-        });
+
         //对登录按钮进行监听
         LoginBtn lb = new LoginBtn();
         loginBtn.setOnClickListener(lb);
@@ -74,7 +69,7 @@ public class LoginActivity  extends AppCompatActivity {
             Bundle data = msg.getData();
             String val = data.getString("value");
             val =  val.replace("\"","");
-            if (val.equals("\"1\"")){
+            if (val.equals("1")){
                 //还没有被注册
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("提示")
@@ -82,7 +77,7 @@ public class LoginActivity  extends AppCompatActivity {
                         .setPositiveButton("确定", null)
                         .show();
             }
-            else if (val.equals("\"2\"")){
+            else if (val.equals("2")){
                 //用户或密码错误
                 new AlertDialog.Builder(LoginActivity.this)
                         .setTitle("提示")
@@ -113,28 +108,28 @@ public class LoginActivity  extends AppCompatActivity {
         }
     };
 
-    //新线程进行网络请求
-    Runnable runnable = new Runnable(){
-        @Override
-        public void run() {
-
-            JsonObject res = null;
-//            /tjpark/app/AppWebservice/userLogin?password=111111&registrationId=1&nameInput=13920775231
-            String strUrl="/tjpark/app/AppWebservice/userLogin?nameInput="+username.getText().toString()+"&password="
-                    +password.getText().toString()+"&registrationId=1";
-            res =NetConnection.getXpath(strUrl);
-            //全部返回的字符串内容
-//            System.out.println(res);
-//              System.out.println(res.get("result"));
-            String result = res.get("result").toString();
-
-            Message msg = new Message();
-            Bundle data = new Bundle();
-            data.putString("value",result);
-            msg.setData(data);
-            handler.sendMessage(msg);
-        }
-    };
+//    //新线程进行网络请求
+//    Runnable runnable = new Runnable(){
+//        @Override
+//        public void run() {
+//
+//            JsonObject res = null;
+////            /tjpark/app/AppWebservice/userLogin?password=111111&registrationId=1&nameInput=13920775231
+//            String strUrl="/tjpark/app/AppWebservice/userLogin?nameInput="+username.getText().toString()+"&password="
+//                    +password.getText().toString()+"&registrationId=1";
+//            res =NetConnection.getXpath(strUrl);
+//            //全部返回的字符串内容
+////            System.out.println(res);
+////              System.out.println(res.get("result"));
+//            String result = res.get("result").toString();
+//
+//            Message msg = new Message();
+//            Bundle data = new Bundle();
+//            data.putString("value",result);
+//            msg.setData(data);
+//            handler.sendMessage(msg);
+//        }
+//    };
 
     //内部类，负责监听登录按钮
     class LoginBtn implements View.OnClickListener{
@@ -154,28 +149,51 @@ public class LoginActivity  extends AppCompatActivity {
             }
             else{
                 //安卓访问http需要在子线程中进行
-                new Thread(runnable).start();
+                new Thread(  new Runnable(){
+                    @Override
+                    public void run() {
+
+                        JsonObject res = null;
+
+                        String strUrl="/tjpark/app/AppWebservice/userLogin?nameInput="+username.getText().toString()+"&password="
+                                +password.getText().toString()+"&registrationId=1";
+                        res =NetConnection.getXpath(strUrl);
+                        //全部返回的字符串内容
+
+                        String result = res.get("result").toString();
+
+                        Message msg = new Message();
+                        Bundle data = new Bundle();
+                        data.putString("value",result);
+                        msg.setData(data);
+                        handler.sendMessage(msg);
+                    }
+                }).start();
             }
 
         }
 
     }
-    //内部类，负责监听注册按钮
-    class RegBtn implements View.OnClickListener{
-        //监听方法
-        @Override
-        public void onClick(View view) {
-            //跳转代码
-            Intent intent = new Intent();
+          //内部类，负责监听注册按钮
+        class RegBtn implements View.OnClickListener{
+            //监听方法
+            @Override
+            public void onClick(View view) {
+                //跳转代码
+                Intent intent = new Intent();
 //          //(当前Activity，目标Activity)
                 intent.setClass(LoginActivity.this, RegActivity.class);
                 startActivity(intent);
 
 
-        }
+            }
 
     }
 
+//返回键
+    public void onBackPressed(View view) {
+        super.onBackPressed();
 
+    }
 
 }
