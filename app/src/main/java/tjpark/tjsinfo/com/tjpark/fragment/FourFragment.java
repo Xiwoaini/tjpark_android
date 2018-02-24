@@ -21,7 +21,8 @@ import tjpark.tjsinfo.com.tjpark.MyCarActivity;
 import tjpark.tjsinfo.com.tjpark.MyShareActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.ShareReleaseActivity;
-
+import tjpark.tjsinfo.com.tjpark.entity.Person;
+import tjpark.tjsinfo.com.tjpark.util.PersonAdapter;
 
 
 /**
@@ -76,10 +77,10 @@ public class FourFragment extends Fragment {
         btnStatus.setOnClickListener(sb);
 
 
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.activity_listview,getData());
-        //获取listView，
+//获取listView，
         ListView listView = (ListView)getActivity().findViewById(R.id.personListView);
+        PersonAdapter adapter = new PersonAdapter(getActivity(), R.layout.activity_listview,getData());
+
         //为listView赋值
         listView.setAdapter(adapter);
         FourFragment.ListViewListener ll=new FourFragment.ListViewListener();
@@ -87,16 +88,17 @@ public class FourFragment extends Fragment {
 
     }
 
-    private List<String> getData(){
+    private List<Person> getData(){
+    String[] strData = new String[]{"我的车辆","我的共享车位","共享车位发布","我的月卡","我的优惠券","我的积分","我的发票"};
+    int[] imgData = new int[]{R.drawable.mycar,R.drawable.sharecar,R.drawable.releasecar,R.drawable.yueka,R.drawable.youhui,R.drawable.qian,R.drawable.fapiao};
+        List<Person> data = new ArrayList<Person>();
+        for(int i =0;i<7;i++){
+            Person p =new Person();
+            p.setPersonImg(imgData[i]);
+            p.setPersonItem(strData[i]);
+            data.add(p);
+        }
 
-        List<String> data = new ArrayList<String>();
-        data.add("我的车辆");
-        data.add("我的共享车位");
-        data.add("共享车位发布");
-        data.add("我的月卡");
-        data.add("我的优惠券");
-        data.add("我的积分");
-        data.add("我的发票");
         return data;
     }
 

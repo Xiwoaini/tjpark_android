@@ -24,7 +24,7 @@ public class RegActivity  extends AppCompatActivity {
     //注册按钮
     private Button regBtn;
     //获取验证码
-    private  Button regGetCode;
+    private  Button regGetCode,exitBtn;
 
 
 
@@ -39,12 +39,22 @@ public class RegActivity  extends AppCompatActivity {
         regPwd=(EditText)findViewById(R.id.regPwd);
         regGetCode=(Button)findViewById(R.id.regGetCode);
         regBtn=(Button)findViewById(R.id.regBtn);
-
+        exitBtn=(Button)findViewById(R.id.exitBtn);
         //当不输入手机号时，设置密码框，验证码框等不能输入
         regCode.setEnabled(false);
         regPwd.setEnabled(false);
         regBtn.setClickable(false);
 
+
+        //返回按钮监听
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
         //监听事件
         regGetCode.setOnClickListener(new View.OnClickListener() {
 

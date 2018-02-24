@@ -12,18 +12,20 @@ android:layout_height="match_parent"
         android:layout_height="50dp"
         android:textAlignment="center"
         android:text="手机支付"
+        android:paddingTop="8dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
         android:textSize="10pt"
         />
     <Button
+        android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="-45dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
         android:text="返回"
-        android:onClick="onBackPressed"
+
         />
 
     <!--普通停车场详情-->

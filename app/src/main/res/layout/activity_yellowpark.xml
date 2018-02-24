@@ -11,20 +11,21 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:textAlignment="center"
-        android:text="车牌编辑"
+        android:text="停车场详情"
+        android:paddingTop="8dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
         android:textSize="10pt"
 
         />
     <Button
+        android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="-50dp"
         android:text="返回"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
-        android:onClick="onBackPressed"
         />
 
     <!--充电停车场详情-->
@@ -253,6 +254,8 @@
                 android:text="导航"
                 android:textColor="#FFFFFF"
                 android:background="#3DC9CE"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="3dp"
                 />
             <Button
                 android:id="@+id/yellowPark_yuYue"
@@ -260,6 +263,8 @@
                 android:layout_height="50dp"
                 android:onClick="yellowPark_yuYue"
                 android:text="预约"
+                android:layout_marginRight="3dp"
+                android:layout_marginLeft="5dp"
                 android:textColor="#FFFFFF"
                 android:background="#3DC9CE"
                 />

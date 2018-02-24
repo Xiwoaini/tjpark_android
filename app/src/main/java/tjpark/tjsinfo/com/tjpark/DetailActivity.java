@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -37,6 +39,16 @@ public class DetailActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        Button exitBtn=(Button)findViewById(R.id.exitBtn);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
+
         detail_parkName=(TextView)findViewById(R.id.detail_parkName);
         detail_fee=(TextView)findViewById(R.id.detail_fee);
         detail_startTime=(TextView)findViewById(R.id.detail_startTime);
@@ -49,12 +61,12 @@ public class DetailActivity  extends AppCompatActivity {
         /*获取Bundle中的数据，注意类型和key*/
         Order order =new Order();
         order = (Order)bundle.getSerializable("detail");
-        detail_parkName.setText("停车场名称:"+ order.getPlace_name());
-        detail_fee.setText("收费标准:6元/小时");
-        detail_startTime.setText("停车开始时间:"+order.getIn_time());
-        detail_endTime.setText("停车结束时间:"+order.getOut_time());
-        detail_time.setText("停车场用时:"+order.getPark_time());
-        detail_money.setText("总费用:"+order.getReal_park_fee());
+        detail_parkName.setText(order.getPlace_name());
+        detail_fee.setText("收费标准:  6元/小时");
+        detail_startTime.setText("停车开始时间:  "+order.getIn_time());
+        detail_endTime.setText("停车结束时间:  "+order.getOut_time());
+        detail_time.setText("停车场用时:  "+order.getPark_time());
+        detail_money.setText("总费用:  "+order.getReal_park_fee());
     }
 
 

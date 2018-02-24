@@ -7,14 +7,13 @@
 
     <TextView
         android:id="@+id/marker_num"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
 
-        android:textSize="12pt"
-        android:paddingTop="18dp"
-        android:paddingLeft="30dp"
+        android:textSize="6pt"
+        android:paddingTop="10dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/lanqipao"
-
 
          />
 

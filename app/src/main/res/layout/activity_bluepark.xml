@@ -10,20 +10,22 @@ android:layout_height="match_parent" >
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:textAlignment="center"
-        android:text="车牌编辑"
+        android:text="停车场详情"
+        android:paddingTop="8dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
         android:textSize="10pt"
 
         />
     <Button
+        android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="-45dp"
         android:text="返回"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
-        android:onClick="onBackPressed"
+
         />
     <!--普通停车场详情-->
     <ScrollView
@@ -149,10 +151,12 @@ android:layout_height="match_parent" >
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:onClick="daoHang"
+                android:onClick="blueDaoHang"
                 android:text="导航"
                 android:textColor="#FFFFFF"
                 android:background="#3DC9CE"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="5dp"
                 />
             <Button
                 android:id="@+id/bluePark_yuYue"
@@ -162,6 +166,8 @@ android:layout_height="match_parent" >
                 android:layout_marginTop="10dp"
                 android:onClick="bluePark_yuYue"
                 android:text="预约"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="3dp"
                 android:textColor="#FFFFFF"
                 android:background="#3DC9CE"
                  />

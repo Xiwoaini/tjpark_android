@@ -12,19 +12,21 @@
         android:layout_height="50dp"
         android:textAlignment="center"
         android:text="附近停车场"
+        android:paddingTop="8dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
         android:textSize="10pt"
 
         />
     <Button
+        android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="-50dp"
         android:text="返回"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
-        android:onClick="onBackPressed"
+
         />
     <ListView
         android:id="@+id/parkListView"

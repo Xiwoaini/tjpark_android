@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.time.Year;
 import java.util.Iterator;
 
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
@@ -25,13 +30,27 @@ public class YellowParkActivity extends AppCompatActivity {
             yellowPark_address, yellowPark_JTSJ,bluePark_JTLX,yellowPark_JTGZ1,
             yellowPark_JTGZ2,yellowPark_JTFY, yellowPark_KSCD,yellowPark_MSCD,
             yellowPark_JTKFSJ;
+    private Button exitBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yellowpark);
+        exitBtn =(Button)findViewById(R.id.exitBtn);
+        //返回按钮监听
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
+
+
         new Thread(runnable).start();
+
     }
 
 
@@ -115,5 +134,37 @@ public class YellowParkActivity extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+
+    //导航按钮
+    public void blueDaoHang(View view) {
+
+
+        //todo:当前位置
+        Intent intent = null;
+        try {
+
+            String uri = "intent://map/direction?origin=latlng:39.9761,116.3282|name:我的位置&destination=" + yellowPark_address.getText() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+
+            intent = Intent.getIntent(uri);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        if(isInstallByread("com.baidu.BaiduMap")){
+            startActivity(intent); //启动调用
+
+        }else{
+            new AlertDialog.Builder(YellowParkActivity.this)
+                    .setTitle("注意")
+                    .setMessage("请先安装百度地图!")
+                    .setPositiveButton("确定", null)
+                    .show();
+
+        }
+
+
+    }
+    private boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName).exists();
     }
 }

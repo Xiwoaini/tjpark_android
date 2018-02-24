@@ -21,6 +21,7 @@ import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -126,6 +127,17 @@ public class PayDemoActivity extends FragmentActivity   {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_orderpay);
+
+		Button exitBtn=(Button)findViewById(R.id.exitBtn);
+		exitBtn.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				onBackPressed();
+			}
+
+		});
+
 
 		Intent intent =getIntent();
 		TextView pay_placeName=(TextView)findViewById(R.id.pay_placeName);

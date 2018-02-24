@@ -13,20 +13,22 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:textAlignment="center"
-        android:text="车牌编辑"
+        android:text="注册"
+        android:paddingTop="8dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
         android:textSize="10pt"
 
         />
     <Button
+        android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="-50dp"
         android:text="返回"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
-        android:onClick="onBackPressed"
+
         />
 
 
@@ -61,7 +63,7 @@
         <Button
             android:id="@+id/regGetCode"
             android:layout_weight="1"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:text="获取验证码"
             android:textColor="#FFFFFF"
             android:background="#3DC9CE"
@@ -76,6 +78,7 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="请设置密码"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:inputType="textPassword"
@@ -86,6 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
         android:checked="true"
         android:text="我已阅读并同意《天津停车协议》"
         android:textColor="#3399ff"
@@ -98,6 +102,7 @@
         android:layout_marginRight="5dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
+        android:layout_marginTop="5dp"
         android:text="注册"
     />
 </LinearLayout>

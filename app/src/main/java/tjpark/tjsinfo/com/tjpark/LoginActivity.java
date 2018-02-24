@@ -34,7 +34,7 @@ public class LoginActivity  extends AppCompatActivity {
     private TextView username;
     private  TextView password;
     private Button regBtn;
-    private Button loginBtn;
+    private Button loginBtn,exitBtn;
 
     private SharedPreferences mSharedPreferences;
     @Override
@@ -48,7 +48,7 @@ public class LoginActivity  extends AppCompatActivity {
         password = (EditText)findViewById(R.id.editText2);
         regBtn = (Button)findViewById(R.id.button5);
         loginBtn = (Button)findViewById(R.id.button6);
-
+        exitBtn= (Button)findViewById(R.id.exitBtn);
 
         //对登录按钮进行监听
         LoginBtn lb = new LoginBtn();
@@ -58,6 +58,16 @@ public class LoginActivity  extends AppCompatActivity {
         RegBtn rg = new RegBtn();
         regBtn.setOnClickListener(rg);
 
+
+        //返回按钮监听
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
     }
 
 
@@ -108,28 +118,7 @@ public class LoginActivity  extends AppCompatActivity {
         }
     };
 
-//    //新线程进行网络请求
-//    Runnable runnable = new Runnable(){
-//        @Override
-//        public void run() {
-//
-//            JsonObject res = null;
-////            /tjpark/app/AppWebservice/userLogin?password=111111&registrationId=1&nameInput=13920775231
-//            String strUrl="/tjpark/app/AppWebservice/userLogin?nameInput="+username.getText().toString()+"&password="
-//                    +password.getText().toString()+"&registrationId=1";
-//            res =NetConnection.getXpath(strUrl);
-//            //全部返回的字符串内容
-////            System.out.println(res);
-////              System.out.println(res.get("result"));
-//            String result = res.get("result").toString();
-//
-//            Message msg = new Message();
-//            Bundle data = new Bundle();
-//            data.putString("value",result);
-//            msg.setData(data);
-//            handler.sendMessage(msg);
-//        }
-//    };
+
 
     //内部类，负责监听登录按钮
     class LoginBtn implements View.OnClickListener{
@@ -187,12 +176,6 @@ public class LoginActivity  extends AppCompatActivity {
 
 
             }
-
-    }
-
-//返回键
-    public void onBackPressed(View view) {
-        super.onBackPressed();
 
     }
 

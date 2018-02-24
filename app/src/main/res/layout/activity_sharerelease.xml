@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.ShareReleaseActivity">
+    >
+    <!--标题及撤回按钮-->
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="车位发布"
+        android:paddingTop="8dp"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-50dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+
+        />
+
+    <!--共享车位发布-->
+
+
+
+
+
+
+</LinearLayout>

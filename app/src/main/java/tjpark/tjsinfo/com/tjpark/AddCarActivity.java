@@ -32,6 +32,16 @@ public class AddCarActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcar);
 
+        Button exitBtn=(Button)findViewById(R.id.exitBtn);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
+
         addCar_PlateNum = (EditText)findViewById(R.id.addCar_PlateNum);
         //获取传过来的数据
           /*获取Intent中的Bundle对象*/

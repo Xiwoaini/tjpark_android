@@ -61,6 +61,16 @@ public class BlueYuYueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blueyuyue);
 
+        Button exitBtn=(Button)findViewById(R.id.exitBtn);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
+
 //获取控件
         blue_yuYueParkName = (TextView) findViewById(R.id.blue_yuYueParkName);
         blue_yuYueDistance = (TextView) findViewById(R.id.blue_yuYueDistance);

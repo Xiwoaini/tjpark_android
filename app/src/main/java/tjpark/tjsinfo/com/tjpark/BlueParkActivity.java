@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Iterator;
 
 import tjpark.tjsinfo.com.tjpark.entity.ParkDetail;
@@ -39,6 +43,15 @@ public class BlueParkActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluepark);
+        Button exitBtn=(Button)findViewById(R.id.exitBtn);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
         new Thread(runnable).start();
 
     }
@@ -115,32 +128,36 @@ public class BlueParkActivity extends AppCompatActivity {
     }
 
     //导航按钮
-    public void daoHang(View view) {
-//        if (loc1 == null || loc2 == null) {
-//            return;
-//        }
-//        if (loc1.getAddress() == null || "".equals(loc1.getAddress())) {
-//            loc1.setAddress("我的位置");
-//        }
-//        if (loc2.getAddress() == null || "".equals(loc2.getAddress())) {
-//            loc2.setAddress("目的地");
-//        }
-//        try {
-//
-////            Intent intent = Intent.getIntent("intent://map/direction?origin=latlng:" + loc1.getStringLatLng() + "|name:" + loc1.getAddress() + "&destination=latlng:" + loc2.getStringLatLng() + "|name:" + loc2.getAddress() + "&mode=transit&src=某某公司#Intent;" + "scheme=bdapp;package=com.baidu.BaiduMap;end");
-//
-////            Intent intent = Intent.getIntent("intent://map/direction?origin=|name:" + loc1.getAddress() + "&destination=|name:" + loc2.getAddress() + "&mode=transit&src=某某公司#Intent;" + "scheme=bdapp;package=com.baidu.BaiduMap;end");
-//
-//            //起点  此处不传值默认选择当前位置
-//            Intent intent = Intent.getIntent("intent://map/direction?destination=|name:" + loc2.getAddress() + "&mode=transit&src=某某公司#Intent;" + "scheme=bdapp;package=com.baidu.BaiduMap;end");
-//
-//            context.startActivity(intent);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Toast.makeText(context, "地址解析错误", Toast.LENGTH_SHORT).show();
-//        }
+    public void blueDaoHang(View view) {
+
+
+  //todo:当前位置
+        Intent intent = null;
+        try {
+
+            String uri = "intent://map/direction?origin=latlng:39.9761,116.3282|name:我的位置&destination=" + bluePark_address.getText() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+Log.v("当前坐标","");
+            intent = Intent.getIntent(uri);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        if(isInstallByread("com.baidu.BaiduMap")){
+            startActivity(intent); //启动调用
+
+        }else{
+            new AlertDialog.Builder(BlueParkActivity.this)
+                    .setTitle("注意")
+                    .setMessage("请先安装百度地图!")
+                    .setPositiveButton("确定", null)
+                    .show();
+
+        }
+
+
     }
 
-
+    private boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName).exists();
+    }
 
 }

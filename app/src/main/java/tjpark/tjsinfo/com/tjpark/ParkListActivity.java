@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
@@ -34,6 +35,17 @@ private ListView listView;
         new Thread(runnable).start();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parklist);
+
+        Button exitBtn=(Button)findViewById(R.id.exitBtn);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
+
 //        //获取listView，
          listView = (ListView)findViewById(R.id.parkListView);
 //        //为listView赋值
