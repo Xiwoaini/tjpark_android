@@ -22,11 +22,20 @@
         android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-40dp"
         android:text="返回"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
-
+        />
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-40dp"
+        android:layout_marginLeft="200dp"
+        android:text="添加"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
         />
 
 <!--添加车辆-->
@@ -34,7 +43,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-          android:layout_marginTop="15dp"
+          android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:text="请输入车牌号" />
 
@@ -50,7 +59,7 @@
     <Button
         android:id="@+id/addCar_SaveBtn"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:textColor="#FFFFFF"

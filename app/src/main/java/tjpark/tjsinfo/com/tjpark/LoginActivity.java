@@ -29,7 +29,7 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 //登录管理类
 public class LoginActivity  extends AppCompatActivity {
 
-//    13952775231
+//  13952775231
     //绑定控件属性
     private TextView username;
     private  TextView password;

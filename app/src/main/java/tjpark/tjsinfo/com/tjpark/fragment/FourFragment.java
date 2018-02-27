@@ -1,6 +1,7 @@
 package tjpark.tjsinfo.com.tjpark.fragment;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -185,12 +186,35 @@ public class FourFragment extends Fragment {
                 startActivity(intent);
             }
             else{
-                //退出按钮
+
+                final AlertDialog.Builder normalDialog =
+                        new AlertDialog.Builder(getActivity());
+
+                normalDialog.setTitle("注意");
+                normalDialog.setMessage("您确定要退出此账户吗?");
+                normalDialog.setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+           //退出按钮
                 SharedPreferences.Editor editor = mSharedPreferences.edit();
                 editor.clear();
                 editor.commit();
                 textStatus.setText("未登录");
                 btnStatus.setText("登录");
+                            }
+                        });
+                normalDialog.setNegativeButton("取消",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                       return;
+                            }
+                        });
+                // 显示
+                normalDialog.show();
+
+
             }
 
 

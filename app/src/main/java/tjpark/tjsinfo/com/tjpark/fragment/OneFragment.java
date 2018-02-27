@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -21,20 +22,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+
+import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ZoomControls;
+
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.baidu.location.Poi;
+
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -50,24 +52,22 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.sug.OnGetSuggestionResultListener;
 import com.baidu.mapapi.search.sug.SuggestionResult;
-import com.baidu.mapapi.search.sug.SuggestionSearch;
-import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
 import tjpark.tjsinfo.com.tjpark.BlueParkActivity;
-import tjpark.tjsinfo.com.tjpark.CarLifeDisPlayActivity;
 import tjpark.tjsinfo.com.tjpark.GreenParkActivity;
+import tjpark.tjsinfo.com.tjpark.LoginActivity;
 import tjpark.tjsinfo.com.tjpark.ParkListActivity;
 import tjpark.tjsinfo.com.tjpark.R;
+import tjpark.tjsinfo.com.tjpark.RegActivity;
+import tjpark.tjsinfo.com.tjpark.SugAddressActivity;
 import tjpark.tjsinfo.com.tjpark.YellowParkActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
@@ -104,6 +104,10 @@ public class OneFragment extends Fragment  {
     private BitmapDescriptor mCurrentMarker = null;//当前位置经纬度
     private double latitude;
     private double longitude;
+    //地址搜索框
+    private SearchView sugSearch;
+
+
 
 
     @Override
@@ -142,16 +146,21 @@ public class OneFragment extends Fragment  {
         });
 
 
-//        //SUG搜索
-//        SuggestionSearch mSuggestionSearch = SuggestionSearch.newInstance();
-//        mSuggestionSearch.setOnGetSuggestionResultListener(SUGListener);
-//        // 使用建议搜索服务获取建议列表，结果在onSuggestionResult()中更新
-//
-//        Boolean b = mSuggestionSearch.requestSuggestion((new SuggestionSearchOption())
-//                .keyword("南开大学")//指定建议关键字 必填
-//                .city("天津"));//请求城市 必填
-////        释放在线建议查询实例；
-////        mSuggestionSearch.destroy();
+        sugSearch = getActivity().findViewById(R.id.sugSearch);
+        //为该sv设置监听
+        sugSearch.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                //跳转代码
+                Intent intent = new Intent();
+//          //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), SugAddressActivity.class);
+                startActivity(intent);
+
+                //失去焦点
+            }
+        });
+
     }
 
 
@@ -674,28 +683,6 @@ public class OneFragment extends Fragment  {
         Bitmap bitmap = view.getDrawingCache();
         return bitmap;
     }
-
-
-//sug监听
-//    OnGetSuggestionResultListener SUGListener = new OnGetSuggestionResultListener() {
-//        public void onGetSuggestionResult(SuggestionResult res) {
-//
-//            if (res == null || res.getAllSuggestions() == null) {
-//                return;
-//                //未找到相关结果
-//            }
-//
-//            List<SuggestionResult.SuggestionInfo> l=res.getAllSuggestions();
-//            for (SuggestionResult.SuggestionInfo sugArredss: l
-//                 ) {
-//
-//                String city =sugArredss.city+sugArredss.district;
-//                Log.v("地址为:",city);
-//            }
-
-//            //获取在线建议检索结果
-//        }
-//    };
 
 
 

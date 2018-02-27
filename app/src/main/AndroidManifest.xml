@@ -66,7 +66,7 @@
         <activity android:name=".MyCarActivity"></activity>
         <activity android:name=".YellowParkActivity"></activity>
         <activity android:name=".GreenParkActivity"></activity>
-
+        <activity android:name=".SugAddressActivity"></activity>
 
 
         <!--支付宝相关activity-->

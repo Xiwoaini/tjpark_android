@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     >
     <!--标题及撤回按钮-->
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="fill_parent"
@@ -30,6 +29,11 @@
         />
 
     <!--共享车位发布-->
+
+
+
+
+
 
 
 

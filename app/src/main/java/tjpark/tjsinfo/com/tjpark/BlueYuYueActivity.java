@@ -7,8 +7,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,6 +37,7 @@ import java.util.List;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
 import tjpark.tjsinfo.com.tjpark.entity.ParkDetail;
 import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
+import tjpark.tjsinfo.com.tjpark.util.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 import tjpark.tjsinfo.com.tjpark.util.OrderPay;
 import tjpark.tjsinfo.com.tjpark.util.PayDemoActivity;
@@ -92,20 +97,22 @@ public class BlueYuYueActivity extends AppCompatActivity {
 
     //选择车位按钮
     public void blue_yuYueCar(View view) {
+
         new Thread(runnable).start();
 
         dialog = new Dialog(BlueYuYueActivity.this);
 
         dialog.setContentView(R.layout.activity_selectcar);
-        ArrayAdapter adapter = new ArrayAdapter<String>(BlueYuYueActivity.this, R.layout.activity_listview, getData());
+        CarAdapter adapter = new CarAdapter(BlueYuYueActivity.this, R.layout.activity_mycarview, myCarList);
         //获取listView，
-         listView = (ListView) dialog.findViewById(R.id.listView);
+        listView = (ListView) dialog.findViewById(R.id.listView);
         //为listView赋值
         listView.setAdapter(adapter);
         BlueYuYueActivity.ListViewListener ll = new BlueYuYueActivity.ListViewListener();
         listView.setOnItemClickListener(ll);
 
         dialog.show();
+
 
     }
 
