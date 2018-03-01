@@ -11,9 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,14 +19,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-
-import android.widget.ListView;
-
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.ZoomControls;
 
 
 import com.baidu.location.BDLocation;
@@ -50,8 +44,6 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.search.sug.OnGetSuggestionResultListener;
-import com.baidu.mapapi.search.sug.SuggestionResult;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -63,10 +55,8 @@ import java.util.LinkedList;
 import java.util.List;
 import tjpark.tjsinfo.com.tjpark.BlueParkActivity;
 import tjpark.tjsinfo.com.tjpark.GreenParkActivity;
-import tjpark.tjsinfo.com.tjpark.LoginActivity;
 import tjpark.tjsinfo.com.tjpark.ParkListActivity;
 import tjpark.tjsinfo.com.tjpark.R;
-import tjpark.tjsinfo.com.tjpark.RegActivity;
 import tjpark.tjsinfo.com.tjpark.SugAddressActivity;
 import tjpark.tjsinfo.com.tjpark.YellowParkActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
@@ -157,11 +147,12 @@ public class OneFragment extends Fragment  {
                 intent.setClass(getActivity(), SugAddressActivity.class);
                 startActivity(intent);
 
-                //失去焦点
+
             }
         });
 
     }
+
 
 
 
@@ -251,6 +242,14 @@ public class OneFragment extends Fragment  {
                     bundle.putString("parkNum",parkList.get(i).getSpace_num()+"/"+parkList.get(i).getPlace_total_num());
                     bundle.putString("parkFee",parkList.get(i).getPile_fee());
                     bundle.putString("kongXian",marker_num.getText().toString());
+                    //充电费用
+                    bundle.putString("pile_fee",parkList.get(i).getPile_fee());
+                    //开放时间
+                    bundle.putString("pile_time",parkList.get(i).getPile_time());
+                    //快充
+                    bundle.putString("fast_pile_space_num","共"+parkList.get(i).getFast_pile_total_num()+"个，可用"+parkList.get(i).getFast_pile_space_num()+"个");
+                    //慢充
+                    bundle.putString("slow_pile_space_num","共"+parkList.get(i).getSlow_pile_total_num()+"个，可用"+parkList.get(i).getSlow_pile_space_num()+"个");
 
                     //创建OverlayOptions属性 .icon后面的为图片样子
                     OverlayOptions option1 =  new MarkerOptions()
@@ -325,7 +324,7 @@ public class OneFragment extends Fragment  {
                lp.x = 0; // 新位置X坐标
                lp.y = height-800; // 新位置Y坐标
                lp.width = width; // 宽度
-               lp.height = 600; // 高度
+               lp.height = 530; // 高度
                lp.alpha = 0.9f; // 透明
                dialogWindow.setAttributes(lp);
 
@@ -369,7 +368,6 @@ public class OneFragment extends Fragment  {
            else if (marker.getExtraInfo().getString("label").contains("充电")){
                dialog.setContentView(R.layout.activity_markeryellow);
                dialog.setTitle("充电停车场");
-
                Window dialogWindow = dialog.getWindow();
                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
                dialogWindow.setGravity(Gravity.LEFT | Gravity.TOP);
@@ -408,7 +406,12 @@ public class OneFragment extends Fragment  {
                place_name =yellow_placeName.getText().toString();
                        place_distance=yellow_placeDistance.getText().toString();
                place_address=yellow_placeAddress.getText().toString();
-//TODO          右边图片圈上的停车位   place_num
+               final String pile_fee1=marker.getExtraInfo().getString("pile_fee");
+               final String pile_time1=marker.getExtraInfo().getString("pile_time");
+               final String fast_pile_space_num1=marker.getExtraInfo().getString("fast_pile_space_num");
+               final String   slow_pile_space_num1=marker.getExtraInfo().getString("slow_pile_space_num");
+
+
 
                //充电停车场详情按钮监听事件
                yellow_parkDetail.setOnClickListener(new View.OnClickListener() {
@@ -420,8 +423,11 @@ public class OneFragment extends Fragment  {
                        intent.putExtra("place_name",place_name);
                        intent.putExtra("place_distance",place_distance);
                        intent.putExtra("place_address",place_address);
-                       intent.putExtra("place_num",place_num);
-
+                       intent.putExtra("pile_time",pile_time1);
+                       intent.putExtra("pile_fee",pile_fee1);
+                       intent.putExtra("slow_pile_total_num",slow_pile_space_num1);
+                       intent.putExtra("fast_pile_total_num",fast_pile_space_num1);
+//slow_pile_space_num1 pile_time1
                        startActivity(intent);
                    }
                    });
@@ -442,7 +448,7 @@ public class OneFragment extends Fragment  {
                lp.x = 0; // 新位置X坐标
                lp.y = height-800; // 新位置Y坐标
                lp.width = width; // 宽度
-               lp.height = 600; // 高度
+               lp.height = 530; // 高度
                lp.alpha = 0.9f; // 透明
                dialogWindow.setAttributes(lp);
                //获取对应控件
@@ -498,6 +504,7 @@ public class OneFragment extends Fragment  {
             jsonArray = NetConnection.getJsonArray(strUrl);
 
             Iterator it = jsonArray.iterator();
+            //p1当前位置经纬度
             LatLng p1 =new LatLng(latitude,longitude);
             int i=0;
             while (it.hasNext()) {
@@ -507,7 +514,7 @@ public class OneFragment extends Fragment  {
                 }
                 jsonArray.get(i).getAsJsonObject();
                 JsonObject jso = jsonArray.get(i).getAsJsonObject();
-                //p1当前位置经纬度
+
                 try{
                     if (jso.get("lable").toString().contains("共享")){
                         park.setId(jso.get("id").toString().replace("\"",""));
@@ -536,9 +543,11 @@ public class OneFragment extends Fragment  {
                         park.setPlace_total_num(jso.get("place_total_num").toString().replace("\"",""));
                         park.setSpace_num(jso.get("space_num").toString().replace("\"",""));
                         park.setPile_fee(jso.get("pile_fee").toString().replace("\"",""));
-
+                        park.setPile_time(jso.get("pile_time").toString().replace("\"",""));
                         park.setFast_pile_space_num(jso.get("fast_pile_space_num").toString().replace("\"",""));
+                        park.setFast_pile_total_num(jso.get("fast_pile_total_num").toString().replace("\"",""));
                         park.setSlow_pile_space_num(jso.get("slow_pile_space_num").toString().replace("\"",""));
+                        park.setSlow_pile_total_num(jso.get("slow_pile_total_num").toString().replace("\"",""));
                         park.setSpace_num(jso.get("space_num").toString().replace("\"",""));
 //计算距离
                         LatLng p2 =new LatLng(Double.parseDouble(jso.get("addpoint_y").toString().replace("\"","")),Double.parseDouble(jso.get("addpoint_x").toString().replace("\"","")));
@@ -558,6 +567,7 @@ public class OneFragment extends Fragment  {
 
                         //计算距离
                         LatLng p2 =new LatLng(Double.parseDouble(jso.get("addpoint_y").toString().replace("\"","")),Double.parseDouble(jso.get("addpoint_x").toString().replace("\"","")));
+
                         park.setDistance(String.valueOf(Math.ceil(DistanceUtil.getDistance(p1,p2))/1000));
 
                     }
@@ -586,9 +596,9 @@ public class OneFragment extends Fragment  {
 
             // 隐藏logo
             View child = mMapView.getChildAt(1);
-//            if (child != null && (child instanceof ImageView || child instanceof ZoomControls)){
-//                child.setVisibility(View.INVISIBLE);
-//            }
+            if (child != null && (child instanceof ImageView || child instanceof ZoomControls)){
+                child.setVisibility(View.INVISIBLE);
+            }
             mBaiduMap.addOverlays(options);
             //设置marker监听
 
@@ -670,6 +680,7 @@ public class OneFragment extends Fragment  {
             mBaiduMap.animateMapStatus(msu);
 
 
+
         }
     }
  
@@ -683,8 +694,6 @@ public class OneFragment extends Fragment  {
         Bitmap bitmap = view.getDrawingCache();
         return bitmap;
     }
-
-
 
 
 }

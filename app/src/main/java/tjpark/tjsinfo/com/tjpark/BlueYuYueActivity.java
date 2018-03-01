@@ -52,7 +52,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
     private TextView blue_yuYueDistance;
     private TextView blue_yuYueType;
     private TextView blue_yuYueAddress;
-    private TextView blue_yuYueMoney;
+    private TextView blue_yuYueMoney,placeId;
     private Button blue_yuYueCar;
     private Button blue_yuYueTime;
     private Button blue_yuYueBtn;
@@ -77,6 +77,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         });
 
 //获取控件
+        placeId= (TextView) findViewById(R.id.placeId);
         blue_yuYueParkName = (TextView) findViewById(R.id.blue_yuYueParkName);
         blue_yuYueDistance = (TextView) findViewById(R.id.blue_yuYueDistance);
         blue_yuYueType = (TextView) findViewById(R.id.blue_yuYueType);
@@ -87,6 +88,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         blue_yuYueBtn = (Button) findViewById(R.id.blue_yuYueBtn);
 
         Intent getIntent = getIntent();
+        placeId.setText(getIntent.getStringExtra("parkId"));
         blue_yuYueParkName.setText(getIntent.getStringExtra("bluePark_placeName"));
         blue_yuYueDistance.setText(getIntent.getStringExtra("bluePark_distance"));
         blue_yuYueType.setText(getIntent.getStringExtra("bluePark_label"));
@@ -122,8 +124,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         TimeSelector timeSelector = new TimeSelector(BlueYuYueActivity.this, new TimeSelector.ResultHandler() {
             @Override
             public void handle(String time) {
-                Toast.makeText(BlueYuYueActivity.this, time, Toast.LENGTH_SHORT).show();
-//            2015-01-01 00:00
+
                 //时间格式化
                 DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd mm:ss");
 
@@ -168,7 +169,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setClass(BlueYuYueActivity.this, PayDemoActivity.class);
             intent.putExtra("blue_yuYueParkName", blue_yuYueParkName.getText());
-
+            intent.putExtra("placeId", placeId.getText());
             intent.putExtra("blue_yuYueMoney", blue_yuYueMoney.getText());
             startActivity(intent);
         }

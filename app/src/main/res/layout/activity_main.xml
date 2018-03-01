@@ -16,29 +16,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
         android:src="@drawable/xintushi"/>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
     <SearchView
         android:id="@+id/sugSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
         android:iconifiedByDefault="false"
+        android:layout_marginLeft="20dp"
         android:queryHint="请输入搜索地址" />
-
+    <Button
+        android:id="@+id/getParkList"
+        android:layout_width="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:text="附近"
+        android:onClick="getParkList"
+        />
+</LinearLayout>
     <ListView
         android:id="@+id/searchListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Button
-    android:id="@+id/getParkList"
-    android:layout_width="80dp"
-    android:layout_height="50dp"
-    android:layout_marginLeft="250dp"
-    android:text="附近"
-    android:onClick="getParkList"
-       />
+
 
 
 

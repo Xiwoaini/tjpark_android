@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
+import com.google.gson.JsonObject;
 
 import tjpark.tjsinfo.com.tjpark.BlueYuYueActivity;
 import tjpark.tjsinfo.com.tjpark.R;
@@ -14,6 +15,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,7 +46,7 @@ public class PayDemoActivity extends FragmentActivity   {
 	/** 支付宝账户登录授权业务：入参target_id值 */
 	public static final String TARGET_ID = "";
 
-	TextView pay_money;
+	TextView pay_money,placeId;
 
 
 	/** 商户私钥，pkcs8格式 */
@@ -75,7 +77,30 @@ public class PayDemoActivity extends FragmentActivity   {
 				// 判断resultStatus 为9000则代表支付成功
 				if (TextUtils.equals(resultStatus, "9000")) {
 //					 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-//TODO：跳转到订单页，并刷新,需要回调远程支付成功的接口，目前不确定
+//TODO：支付成功,跳转到订单页，并刷新,需要回调远程支付成功的接口
+//					回调接口
+					new Thread(  new Runnable(){
+						@Override
+						public void run() {
+							//取出本地id
+							SharedPreferences mSharedPreferences= getSharedPreferences("userInfo", MODE_PRIVATE);
+							String userid=mSharedPreferences.getString("personID","");
+
+							JsonObject res = null;
+							String strUrl="/tjpark/app/AppWebservice/reservableParkPay?" +
+									"userid=" + userid +
+									"&parkid=" +placeId.getText()+
+									"&payableAmout=" +
+									"&payAmout="+pay_money.getText() +
+									"&payMode=支付宝" +
+									"&couponId=\"\"" +
+									"&reason=停车缴费" +
+									"&fee_s=";
+							res =NetConnection.getXpath(strUrl);
+
+
+						}
+					}).start();
 					Intent intent = new Intent();
 					intent.setClass(PayDemoActivity.this, OrdersActivity.class);
 					startActivity(intent);
@@ -138,13 +163,15 @@ public class PayDemoActivity extends FragmentActivity   {
 
 		});
 
+		placeId = (TextView) findViewById(R.id.placeId);
+
 
 		Intent intent =getIntent();
 		TextView pay_placeName=(TextView)findViewById(R.id.pay_placeName);
 		pay_placeName.setText(intent.getStringExtra("blue_yuYueParkName"));
 		 pay_money=(TextView)findViewById(R.id.pay_money);
 		pay_money.setText(intent.getStringExtra("blue_yuYueMoney"));
-
+		placeId.setText(intent.getStringExtra("placeId"));
 
 
 
@@ -190,7 +217,7 @@ public class PayDemoActivity extends FragmentActivity   {
 			public void run() {
 				PayTask alipay = new PayTask(PayDemoActivity.this);
 				Map<String, String> result = alipay.payV2(orderInfo, true);
-				Log.i("msp", result.toString());
+//				Log.i("msp", result.toString());
 				
 				Message msg = new Message();
 				msg.what = SDK_PAY_FLAG;
@@ -263,7 +290,7 @@ public class PayDemoActivity extends FragmentActivity   {
 	public void getSDKVersion() {
 		PayTask payTask = new PayTask(this);
 		String version = payTask.getVersion();
-		Toast.makeText(this, version, Toast.LENGTH_SHORT).show();
+
 	}
 
 	/**

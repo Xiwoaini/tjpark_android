@@ -25,19 +25,124 @@
         android:text="返回"
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
-
         />
+
 
     <!--共享车位发布-->
 
+    <!--地区-->
+    <Spinner
+        android:id="@+id/sAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
 
 
+        />
+    <!--停车场-->
+    <Spinner
+        android:id="@+id/sPlace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        />
 
+    <!--车位号-->
+    <EditText
+        android:id="@+id/sNum"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="车位号"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:inputType="numberSigned"
+        />
+    <!--联系人名称-->
+    <EditText
+        android:id="@+id/sName"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="联系人名称"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
 
+        />
+    <!--联系人电话-->
+    <EditText
+        android:id="@+id/sPhone"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="联系人电话"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:inputType="numberSigned"
+        />
+    <!--价格-->
+    <EditText
+        android:id="@+id/sMoney"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="6元/小时"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:inputType="numberSigned"
+        />
 
+    <!--开始和结束时间-->
+    <EditText
+        android:id="@+id/startTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
 
+        android:hint="开始时间"
+          />
+    <EditText
+        android:id="@+id/endTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="结束时间"
+        />
 
-
+    <!--共享模式-->
+    <Spinner
+        android:id="@+id/sType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+         />
+    <!--是否含有充电桩-->
+    <CheckBox
+        android:id="@+id/checkBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="是否含有充电桩"
+        />
+    <!--发布按钮-->
+    <Button
+        android:id="@+id/shareBtn"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="#3DC9CE"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dp"
+        android:text="发布"
+        />
 
 
 </LinearLayout>

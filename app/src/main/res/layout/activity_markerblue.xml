@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="停车场类型"
+        android:textColor="#DC143C"
         android:layout_marginLeft="15dp"
         />
 
@@ -45,12 +46,13 @@
         />
     </TableRow>
         <TableRow>
+
     <TextView
         android:id="@+id/blue_placeFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="收费标准"
+        android:text="金额"
         android:layout_marginLeft="5dp"
         />
     <TextView
@@ -72,21 +74,21 @@
         <TableRow>
     <Button
         android:id="@+id/blue_parkDaoHang"
-        android:layout_width="87dp"
+        android:layout_weight="0.5"
         android:layout_height="40dp"
         android:background="#3DC9CE"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="3dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="导航"
          />
     <Button
         android:id="@+id/blue_parkDetail"
-        android:layout_width="87dp"
+         android:layout_weight="0.5"
         android:layout_height="40dp"
         android:onClick="blueParkDetail"
         android:background="#3DC9CE"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="详情"
         />
         </TableRow>

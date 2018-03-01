@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:stretchColumns="0,1,2"
-
      >
     <!--标题及撤回按钮-->
     <TextView
@@ -18,17 +16,14 @@
         android:background="#3DC9CE"
         android:textSize="10pt"
         />
-
     <!--车生活，tabbar的第三页-->
-            <TableRow>
-
+    <TableRow>
                 <ImageButton
                     android:id="@+id/imgBtn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
                     android:src="@drawable/csh"
-
                     />
                 <ImageButton
                     android:id="@+id/imgBtn2"
@@ -108,9 +103,5 @@
                     android:background="#FCFCFC"
                     android:src="@drawable/csh12" />
             </TableRow>
-
-
-
-
 
 </TableLayout>

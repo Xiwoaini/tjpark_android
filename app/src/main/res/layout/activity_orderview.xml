@@ -14,23 +14,20 @@
                 android:layout_height="wrap_content"
                 android:background="#E6ECE8"
                 android:layout_weight="1"
-
                 android:text="订单生成时间"
-
                 />
             <!--停车场名称-->
 
         </TableRow>
-        <TableRow>
+
             <TextView
                 android:id="@+id/order_placeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:text="停车场名称"
                 />
-        </TableRow>
+
         <TableRow>
             <!--停车时间-->
             <TextView
@@ -45,7 +42,6 @@
                 android:id="@+id/order_parkTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="1小时20分钟"
                 />

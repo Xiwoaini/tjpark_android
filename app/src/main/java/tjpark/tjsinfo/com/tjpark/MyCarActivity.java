@@ -54,7 +54,19 @@ public class MyCarActivity  extends AppCompatActivity {
             }
 
         });
+        Button addBtn=(Button)findViewById(R.id.addBtn);
+        addBtn.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+//          //(当前Activity，目标Activity)
+                intent.setClass(MyCarActivity.this, AddCarActivity.class);
+                intent.putExtra("car","");
+                startActivity(intent);
+            }
+
+        });
         //获取listView，
         listView = (ListView)findViewById(R.id.carListView);
 

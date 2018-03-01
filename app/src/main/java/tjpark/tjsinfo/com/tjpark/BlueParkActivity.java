@@ -34,7 +34,7 @@ public class BlueParkActivity extends AppCompatActivity {
     private TextView bluePark_label;
     private TextView bluePark_address;
     private TextView bluePark_JTSJ,bluePark_JTLX;
-    private TextView bluePark_JTGZ1,bluePark_JTGZ2;
+    private TextView bluePark_JTGZ1,bluePark_JTGZ2,bluePark_placeId;
     private ParkDetail parkDetail = new ParkDetail();
 
 
@@ -61,6 +61,8 @@ public class BlueParkActivity extends AppCompatActivity {
         @Override
         public void run() {
             //获取控件
+
+            bluePark_placeId=(TextView)findViewById(R.id.bluePark_placeId);
             bluePark_placeName =(TextView)findViewById(R.id.bluePark_placeName);
             bluePark_distance =(TextView)findViewById(R.id.bluePark_distance);
             bluePark_label =(TextView)findViewById(R.id.bluePark_label);
@@ -81,6 +83,8 @@ public class BlueParkActivity extends AppCompatActivity {
             JsonObject jso = jsonArray.get(0).getAsJsonObject();
 
 //            place_num ，剩余车位数
+            //id，默认为隐藏
+            bluePark_placeId.setText(s);
             //名称
             bluePark_placeName.setText(getIntent.getStringExtra("place_name"));
             //地址
@@ -95,6 +99,7 @@ public class BlueParkActivity extends AppCompatActivity {
             bluePark_JTSJ.setText(jso.get("open_time").toString().replace("\"",""));
 //是否收费
             bluePark_JTLX.setText(jso.get("type").toString().replace("\"",""));
+
             bluePark_JTGZ2.setText(jso.get("open_time").toString().replace("\"",""));
 
 
@@ -119,6 +124,7 @@ public class BlueParkActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(BlueParkActivity.this, BlueYuYueActivity.class);
 //        <!--车场名称--> <!--距离-->  <!--类型--><!--地址-->
+                intent.putExtra("parkId",bluePark_placeId.getText().toString());
                 intent.putExtra("bluePark_placeName",bluePark_placeName.getText().toString());
                 intent.putExtra("bluePark_distance",bluePark_distance.getText().toString());
                 intent.putExtra("bluePark_label",bluePark_label.getText().toString());

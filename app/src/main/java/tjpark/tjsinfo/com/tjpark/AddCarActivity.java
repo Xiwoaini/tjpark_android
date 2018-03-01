@@ -48,7 +48,7 @@ public class AddCarActivity  extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         /*获取Bundle中的数据，注意类型和key*/
 
-         if (bundle.getSerializable("car")==null){
+         if ( bundle.getSerializable("car").equals("")){
 
              addCar_PlateNum.setText("");
          }
@@ -123,9 +123,6 @@ public class AddCarActivity  extends AppCompatActivity {
 
 
             }
-
-
-
 
         }
 

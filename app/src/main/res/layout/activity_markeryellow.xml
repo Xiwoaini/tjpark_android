@@ -23,6 +23,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:text="停车场类型"
+        android:textColor="#DC143C"
         />
         <TableRow>
             <TextView
@@ -90,20 +91,20 @@
         <TableRow>
     <Button
         android:id="@+id/yellow_parkDaoHang"
-        android:layout_width="87dp"
+        android:layout_weight="1"
         android:layout_height="40dp"
         android:background="#3DC9CE"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="3dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="导航"
          />
     <Button
         android:id="@+id/yellow_parkDetail"
-        android:layout_width="87dp"
+         android:layout_weight="1"
         android:layout_height="40dp"
         android:background="#3DC9CE"
-        android:layout_marginRight="3dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="详情"
         />
         </TableRow>

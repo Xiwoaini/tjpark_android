@@ -34,7 +34,7 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
  */
 
 public class SugAddressActivity extends AppCompatActivity {
-    private List<String> sugAddress  = new ArrayList<String>();;
+    private List<String> sugAddress  = new ArrayList<String>();
     private SearchView mSearchView;
     private ListView mListView;
    private ArrayAdapter arrayAdapter;
@@ -59,7 +59,7 @@ public class SugAddressActivity extends AppCompatActivity {
             //点击搜索的时候
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Log.v("1111","1111");
+
                 return false;
             }
             @Override
