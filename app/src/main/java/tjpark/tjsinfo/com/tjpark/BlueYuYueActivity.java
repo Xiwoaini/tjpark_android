@@ -2,24 +2,18 @@ package tjpark.tjsinfo.com.tjpark;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -30,16 +24,16 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import tjpark.tjsinfo.com.tjpark.entity.Car;
-import tjpark.tjsinfo.com.tjpark.entity.ParkDetail;
-import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
-import tjpark.tjsinfo.com.tjpark.util.CarAdapter;
+import tjpark.tjsinfo.com.tjpark.entity.ParkYuYue;
+import tjpark.tjsinfo.com.tjpark.adapter.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
-import tjpark.tjsinfo.com.tjpark.util.OrderPay;
 import tjpark.tjsinfo.com.tjpark.util.PayDemoActivity;
 
 /**
@@ -47,18 +41,21 @@ import tjpark.tjsinfo.com.tjpark.util.PayDemoActivity;
  */
 
 public class BlueYuYueActivity extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
     private   List<Car> myCarList = new LinkedList<Car>();
     private TextView blue_yuYueParkName;
     private TextView blue_yuYueDistance;
     private TextView blue_yuYueType;
     private TextView blue_yuYueAddress;
-    private TextView blue_yuYueMoney,placeId;
+    private TextView blue_yuYueMoney,placeId, plateId;
     private Button blue_yuYueCar;
     private Button blue_yuYueTime;
     private Button blue_yuYueBtn;
 
     private ListView listView;
     Dialog dialog;
+
+    Map<String,String> map =new HashMap<String,String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +74,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         });
 
 //获取控件
+        plateId= (TextView) findViewById(R.id.plateId);
         placeId= (TextView) findViewById(R.id.placeId);
         blue_yuYueParkName = (TextView) findViewById(R.id.blue_yuYueParkName);
         blue_yuYueDistance = (TextView) findViewById(R.id.blue_yuYueDistance);
@@ -86,6 +84,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         blue_yuYueCar = (Button) findViewById(R.id.blue_yuYueCar);
         blue_yuYueTime = (Button) findViewById(R.id.blue_yuYueTime);
         blue_yuYueBtn = (Button) findViewById(R.id.blue_yuYueBtn);
+
 
         Intent getIntent = getIntent();
         placeId.setText(getIntent.getStringExtra("parkId"));
@@ -166,12 +165,25 @@ public class BlueYuYueActivity extends AppCompatActivity {
         }
 
         else {
+            mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+            String customer_id=mSharedPreferences.getString("personID","");
+            //普通预约需要的参数(reservableParkIn)
+//            customer_id  plate_number  plate_id  place_id  place_name  reservation_time  reservation_fee  payMode
             Intent intent = new Intent();
+            ParkYuYue parkYuYue =new ParkYuYue();
+            parkYuYue.setCustomer_id(customer_id);
+            parkYuYue.setPlate_number(blue_yuYueCar.getText().toString());
+            parkYuYue.setPlate_id(plateId.getText().toString());
+            parkYuYue.setPlace_id(placeId.getText().toString());
+            parkYuYue.setPlace_name(blue_yuYueParkName.getText().toString());
+            parkYuYue.setReservation_time(blue_yuYueTime.getText().toString());
+            parkYuYue.setReservation_fee(blue_yuYueMoney.getText().toString() );
+
+            parkYuYue.setPayMode("\"\"");
             intent.setClass(BlueYuYueActivity.this, PayDemoActivity.class);
-            intent.putExtra("blue_yuYueParkName", blue_yuYueParkName.getText());
-            intent.putExtra("placeId", placeId.getText());
-            intent.putExtra("blue_yuYueMoney", blue_yuYueMoney.getText());
+            intent.putExtra("yuYueOrder", parkYuYue);
             startActivity(intent);
+
         }
 
     }
@@ -180,7 +192,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             blue_yuYueCar.setText(myCarList.get(position).getPlace_number());
-
+            plateId.setText(myCarList.get(position).getId());
             dialog.hide();
         }
 
@@ -205,7 +217,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
                 }
                 JsonObject jso = jsonArray.get(i).getAsJsonObject();
                 car.setId(jso.get("id").toString().replace("\"",""));
-//                car.setPark_id(jso.get("park_id").toString());
+
                 car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
                 car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
                 car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
@@ -246,6 +258,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
         List<String> data = new ArrayList<String>();
         for(int i =0;i<myCarList.size();i++){
             data.add(myCarList.get(i).getPlace_number());
+            map.put(myCarList.get(i).getId(),myCarList.get(i).getPlace_number());
         }
         return data;
     }

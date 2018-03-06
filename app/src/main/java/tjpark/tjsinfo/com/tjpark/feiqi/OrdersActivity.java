@@ -20,13 +20,13 @@ import tjpark.tjsinfo.com.tjpark.DetailActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Order;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
-import tjpark.tjsinfo.com.tjpark.util.OrderAdapter;
+import tjpark.tjsinfo.com.tjpark.adapter.OrderAdapter;
 
 /**
  * Created by panning on 2018/1/12.
  */
 
-
+@Deprecated
 //订单页控制，目前没作用(TwoFragment代替)
 public class OrdersActivity  extends AppCompatActivity {
     private ListView listView;

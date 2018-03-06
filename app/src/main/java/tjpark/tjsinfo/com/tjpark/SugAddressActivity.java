@@ -1,12 +1,8 @@
 package tjpark.tjsinfo.com.tjpark;
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,9 +19,6 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import tjpark.tjsinfo.com.tjpark.entity.Car;
-import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
 import tjpark.tjsinfo.com.tjpark.fragment.OneFragment;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
@@ -108,9 +101,8 @@ public class SugAddressActivity extends AppCompatActivity {
     class ListViewListener implements   AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             onBackPressed();
-
-
         }
 
 

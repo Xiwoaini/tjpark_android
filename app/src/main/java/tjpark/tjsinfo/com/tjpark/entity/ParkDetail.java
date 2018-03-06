@@ -1,11 +1,13 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/1/15.
  */
 
 //封装了所有类型停车场的属性
-public class ParkDetail {
+public class ParkDetail  implements Serializable {
 
     private String lable;
     private String start_time;

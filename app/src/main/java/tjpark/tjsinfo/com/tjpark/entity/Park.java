@@ -1,11 +1,13 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/1/15.
  */
 
 //停车场实体类
-public class Park {
+public class Park  implements Serializable {
 
     private String id= "";
     private String place_name= "";

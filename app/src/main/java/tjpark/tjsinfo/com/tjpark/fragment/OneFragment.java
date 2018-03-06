@@ -19,8 +19,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.ZoomControls;
@@ -44,6 +47,10 @@ import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.sug.OnGetSuggestionResultListener;
+import com.baidu.mapapi.search.sug.SuggestionResult;
+import com.baidu.mapapi.search.sug.SuggestionSearch;
+import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -64,7 +71,7 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * 地图
  */
 public class OneFragment extends Fragment  {
     //前台页面控件的显示
@@ -81,6 +88,7 @@ public class OneFragment extends Fragment  {
     private  String place_address ;
     private  String place_distance;
     private  String place_num;
+    private ImageView imageView;
 
     //定位SDK的核心类
     private LocationClient mLocClient;
@@ -96,8 +104,10 @@ public class OneFragment extends Fragment  {
     private double longitude;
     //地址搜索框
     private SearchView sugSearch;
+private List<String> sugAddress  = new ArrayList<String>();
+private ArrayAdapter arrayAdapter;
 
-
+private   ListView searchListView;
 
 
     @Override
@@ -123,7 +133,7 @@ public class OneFragment extends Fragment  {
         new Thread(runnable).start();
 
         //附近停车场监听事件
-        Button getParkList=(Button)getActivity().findViewById(R.id.getParkList);
+        final Button getParkList=(Button)getActivity().findViewById(R.id.getParkList);
         getParkList.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -135,19 +145,49 @@ public class OneFragment extends Fragment  {
 
         });
 
-
+        imageView= getActivity().findViewById(R.id.imageView);
         sugSearch = getActivity().findViewById(R.id.sugSearch);
+        searchListView=(ListView)getActivity().findViewById(R.id.searchListView);
         //为该sv设置监听
         sugSearch.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                //跳转代码
-                Intent intent = new Intent();
-//          //(当前Activity，目标Activity)
-                intent.setClass(getActivity(), SugAddressActivity.class);
-                startActivity(intent);
 
 
+                searchListView.setVisibility(View.VISIBLE);
+                mMapView.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(View.INVISIBLE);
+
+                 arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, sugAddress);
+                searchListView.setAdapter(arrayAdapter);
+                searchListView.setTextFilterEnabled(true);
+
+
+            }
+        });
+
+//        //添加监听
+        OneFragment.ListViewListener ll=new OneFragment.ListViewListener();
+        searchListView.setOnItemClickListener(ll);
+        sugSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            //点击搜索的时候
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //SUG搜索
+                SuggestionSearch mSuggestionSearch = SuggestionSearch.newInstance();
+
+                mSuggestionSearch.setOnGetSuggestionResultListener(SUGListener);
+                // 使用建议搜索服务获取建议列表，结果在onSuggestionResult()中更新
+                mSuggestionSearch.requestSuggestion((new SuggestionSearchOption())
+                        .keyword(s)//指定建议关键字 必填
+                        .city(s));//请求城市 必填
+
+                return false;
             }
         });
 
@@ -182,40 +222,9 @@ public class OneFragment extends Fragment  {
                 options.add(option1);
             }
             else{
-                //蓝色停车场，普通的预约停车
-                if (parkList.get(i).getLable().equals("地上,预约")||
-                        parkList.get(i).getLable().equals("地上,预约,")||
-                        parkList.get(i).getLable().equals("地上")){
-                    //图片模式
-//                    BitmapDescriptor bitmap = BitmapDescriptorFactory
-//                            .fromResource(R.drawable.lanqipao);
 
-                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View view = inflater.inflate(R.layout.activity_markernum, null);
-                    TextView marker_num = (TextView) view.findViewById(R.id.marker_num);
-                    marker_num.setText(parkList.get(i).getSpace_num());
-                   BitmapDescriptor bitmap = BitmapDescriptorFactory
-                            .fromBitmap(getBitmapFromView(view));
-
-
-                    Bundle bundle= new Bundle();
-                    bundle.putString("label",parkList.get(i).getLable());
-                    bundle.putString("parkAddress",parkList.get(i).getPlace_address());
-                    bundle.putString("placeFee","6元/小时");
-                    bundle.putString("parkId",parkList.get(i).getId());
-                    bundle.putString("parkDistance",parkList.get(i).getDistance()+"KM");
-                    bundle.putString("parkNum",parkList.get(i).getSpace_num()+"/"+parkList.get(i).getPlace_total_num());
-
-                    //创建OverlayOptions属性 .icon后面的为图片样子
-                    OverlayOptions option1 =  new MarkerOptions()
-                            .position(point1).icon(bitmap).title(parkList.get(i).getPlace_name()).extraInfo(bundle);
-
-                    options.add(option1);
-
-
-                }
                 //黄色停车场，充电
-                else if (parkList.get(i).getLable().contains("充电")){
+                 if (parkList.get(i).getLable().contains("充电")){
                     LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View view = inflater.inflate(R.layout.activity_markernum, null);
                     TextView marker_num = (TextView) view.findViewById(R.id.marker_num);
@@ -291,8 +300,33 @@ public class OneFragment extends Fragment  {
                 }
                 //当前用户位置
                 else {
+                     //蓝色停车场，普通的预约停车
+
+                     //图片模式
+//                    BitmapDescriptor bitmap = BitmapDescriptorFactory
+//                            .fromResource(R.drawable.lanqipao);
+
+                     LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                     View view = inflater.inflate(R.layout.activity_markernum, null);
+                     TextView marker_num = (TextView) view.findViewById(R.id.marker_num);
+                     marker_num.setText(parkList.get(i).getSpace_num());
+                     BitmapDescriptor bitmap = BitmapDescriptorFactory
+                             .fromBitmap(getBitmapFromView(view));
 
 
+                     Bundle bundle= new Bundle();
+                     bundle.putString("label",parkList.get(i).getLable());
+                     bundle.putString("parkAddress",parkList.get(i).getPlace_address());
+                     bundle.putString("placeFee","6元/小时");
+                     bundle.putString("parkId",parkList.get(i).getId());
+                     bundle.putString("parkDistance",parkList.get(i).getDistance()+"KM");
+                     bundle.putString("parkNum",parkList.get(i).getSpace_num()+"/"+parkList.get(i).getPlace_total_num());
+
+                     //创建OverlayOptions属性 .icon后面的为图片样子
+                     OverlayOptions option1 =  new MarkerOptions()
+                             .position(point1).icon(bitmap).title(parkList.get(i).getPlace_name()).extraInfo(bundle);
+
+                     options.add(option1);
                 }
             }
         }
@@ -637,7 +671,7 @@ public class OneFragment extends Fragment  {
         }
     };
 
-    public class MyLocationListenner implements BDLocationListener {
+    public   class MyLocationListenner implements BDLocationListener {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -695,5 +729,48 @@ public class OneFragment extends Fragment  {
         return bitmap;
     }
 
+    //sug监听
+    OnGetSuggestionResultListener SUGListener = new OnGetSuggestionResultListener() {
+        public void onGetSuggestionResult(SuggestionResult res) {
+            if (res == null || res.getAllSuggestions() == null) {
 
+                return;
+                //未找到相关结果
+            }
+            sugAddress.clear();
+            List<SuggestionResult.SuggestionInfo> l=res.getAllSuggestions();
+            for (SuggestionResult.SuggestionInfo sugArredss: l
+                    ) {
+
+                String city =sugArredss.city+sugArredss.district+sugArredss.key;
+                sugAddress.add(city);
+            }
+            arrayAdapter.notifyDataSetChanged();
+
+        }
+    };
+
+    //listView监听item点击
+    class ListViewListener implements   AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            mMapView.setVisibility(View.VISIBLE);
+            searchListView.setVisibility(View.INVISIBLE);
+            imageView.setVisibility(View.VISIBLE);
+       final String address= sugAddress.get(position);
+//
+            new Runnable() {
+                @Override
+                public void run() {
+                    JsonArray jsonArray = null;
+                    String strUrl = "http://api.map.baidu.com/geocoder/v2/?address="+address+"&output=json&ak=EXj18khot93RCrLj6yizGXo69iCEP5FC&mcode=tjpark.tjsinfo.com.tjpark";
+
+                }
+            };
+        }
+
+
+
+
+    }
 }

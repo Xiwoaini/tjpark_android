@@ -1,10 +1,12 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/2/13.
  */
 
-public class Person {
+public class Person  implements Serializable {
 
     private String personItem;
 

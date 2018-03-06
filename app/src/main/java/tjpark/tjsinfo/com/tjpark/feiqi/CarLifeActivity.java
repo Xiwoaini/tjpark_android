@@ -13,7 +13,7 @@ import tjpark.tjsinfo.com.tjpark.R;
 /**
  * Created by panning on 2018/1/12.
  */
-
+@Deprecated
 //车生活的12个按钮
 public class CarLifeActivity  extends FragmentActivity {
 

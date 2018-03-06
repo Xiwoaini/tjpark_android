@@ -1,10 +1,12 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/1/15.
  */
 
-public class SharePark {
+public class SharePark  implements Serializable {
     private String place_id;
     private String place_name;
 

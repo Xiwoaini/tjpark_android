@@ -5,23 +5,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import com.baidu.mapapi.model.LatLng;
-import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
-import tjpark.tjsinfo.com.tjpark.fragment.TwoFragment;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
-import tjpark.tjsinfo.com.tjpark.util.ParkAdapter;
+import tjpark.tjsinfo.com.tjpark.adapter.ParkAdapter;
 
 /**
  * Created by panning on 2018/1/12.
@@ -131,10 +128,24 @@ private ListView listView;
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             //根据停车场类型跳转到对应的视图
             if (parkList.get(position).getLable().contains("充电")){
+                Intent intent = new Intent();
+                intent.setClass(ParkListActivity.this, YellowParkActivity.class);
+                intent.putExtra("parkId",parkList.get(position).getId());
+                intent.putExtra("place_name",parkList.get(position).getPlace_name());
+                intent.putExtra("place_address",parkList.get(position).getPlace_address());
+                intent.putExtra("place_distance",parkList.get(position).getDistance());
 
+                startActivity(intent);
             }
             else if (parkList.get(position).getLable().contains("共享")){
+                Intent intent = new Intent();
+                intent.setClass(ParkListActivity.this, GreenParkActivity.class);
+                intent.putExtra("parkId",parkList.get(position).getId());
+                intent.putExtra("place_name",parkList.get(position).getPlace_name());
+                intent.putExtra("place_address",parkList.get(position).getPlace_address());
+                intent.putExtra("place_distance",parkList.get(position).getDistance());
 
+                startActivity(intent);
             }
             else{
                 //            跳转

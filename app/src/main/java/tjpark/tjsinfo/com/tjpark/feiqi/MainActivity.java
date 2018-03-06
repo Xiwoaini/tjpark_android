@@ -35,7 +35,7 @@ import tjpark.tjsinfo.com.tjpark.entity.Park;
 
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
-
+@Deprecated
 public class MainActivity extends FragmentActivity {
     //前台页面控件的显示
     private MapView mMapView = null;

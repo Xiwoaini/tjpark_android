@@ -1,20 +1,15 @@
 package tjpark.tjsinfo.com.tjpark;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -25,7 +20,6 @@ import com.google.gson.JsonObject;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 
-import java.sql.BatchUpdateException;
 import java.util.ArrayList;
 
 import java.util.Iterator;
@@ -33,7 +27,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tjpark.tjsinfo.com.tjpark.entity.Park;
-import tjpark.tjsinfo.com.tjpark.util.MyAdapter;
+import tjpark.tjsinfo.com.tjpark.adapter.MyAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
 /**
@@ -133,7 +127,9 @@ public class ShareReleaseActivity  extends AppCompatActivity {
 
                         }
                        catch (Exception e){
-                            //发布失败
+                           Intent intent = new Intent();
+                           intent.setClass(ShareReleaseActivity.this, TabBarActivity.class);
+                           startActivity(intent);
                        }
 
                     }

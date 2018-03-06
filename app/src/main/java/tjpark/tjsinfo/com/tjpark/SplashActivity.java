@@ -9,6 +9,7 @@ import android.os.Bundle;
  * Created by panning on 2018/2/8.
  */
 
+//用于页面初始化
 public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

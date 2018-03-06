@@ -4,21 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,9 +19,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tjpark.tjsinfo.com.tjpark.entity.Car;
-import tjpark.tjsinfo.com.tjpark.util.CarAdapter;
+import tjpark.tjsinfo.com.tjpark.adapter.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
-import tjpark.tjsinfo.com.tjpark.util.ParkAdapter;
 
 /**
  * Created by panning on 2018/1/12.

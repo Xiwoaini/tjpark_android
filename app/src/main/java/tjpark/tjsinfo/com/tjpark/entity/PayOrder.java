@@ -1,11 +1,13 @@
 package tjpark.tjsinfo.com.tjpark.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by panning on 2018/1/15.
  */
 
 //准备提交订单
-public class PayOrder {
+public class PayOrder  implements Serializable {
     private String customer_id;
     private String plate_number;
     private String plate_id;

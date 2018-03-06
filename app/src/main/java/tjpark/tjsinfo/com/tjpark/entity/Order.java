@@ -21,6 +21,7 @@ public class Order implements Serializable {
     private String status;
     private String park_id;
     private String out_time;
+    private String reservation_park_fee;
 
     public String getId() {
         return id;
@@ -132,5 +133,13 @@ public class Order implements Serializable {
 
     public void setOut_time(String out_time) {
         this.out_time = out_time;
+    }
+
+    public void setReservation_park_fee(String reservation_park_fee) {
+        this.reservation_park_fee = reservation_park_fee;
+    }
+
+    public String getReservation_park_fee() {
+        return reservation_park_fee;
     }
 }

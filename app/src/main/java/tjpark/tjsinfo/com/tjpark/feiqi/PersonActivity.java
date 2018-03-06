@@ -31,6 +31,7 @@ import tjpark.tjsinfo.com.tjpark.ShareReleaseActivity;
  * Created by panning on 2018/1/12.
  */
 //'我的'页面控制类，被(OneFragment代替)
+@Deprecated
 public class PersonActivity extends FragmentActivity {
     private SharedPreferences mSharedPreferences;
     //登录状态

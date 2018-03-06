@@ -40,6 +40,7 @@ android:layout_height="match_parent" >
                 android:id="@+id/bluePark_placeId"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:visibility="invisible"
                 />
 
             <TextView

@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -19,9 +18,9 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Iterator;
 
+import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.entity.ParkDetail;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
-import tjpark.tjsinfo.com.tjpark.util.OrderAdapter;
 
 /**
  * Created by panning on 2018/1/12.
@@ -37,7 +36,13 @@ public class BlueParkActivity extends AppCompatActivity {
     private TextView bluePark_JTGZ1,bluePark_JTGZ2,bluePark_placeId;
     private ParkDetail parkDetail = new ParkDetail();
 
-
+    private String parkid = "";
+    JsonArray jsonArray = null;
+    Intent getIntent = null;
+    JsonObject jso = null;
+    JsonArray jsonArray1 = null;
+    JsonObject jso1 = null;
+    Park park =new Park();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,6 +57,9 @@ public class BlueParkActivity extends AppCompatActivity {
             }
 
         });
+        getIntent= getIntent();
+
+        parkid = getIntent.getStringExtra("parkId");
         new Thread(runnable).start();
 
     }
@@ -74,17 +82,30 @@ public class BlueParkActivity extends AppCompatActivity {
 
 
 //调用接口
-            JsonArray jsonArray = null;
-            Intent getIntent = getIntent();
-            String s = getIntent.getStringExtra("parkId");
-            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+s+"'";
+
+            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+parkid+"'";
             jsonArray = NetConnection.getJsonArray(strUrl);
             Iterator it = jsonArray.iterator();
-            JsonObject jso = jsonArray.get(0).getAsJsonObject();
+            jso = jsonArray.get(0).getAsJsonObject();
 
-//            place_num ，剩余车位数
+
+            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+parkid+"'";
+            jsonArray1 = NetConnection.getJsonArray(strUrl1);
+            Iterator it1 = jsonArray1.iterator();
+              jso1 = jsonArray1.get(0).getAsJsonObject();
+
+            Message msg = new Message();
+            handler.sendMessage(msg);
+        }
+    };
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
             //id，默认为隐藏
-            bluePark_placeId.setText(s);
+            bluePark_placeId.setText(parkid);
             //名称
             bluePark_placeName.setText(getIntent.getStringExtra("place_name"));
             //地址
@@ -100,18 +121,8 @@ public class BlueParkActivity extends AppCompatActivity {
 //是否收费
             bluePark_JTLX.setText(jso.get("type").toString().replace("\"",""));
 
+            bluePark_JTGZ1.setText(jso1.get("park_time").toString().replace("\"","")+"  "+jso1.get("fee").toString().replace("\"","")+"  ");
             bluePark_JTGZ2.setText(jso.get("open_time").toString().replace("\"",""));
-
-
-
-        }
-    };
-
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
 
 
         }
@@ -123,7 +134,6 @@ public class BlueParkActivity extends AppCompatActivity {
 
         Intent intent = new Intent();
         intent.setClass(BlueParkActivity.this, BlueYuYueActivity.class);
-//        <!--车场名称--> <!--距离-->  <!--类型--><!--地址-->
                 intent.putExtra("parkId",bluePark_placeId.getText().toString());
                 intent.putExtra("bluePark_placeName",bluePark_placeName.getText().toString());
                 intent.putExtra("bluePark_distance",bluePark_distance.getText().toString());

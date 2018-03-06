@@ -105,7 +105,7 @@ public class YellowParkActivity extends AppCompatActivity {
 
             yellowPark_JTSJ.setText(jso.get("open_time").toString().replace("\"",""));
             bluePark_JTLX.setText(jso.get("period_type").toString().replace("\"",""));
-            Log.v("1",jso1.get("fee").toString().replace("\"",""));
+
             yellowPark_JTGZ1.setText(jso1.get("fee").toString().replace("\"",""));
             yellowPark_JTGZ2.setText(jso.get("open_time").toString().replace("\"",""));
             yellowPark_JTFY.setText(getIntent.getStringExtra("pile_fee"));

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
      >
+
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/map_view"
@@ -13,11 +13,13 @@
         android:layout_height="match_parent"
         android:clickable="true" />
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/xintushi"/>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="horizontal"
@@ -39,15 +41,19 @@
         android:text="附近"
         android:onClick="getParkList"
         />
+
+
 </LinearLayout>
+
     <ListView
         android:id="@+id/searchListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:layout_marginTop="83dp"
         android:layout_weight="1" />
 
 
 
 
-
-</FrameLayout>
+</FrameLayout >

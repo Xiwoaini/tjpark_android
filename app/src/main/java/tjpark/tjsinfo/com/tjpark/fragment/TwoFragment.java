@@ -25,7 +25,7 @@ import tjpark.tjsinfo.com.tjpark.DetailActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Order;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
-import tjpark.tjsinfo.com.tjpark.util.OrderAdapter;
+import tjpark.tjsinfo.com.tjpark.adapter.OrderAdapter;
 
 
 /**
@@ -94,6 +94,10 @@ private ListView listView;
                 }
                 try{
                     JsonObject jso = jsonArray.get(i).getAsJsonObject();
+
+                    if (jso.get("status").toString().replace("\"","").equals("待支付")){
+                        order.setReservation_park_fee(jso.get("reservation_park_fee").toString().replace("\"",""));
+                    }
                     order.setId(jso.get("id").toString().replace("\"",""));
                     order.setPlace_id(jso.get("place_id").toString().replace("\"",""));
                     order.setPlace_name(jso.get("place_name").toString().replace("\"",""));
@@ -157,4 +161,21 @@ private ListView listView;
     }
 
 
+
+//    @GET
+//    @Path("/parkPay")
+//    @Produces(MediaType.TEXT_PLAIN)
+//    public String parkPay(@QueryParam("userid") String userid,
+//                          @QueryParam("parkid") String parkid,
+//                          @QueryParam("fee") String fee,
+//                          @QueryParam("place_name") String place_name,
+//                          @QueryParam("payMode") String payMode,
+//                          @QueryParam("place_id") String place_id
+//    ) {
+
 }
+
+//
+//192.168.168.221:8080/tjpark/app/AppWebservice/reservableParkIn?customer_id=402840288afd5c43e114015c43f2d85f0000&plate_number=津a11111&plate_id=4028b8815fdd3022015fdd64df290000&place_id=297e1fda5e50e569015e50ff11cd0004&place_name=小白楼朗香街&reservation_time=100&reservation_fee=200&payMode=支付宝
+//
+//reservableParkIn?customer_id=402840288afd5c43e114015c43f2d85f0000&plate_number=津a11111&plate_id=4028b8815fdd3022015fdd64df290000&place_id=297e1fda5e50e569015e50ff11cd0004&place_name=小白楼朗香街&reservation_time=100&reservation_fee=200&payMode=支付宝

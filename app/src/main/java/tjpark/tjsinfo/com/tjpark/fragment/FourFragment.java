@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ import tjpark.tjsinfo.com.tjpark.MyShareActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.ShareReleaseActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Person;
-import tjpark.tjsinfo.com.tjpark.util.PersonAdapter;
+import tjpark.tjsinfo.com.tjpark.adapter.PersonAdapter;
 
 
 /**

@@ -25,7 +25,7 @@ import android.widget.SimpleAdapter;
 import android.os.Build;
 
 import tjpark.tjsinfo.com.tjpark.R;
-
+@Deprecated
 public class TestActivity extends Activity {
 	
 	EditText eSearch;

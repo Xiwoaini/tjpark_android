@@ -34,6 +34,11 @@
         android:layout_height="0dp"
         />
     <TextView
+        android:id="@+id/plateId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        />
+    <TextView
         android:id="@+id/blue_yuYueParkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
