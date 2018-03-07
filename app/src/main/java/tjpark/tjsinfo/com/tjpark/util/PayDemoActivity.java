@@ -6,7 +6,7 @@ import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
 import com.google.gson.JsonObject;
 
-import tjpark.tjsinfo.com.tjpark.BlueYuYueActivity;
+import tjpark.tjsinfo.com.tjpark.activity.BlueYuYueActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.ParkYuYue;
 import tjpark.tjsinfo.com.tjpark.feiqi.OrdersActivity;

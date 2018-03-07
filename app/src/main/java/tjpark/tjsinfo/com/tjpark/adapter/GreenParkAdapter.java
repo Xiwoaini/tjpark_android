@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import tjpark.tjsinfo.com.tjpark.BlueYuYueActivity;
+import tjpark.tjsinfo.com.tjpark.activity.BlueYuYueActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.GreenPark;
 

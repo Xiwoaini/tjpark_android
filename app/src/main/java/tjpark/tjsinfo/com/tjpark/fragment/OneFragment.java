@@ -59,10 +59,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import tjpark.tjsinfo.com.tjpark.activity.BlueParkActivity;
-import tjpark.tjsinfo.com.tjpark.GreenParkActivity;
-import tjpark.tjsinfo.com.tjpark.ParkListActivity;
+import tjpark.tjsinfo.com.tjpark.activity.GreenParkActivity;
+import tjpark.tjsinfo.com.tjpark.activity.ParkListActivity;
 import tjpark.tjsinfo.com.tjpark.R;
-import tjpark.tjsinfo.com.tjpark.YellowParkActivity;
+import tjpark.tjsinfo.com.tjpark.activity.YellowParkActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 

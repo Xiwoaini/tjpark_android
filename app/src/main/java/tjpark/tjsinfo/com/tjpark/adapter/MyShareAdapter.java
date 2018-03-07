@@ -18,13 +18,13 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 
-import tjpark.tjsinfo.com.tjpark.BlueYuYueActivity;
-import tjpark.tjsinfo.com.tjpark.IncludeDetailActivity;
-import tjpark.tjsinfo.com.tjpark.LoginActivity;
-import tjpark.tjsinfo.com.tjpark.MyShareActivity;
+import tjpark.tjsinfo.com.tjpark.activity.BlueYuYueActivity;
+import tjpark.tjsinfo.com.tjpark.activity.IncludeDetailActivity;
+import tjpark.tjsinfo.com.tjpark.activity.LoginActivity;
+import tjpark.tjsinfo.com.tjpark.activity.MyShareActivity;
 import tjpark.tjsinfo.com.tjpark.R;
-import tjpark.tjsinfo.com.tjpark.RegActivity;
-import tjpark.tjsinfo.com.tjpark.UpdateShareActivity;
+import tjpark.tjsinfo.com.tjpark.activity.RegActivity;
+import tjpark.tjsinfo.com.tjpark.activity.UpdateShareActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
 import tjpark.tjsinfo.com.tjpark.entity.MyShare;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;

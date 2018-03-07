@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import tjpark.tjsinfo.com.tjpark.CarLifeDisPlayActivity;
+import tjpark.tjsinfo.com.tjpark.activity.CarLifeDisPlayActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 
 

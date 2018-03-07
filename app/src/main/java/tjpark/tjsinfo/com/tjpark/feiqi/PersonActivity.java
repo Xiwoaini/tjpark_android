@@ -20,11 +20,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import tjpark.tjsinfo.com.tjpark.LoginActivity;
-import tjpark.tjsinfo.com.tjpark.MyCarActivity;
-import tjpark.tjsinfo.com.tjpark.MyShareActivity;
+import tjpark.tjsinfo.com.tjpark.activity.LoginActivity;
+import tjpark.tjsinfo.com.tjpark.activity.MyCarActivity;
+import tjpark.tjsinfo.com.tjpark.activity.MyShareActivity;
 import tjpark.tjsinfo.com.tjpark.R;
-import tjpark.tjsinfo.com.tjpark.ShareReleaseActivity;
+import tjpark.tjsinfo.com.tjpark.activity.ShareReleaseActivity;
 
 
 /**

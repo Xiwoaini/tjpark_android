@@ -43,7 +43,7 @@
 
 
         <!--应用程序初始页面的设定-->
-        <activity android:name=".SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,25 +51,25 @@
             </intent-filter>
         </activity>
         <!--声明所有activity用于跳转-->
-        <activity android:name=".TabBarActivity"></activity>
+        <activity android:name=".activity.TabBarActivity"></activity>
         <activity android:name=".activity.AddCarActivity"></activity>
-        <activity android:name=".ParkListActivity"></activity>
+        <activity android:name=".activity.ParkListActivity"></activity>
         <activity android:name=".activity.BlueParkActivity"></activity>
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".CarLifeDisPlayActivity"></activity>
-        <activity android:name=".ShareReleaseActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".BlueYuYueActivity"></activity>
-        <activity android:name=".RegActivity"></activity>
-        <activity android:name=".MyShareActivity"></activity>
+        <activity android:name=".activity.DetailActivity"></activity>
+        <activity android:name=".activity.CarLifeDisPlayActivity"></activity>
+        <activity android:name=".activity.ShareReleaseActivity"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.BlueYuYueActivity"></activity>
+        <activity android:name=".activity.RegActivity"></activity>
+        <activity android:name=".activity.MyShareActivity"></activity>
         <activity android:name=".util.PayDemoActivity"></activity>
-        <activity android:name=".MyCarActivity"></activity>
-        <activity android:name=".YellowParkActivity"></activity>
-        <activity android:name=".GreenParkActivity"></activity>
-        <activity android:name=".SugAddressActivity"></activity>
+        <activity android:name=".activity.MyCarActivity"></activity>
+        <activity android:name=".activity.YellowParkActivity"></activity>
+        <activity android:name=".activity.GreenParkActivity"></activity>
+        <activity android:name=".activity.SugAddressActivity"></activity>
 
-        <activity android:name=".IncludeDetailActivity"></activity>
-        <activity android:name=".UpdateShareActivity"></activity>
+        <activity android:name=".activity.IncludeDetailActivity"></activity>
+        <activity android:name=".activity.UpdateShareActivity"></activity>
         <!--支付宝相关activity-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

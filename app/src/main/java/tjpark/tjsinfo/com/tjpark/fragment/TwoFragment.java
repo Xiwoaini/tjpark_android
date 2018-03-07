@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import tjpark.tjsinfo.com.tjpark.DetailActivity;
+import tjpark.tjsinfo.com.tjpark.activity.DetailActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Order;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
