@@ -43,7 +43,6 @@ public class TabBarActivity extends FragmentActivity {
                 .addTabItem("订单", R.drawable.icondd,R.drawable.icondd, TwoFragment.class)
                 .addTabItem("更多",R.drawable.iconyy, R.drawable.iconyy, ThreeFragment.class)
                 .addTabItem("我的",R.drawable.iconwd, R.drawable.iconwd, FourFragment.class)
-//                .setTabBarBackgroundResource(R.mipmap.ic_launcher)
                 .setTabBarBackgroundColor(Color.WHITE)
                 .isShowDivider(false);
 

@@ -16,16 +16,14 @@ import tjpark.tjsinfo.com.tjpark.entity.Park;
 /**
  * Created by panning on 2018/1/25.
  */
-
+/**
+ * listview自定义格式的适配器
+ */
 
 public class OrderAdapter extends ArrayAdapter<Order> {
 
     private int resourceId;
-    /**
-     *context:当前活动上下文
-     *textViewResourceId:ListView子项布局的ID
-     *objects：要适配的数据
-     */
+
     public OrderAdapter(Context context, int textViewResourceId,
                         List<Order> objects) {
         super(context, textViewResourceId, objects);
@@ -33,14 +31,11 @@ public class OrderAdapter extends ArrayAdapter<Order> {
         resourceId = textViewResourceId;
     }
 
-    /**
-     * LIstView中每一个子项被滚动到屏幕的时候调用
-     * position：滚到屏幕中的子项位置，可以通过这个位置拿到子项实例
-     * convertView：之前加载好的布局进行缓存
-     */
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Order order = getItem(position);  //获取当前项的Fruit实例
+        //获取当前项的实例
+        Order order = getItem(position);
         //为子项动态加载布局
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
         TextView order_inTime = (TextView) view.findViewById(R.id.order_inTime);

@@ -14,7 +14,7 @@ import tjpark.tjsinfo.com.tjpark.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ *底部第三页
  */
 public class ThreeFragment extends Fragment {
 
@@ -64,7 +64,7 @@ public class ThreeFragment extends Fragment {
 
 
 
-        //        //对12个按钮进行监听
+      //对12个按钮进行监听
         carLifeBtn1.setOnClickListener(new View.OnClickListener() {
 
             @Override

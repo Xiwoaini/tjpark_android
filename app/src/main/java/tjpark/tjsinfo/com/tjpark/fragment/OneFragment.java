@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.ZoomControls;
 
 
 import com.baidu.location.BDLocation;
@@ -34,7 +32,6 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
-import com.baidu.mapapi.http.HttpClient;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -56,25 +53,22 @@ import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import tjpark.tjsinfo.com.tjpark.BlueParkActivity;
+import tjpark.tjsinfo.com.tjpark.activity.BlueParkActivity;
 import tjpark.tjsinfo.com.tjpark.GreenParkActivity;
 import tjpark.tjsinfo.com.tjpark.ParkListActivity;
 import tjpark.tjsinfo.com.tjpark.R;
-import tjpark.tjsinfo.com.tjpark.SugAddressActivity;
 import tjpark.tjsinfo.com.tjpark.YellowParkActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
 
 /**
- * 地图
+ *底部第一页
  */
 public class OneFragment extends Fragment  {
     //前台页面控件的显示

@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import tjpark.tjsinfo.com.tjpark.activity.AddCarActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
 import tjpark.tjsinfo.com.tjpark.adapter.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;

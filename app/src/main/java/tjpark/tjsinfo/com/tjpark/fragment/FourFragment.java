@@ -26,9 +26,10 @@ import tjpark.tjsinfo.com.tjpark.adapter.PersonAdapter;
 
 
 /**
- *tabbar的person页
+ *底部第四页
  */
 public class FourFragment extends Fragment {
+    //取得存入的id值
     private SharedPreferences mSharedPreferences;
     //登录状态
     private TextView textStatus;
@@ -56,14 +57,10 @@ public class FourFragment extends Fragment {
         textStatus = (TextView)getActivity().findViewById(R.id.textStatus);
         btnStatus = (Button)getActivity().findViewById(R.id.btnStatus);
         mSharedPreferences = getActivity().getSharedPreferences("userInfo",getActivity().MODE_PRIVATE);
-
-
 //       从本地取数据：
         String username=mSharedPreferences.getString("personName","");
         String password=mSharedPreferences.getString("password","");
 
-
-//        System.out.print("值为:"+username);
         if (!(username.equals(""))&&!(password.equals(""))){
             textStatus.setText("已登录");
             btnStatus.setText("退出");

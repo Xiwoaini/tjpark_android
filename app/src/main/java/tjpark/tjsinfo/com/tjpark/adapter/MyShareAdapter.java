@@ -32,17 +32,16 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 /**
  * Created by panning on 2018/1/25.
  */
+/**
+ * listview自定义格式的适配器
+ */
 public class MyShareAdapter extends ArrayAdapter<MyShare> {
 
     private Context mContext;
     private int resourceId;
     private LayoutInflater bsman = null;
     private String id,customer_id,status = "";
-    /**
-     *context:当前活动上下文
-     *textViewResourceId:ListView子项布局的ID
-     *objects：要适配的数据
-     */
+
     public MyShareAdapter(Context context, int textViewResourceId,
                           List<MyShare> objects) {
         super(context, textViewResourceId, objects);
@@ -52,11 +51,7 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
         bsman = LayoutInflater.from(context);
     }
 
-    /**
-     * LIstView中每一个子项被滚动到屏幕的时候调用
-     * position：滚到屏幕中的子项位置，可以通过这个位置拿到子项实例
-     * convertView：之前加载好的布局进行缓存
-     */
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         MyShare myShare = getItem(position);

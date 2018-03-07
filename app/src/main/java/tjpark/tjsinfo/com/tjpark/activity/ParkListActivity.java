@@ -16,6 +16,8 @@ import com.google.gson.JsonObject;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import tjpark.tjsinfo.com.tjpark.activity.BlueParkActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 import tjpark.tjsinfo.com.tjpark.adapter.ParkAdapter;

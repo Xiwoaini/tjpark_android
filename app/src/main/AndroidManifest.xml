@@ -52,9 +52,9 @@
         </activity>
         <!--声明所有activity用于跳转-->
         <activity android:name=".TabBarActivity"></activity>
-        <activity android:name=".AddCarActivity"></activity>
+        <activity android:name=".activity.AddCarActivity"></activity>
         <activity android:name=".ParkListActivity"></activity>
-        <activity android:name=".BlueParkActivity"></activity>
+        <activity android:name=".activity.BlueParkActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".CarLifeDisPlayActivity"></activity>
         <activity android:name=".ShareReleaseActivity"></activity>

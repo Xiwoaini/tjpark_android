@@ -15,6 +15,7 @@ import tjpark.tjsinfo.com.tjpark.R;
  */
 
 //支付宝支付相关类
+@Deprecated
 public class OrderPay extends AppCompatActivity {
 
      private RadioGroup radioGroup=null;

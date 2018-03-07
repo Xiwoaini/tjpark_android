@@ -14,10 +14,10 @@ import tjpark.tjsinfo.com.tjpark.R;
 
 /**
  * Created by panning on 2018/2/28.
- * 适配器，下拉菜单
- *
  * */
-
+/**
+ * listview自定义格式的适配器
+ */
 
 public class MyAdapter extends BaseAdapter {
     List<String> datas = new ArrayList<>();

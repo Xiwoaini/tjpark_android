@@ -2,13 +2,10 @@ package tjpark.tjsinfo.com.tjpark.feiqi;
 
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import android.widget.TextView;
 
@@ -29,7 +26,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import tjpark.tjsinfo.com.tjpark.BlueParkActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 
