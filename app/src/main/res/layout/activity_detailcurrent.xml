@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <!--标题及撤回按钮-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="订单详情"
+        android:paddingTop="8dp"
+        android:textColor="#FFFFFF"
+        android:background="#3DC9CE"
+        android:textSize="10pt"
+        />
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-45dp"
+        android:text="返回"
+        android:background="@android:color/transparent"
+        android:textColor="#FFFFFF"
+
+        />
+
+    <!--订单详情-->
+    <!--车场名称-->
+    <TextView
+        android:id="@+id/detail_parkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="未知"
+        android:layout_marginTop="15dp"
+          />
+    <!--收费标准-->
+    <TextView
+        android:id="@+id/detail_fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+    <!--停车开始时间-->
+    <TextView
+        android:id="@+id/detail_startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+    <!--停车结束时间-->
+    <TextView
+        android:id="@+id/detail_endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+    <!--center停车用时-->
+    <TextView
+        android:id="@+id/detail_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+    <!--总费用-->
+    <TextView
+        android:id="@+id/detail_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+    <!--已支付费用-->
+    <TextView
+        android:id="@+id/detail_paySuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+    <!--需支付费用，补差支付-->
+    <TextView
+        android:id="@+id/detail_payNeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="未知"
+        />
+
+    <Button
+        android:id="@+id/detail_pay"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="#3DC9CE"
+        android:textColor="#FFFFFF"
+        android:text="支付"
+        />
+
+
+
+
+</LinearLayout>

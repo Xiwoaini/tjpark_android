@@ -13,6 +13,7 @@ import android.widget.EditText;
  * Created by panning on 2018/1/12.
  */
 
+//注册
 public class RegActivity  extends AppCompatActivity {
 
     //手机号

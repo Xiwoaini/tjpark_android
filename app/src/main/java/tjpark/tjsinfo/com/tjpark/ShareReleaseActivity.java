@@ -33,7 +33,7 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 /**
  * Created by panning on 2018/1/12.
  */
-
+//共享车位发布
 public class ShareReleaseActivity  extends AppCompatActivity {
     private Spinner sPlace,sType,sAddress;
     private EditText sNum,sName,sPhone,sMoney,startTime,endTime;
@@ -117,7 +117,7 @@ public class ShareReleaseActivity  extends AppCompatActivity {
                                 "&start_time="+startTime.getText() +
                                 "&end_time="+endTime.getText() +
                                 "&customerid=" +mSharedPreferences.getString("personID","")+
-                                "&model="+checkBtn.isChecked();
+                                "&model="+sType.getSelectedItem().toString();
                         try{
                             jsonObject = NetConnection.getXpath(strUrl);
 

@@ -53,6 +53,9 @@ public class DetailActivity  extends AppCompatActivity {
                 public void onClick(View view) {
 //                    parkPay
 
+
+
+
                 }
 
             });

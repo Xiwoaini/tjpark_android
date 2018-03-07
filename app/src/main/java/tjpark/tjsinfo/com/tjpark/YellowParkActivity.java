@@ -24,7 +24,7 @@ import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 /**
  * Created by panning on 2018/1/12.
  */
-
+//充电停车场
 public class YellowParkActivity extends AppCompatActivity {
 
     private TextView placeId,yellowPark_placeName,yellowPark_distance,yellowPark_label,

@@ -34,6 +34,7 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
+import com.baidu.mapapi.http.HttpClient;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -54,6 +55,8 @@ import com.baidu.mapapi.search.sug.SuggestionSearchOption;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -203,7 +206,8 @@ private   ListView searchListView;
             LatLng point1 = new LatLng(Double.parseDouble(parkList.get(i).getAddpoint_y()), Double.parseDouble(parkList.get(i).getAddpoint_x()));
             //根据停车场的类别，划分不同的颜色的停车场
             //停车场是否已满
-            if  (parkList.get(i).getSpace_num().equals("0")){
+//
+            if  (parkList.get(i).getSpace_num().equals("0")&&parkList.get(i).getShare_num().equals("0")){
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.activity_markernum, null);
                 TextView marker_num = (TextView) view.findViewById(R.id.marker_num);
@@ -271,20 +275,22 @@ private   ListView searchListView;
                     View view = inflater.inflate(R.layout.activity_markernum, null);
                     TextView marker_num = (TextView) view.findViewById(R.id.marker_num);
                     Resources resources=getActivity().getBaseContext().getResources();
-                    BitmapDescriptor bitmap;
+
                     if (parkList.get(i).getShare_num().equals("0")){
                         Drawable drawable=resources.getDrawable(R.drawable.huiqipao);
                         marker_num.setBackgroundDrawable(drawable);
-                         bitmap = BitmapDescriptorFactory
-                                .fromBitmap(getBitmapFromView(view));
+
                     }
                     else{
+
                         Drawable drawable=resources.getDrawable(R.drawable.lvqipao);
                         marker_num.setBackgroundDrawable(drawable);
-                        bitmap  = BitmapDescriptorFactory
-                                .fromResource(R.drawable.huiqipao);
+                        marker_num.setText(parkList.get(i).getShare_num());
                     }
-                    marker_num.setText(parkList.get(i).getSpace_num());
+
+                     BitmapDescriptor bitmap = BitmapDescriptorFactory
+                             .fromBitmap(getBitmapFromView(view));
+
                     Bundle bundle= new Bundle();
                     bundle.putString("parkId",parkList.get(i).getId());
                     bundle.putString("label",parkList.get(i).getLable());
@@ -298,14 +304,9 @@ private   ListView searchListView;
                             .extraInfo(bundle);
                     options.add(option1);
                 }
-                //当前用户位置
+
                 else {
                      //蓝色停车场，普通的预约停车
-
-                     //图片模式
-//                    BitmapDescriptor bitmap = BitmapDescriptorFactory
-//                            .fromResource(R.drawable.lanqipao);
-
                      LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                      View view = inflater.inflate(R.layout.activity_markernum, null);
                      TextView marker_num = (TextView) view.findViewById(R.id.marker_num);
@@ -630,9 +631,9 @@ private   ListView searchListView;
 
             // 隐藏logo
             View child = mMapView.getChildAt(1);
-            if (child != null && (child instanceof ImageView || child instanceof ZoomControls)){
-                child.setVisibility(View.INVISIBLE);
-            }
+//            if (child != null && (child instanceof ImageView || child instanceof ZoomControls)){
+//                child.setVisibility(View.INVISIBLE);
+//            }
             mBaiduMap.addOverlays(options);
             //设置marker监听
 
@@ -759,18 +760,45 @@ private   ListView searchListView;
             imageView.setVisibility(View.VISIBLE);
        final String address= sugAddress.get(position);
 //
-            new Runnable() {
+            new Thread( new Runnable() {
                 @Override
                 public void run() {
-                    JsonArray jsonArray = null;
-                    String strUrl = "http://api.map.baidu.com/geocoder/v2/?address="+address+"&output=json&ak=EXj18khot93RCrLj6yizGXo69iCEP5FC&mcode=tjpark.tjsinfo.com.tjpark";
+
+                    JsonObject res = null;
+                    String strUrl = "http://api.map.baidu.com/geocoder/v2/?address="+address+"&output=json&ak=EXj18khot93RCrLj6yizGXo69iCEP5FC&mcode=08:58:81:B0:2A:74:77:E1:75:5F:D4:D2:42:A2:7A:B8:3E:06:8A:2B;tjpark.tjsinfo.com.tjpark";
+
+                    res =NetConnection.getAddressStatus(strUrl);
+
+//嵌套取坐标
+                    JsonObject data=res.getAsJsonObject("result");
+
+                    Object data1= data.getAsJsonObject("location");
+
+                    JsonObject data2=(JsonObject)data1;
+
+                    latitude = Double.valueOf(((JsonObject) data1).get("lat").toString());
+                    longitude =Double.valueOf(((JsonObject) data1).get("lng").toString());
+                    LatLng loc = new LatLng(latitude,longitude);
+                    MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(loc);
+//缩放级别
+                    mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+
+                    //更新地图状态
+                    mBaiduMap.animateMapStatus(msu);
+
 
                 }
-            };
+            }).start();
+
+            //清除焦点
+                     sugSearch.clearFocus();
         }
 
 
 
 
+
+
     }
+
 }

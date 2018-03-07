@@ -101,18 +101,18 @@ public class BlueYuYueActivity extends AppCompatActivity {
 
         new Thread(runnable).start();
 
-        dialog = new Dialog(BlueYuYueActivity.this);
-
-        dialog.setContentView(R.layout.activity_selectcar);
-        CarAdapter adapter = new CarAdapter(BlueYuYueActivity.this, R.layout.activity_mycarview, myCarList);
-        //获取listView，
-        listView = (ListView) dialog.findViewById(R.id.listView);
-        //为listView赋值
-        listView.setAdapter(adapter);
-        BlueYuYueActivity.ListViewListener ll = new BlueYuYueActivity.ListViewListener();
-        listView.setOnItemClickListener(ll);
-
-        dialog.show();
+//        dialog = new Dialog(BlueYuYueActivity.this);
+//
+//        dialog.setContentView(R.layout.activity_selectcar);
+//        CarAdapter adapter = new CarAdapter(BlueYuYueActivity.this, R.layout.activity_mycarview, myCarList);
+//        //获取listView，
+//        listView = (ListView) dialog.findViewById(R.id.listView);
+//        //为listView赋值
+//        listView.setAdapter(adapter);
+//        BlueYuYueActivity.ListViewListener ll = new BlueYuYueActivity.ListViewListener();
+//        listView.setOnItemClickListener(ll);
+//
+//        dialog.show();
 
 
     }
@@ -242,11 +242,19 @@ public class BlueYuYueActivity extends AppCompatActivity {
             super.handleMessage(msg);
             Bundle data = msg.getData();
             String val = data.getString("value");
+
+            dialog = new Dialog(BlueYuYueActivity.this);
+
+            dialog.setContentView(R.layout.activity_selectcar);
+            CarAdapter adapter = new CarAdapter(BlueYuYueActivity.this, R.layout.activity_mycarview, myCarList);
+            //获取listView，
+            listView = (ListView) dialog.findViewById(R.id.listView);
             //为listView赋值
-//            listView.setAdapter(new ArrayAdapter<String>(BlueYuYueActivity.this, android.R.layout.simple_expandable_list_item_1,getData()));
-//            setContentView(listView);
-//            BlueYuYueActivity.ListViewListener listViewListener =new BlueYuYueActivity.ListViewListener();
-//            listView.setOnItemClickListener(listViewListener);
+            listView.setAdapter(adapter);
+            BlueYuYueActivity.ListViewListener ll = new BlueYuYueActivity.ListViewListener();
+            listView.setOnItemClickListener(ll);
+
+            dialog.show();
 
 
 

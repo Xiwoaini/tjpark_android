@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--附近停车场-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="车位号"
+            android:layout_marginLeft="5dp"
+            />
+            <TextView
+            android:id="@+id/CWH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="xx"
+            android:layout_marginLeft="5dp"
+            />
+
+            </TableRow>
+            <TableRow>
+            <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="开放时间"
+            android:layout_marginLeft="5dp"
+            />
+            <TextView
+            android:id="@+id/JTSJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="xx"
+            android:layout_marginLeft="5dp"
+            />
+            <Button
+            android:id="@+id/yuYueBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="预约"
+            android:background="@android:color/transparent"/>
+
+            </TableRow>
+            <TableRow>
+            <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="费用:"
+            android:layout_marginLeft="5dp"
+            />
+            <TextView
+            android:id="@+id/JTFY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="xx"
+            android:layout_marginLeft="5dp"
+            />
+
+
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
+
+

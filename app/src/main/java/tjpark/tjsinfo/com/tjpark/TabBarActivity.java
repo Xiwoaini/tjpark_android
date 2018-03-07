@@ -24,7 +24,7 @@ import tjpark.tjsinfo.com.tjpark.fragment.TwoFragment;
 /**
  * Created by panning on 2018/1/16.
  */
-
+//tabbar
 public class TabBarActivity extends FragmentActivity {
 
     private BottomTabBar mBottomTabBar;

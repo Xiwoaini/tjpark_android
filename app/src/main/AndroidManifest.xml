@@ -68,7 +68,8 @@
         <activity android:name=".GreenParkActivity"></activity>
         <activity android:name=".SugAddressActivity"></activity>
 
-
+        <activity android:name=".IncludeDetailActivity"></activity>
+        <activity android:name=".UpdateShareActivity"></activity>
         <!--支付宝相关activity-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

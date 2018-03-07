@@ -11,16 +11,25 @@ public class MyShare  implements Serializable {
     private String id;
     private String place_id;
     private String place_name;
+
     private String customer_id;
     private String park_num;
+    private String is_charing_pile;
+    private String   is_fast_pile;
     private String phone;
     private String create_time;
+    private String  electricity_fee;
     private String park_fee;
     private String start_time;
     private String end_time;
     private String status;
+    private String examine_time;
+    private String  examine_id;
+    private String examine_name;
     private String share_status;
+    private String memo;
     private String contacts_name;
+    private String model;
     private String buttonName;
 
     public String getId() {
@@ -133,5 +142,70 @@ public class MyShare  implements Serializable {
 
     public void setButtonName(String buttonName) {
         this.buttonName = buttonName;
+    }
+
+
+    public String getIs_charing_pile() {
+        return is_charing_pile;
+    }
+
+    public String getIs_fast_pile() {
+        return is_fast_pile;
+    }
+
+    public String getElectricity_fee() {
+        return electricity_fee;
+    }
+
+    public String getExamine_time() {
+        return examine_time;
+    }
+
+    public String getExamine_id() {
+        return examine_id;
+    }
+
+    public String getExamine_name() {
+        return examine_name;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setIs_charing_pile(String is_charing_pile) {
+        this.is_charing_pile = is_charing_pile;
+    }
+
+    public void setIs_fast_pile(String is_fast_pile) {
+        this.is_fast_pile = is_fast_pile;
+    }
+
+    public void setElectricity_fee(String electricity_fee) {
+        this.electricity_fee = electricity_fee;
+    }
+
+    public void setExamine_time(String examine_time) {
+        this.examine_time = examine_time;
+    }
+
+    public void setExamine_id(String examine_id) {
+        this.examine_id = examine_id;
+    }
+
+    public void setExamine_name(String examine_name) {
+        this.examine_name = examine_name;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }
