@@ -1,4 +1,4 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.app.Application;
 import android.graphics.Color;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.baidu.mapapi.SDKInitializer;
 import com.hjm.bottomtabbar.BottomTabBar;
 
+import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
 import tjpark.tjsinfo.com.tjpark.fragment.OneFragment;
 import tjpark.tjsinfo.com.tjpark.fragment.ThreeFragment;
@@ -39,7 +40,7 @@ public class TabBarActivity extends FragmentActivity {
                 .setFontSize(8)
                 .setTabPadding(4,6,10)
                 .setChangeColor(Color.BLUE,Color.DKGRAY)
-                .addTabItem("首页",R.drawable.iconsy,R.drawable.iconsy, OneFragment.class)
+                .addTabItem("首页", R.drawable.iconsy,R.drawable.iconsy, OneFragment.class)
                 .addTabItem("订单", R.drawable.icondd,R.drawable.icondd, TwoFragment.class)
                 .addTabItem("更多",R.drawable.iconyy, R.drawable.iconyy, ThreeFragment.class)
                 .addTabItem("我的",R.drawable.iconwd, R.drawable.iconwd, FourFragment.class)

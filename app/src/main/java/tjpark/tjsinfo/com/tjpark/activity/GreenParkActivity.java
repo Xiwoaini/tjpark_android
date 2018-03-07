@@ -1,4 +1,4 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.adapter.GreenParkAdapter;
 import tjpark.tjsinfo.com.tjpark.entity.GreenPark;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;

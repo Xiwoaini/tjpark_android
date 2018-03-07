@@ -1,4 +1,4 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.adapter.MyAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;

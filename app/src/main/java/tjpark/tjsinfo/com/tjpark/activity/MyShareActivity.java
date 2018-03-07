@@ -1,4 +1,4 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.adapter.MyShareAdapter;
 import tjpark.tjsinfo.com.tjpark.adapter.OrderAdapter;
 import tjpark.tjsinfo.com.tjpark.entity.MyShare;

@@ -1,4 +1,4 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -30,6 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
 import tjpark.tjsinfo.com.tjpark.entity.ParkYuYue;
 import tjpark.tjsinfo.com.tjpark.adapter.CarAdapter;

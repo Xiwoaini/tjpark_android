@@ -1,4 +1,4 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.app.Activity;
 import android.app.ListActivity;
@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import tjpark.tjsinfo.com.tjpark.R;
 
 /**
  * Created by panning on 2018/1/12.

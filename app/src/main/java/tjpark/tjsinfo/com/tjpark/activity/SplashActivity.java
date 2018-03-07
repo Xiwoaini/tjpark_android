@@ -1,8 +1,10 @@
-package tjpark.tjsinfo.com.tjpark;
+package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import tjpark.tjsinfo.com.tjpark.R;
 
 
 /**

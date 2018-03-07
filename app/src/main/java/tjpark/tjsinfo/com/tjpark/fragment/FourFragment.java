@@ -21,6 +21,7 @@ import tjpark.tjsinfo.com.tjpark.MyCarActivity;
 import tjpark.tjsinfo.com.tjpark.MyShareActivity;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.ShareReleaseActivity;
+import tjpark.tjsinfo.com.tjpark.activity.MyShareActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Person;
 import tjpark.tjsinfo.com.tjpark.adapter.PersonAdapter;
 
@@ -123,6 +124,7 @@ public class FourFragment extends Fragment {
                         break;
                     //我的共享车位
                     case 1:
+
                         intent.setClass(getActivity(), MyShareActivity.class);
                         startActivity(intent);
                         break;
