@@ -35,7 +35,7 @@ public class TwoFragment extends Fragment {
     private ListView listView;
     private List<Order> orderList = new LinkedList<Order>();
     private SharedPreferences mSharedPreferences;
-
+private String personID;
     public TwoFragment() {
 
     }
@@ -54,7 +54,7 @@ public class TwoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mSharedPreferences = getActivity().getSharedPreferences("userInfo", getActivity().MODE_PRIVATE);
 
-        String personID = mSharedPreferences.getString("personID", "");
+         personID = mSharedPreferences.getString("personID", "");
         if (null == personID || personID.equals("")) {
             new AlertDialog.Builder(getActivity())
                     .setTitle("提示")
@@ -63,7 +63,56 @@ public class TwoFragment extends Fragment {
                     .show();
 
         } else {
-            new Thread(runnable).start();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    JsonArray jsonArray = null;
+
+                    String strUrl = "/tjpark/app/AppWebservice/findParkRecord?customerid="+personID;
+                    jsonArray = NetConnection.getJsonArray(strUrl);
+
+                    if (null == jsonArray) {
+                        return;
+                    }
+
+                    Iterator it = jsonArray.iterator();
+
+                    int i = 0;
+                    while (it.hasNext()) {
+                        Order order = new Order();
+                        if (i == jsonArray.size()) {
+                            break;
+                        }
+                        try {
+                            JsonObject jso = jsonArray.get(i).getAsJsonObject();
+
+                            if (jso.get("status").toString().replace("\"", "").equals("待支付")) {
+                                order.setReservation_park_fee(jso.get("reservation_park_fee").toString().replace("\"", ""));
+                            }
+                            order.setId(jso.get("id").toString().replace("\"", ""));
+                            order.setPlace_id(jso.get("place_id").toString().replace("\"", ""));
+                            order.setPlace_name(jso.get("place_name").toString().replace("\"", ""));
+                            order.setPlace_number(jso.get("place_number").toString().replace("\"", ""));
+                            order.setPark_time(jso.get("park_time").toString().replace("\"", ""));
+                            order.setReal_park_fee(jso.get("real_park_fee").toString().replace("\"", ""));
+                            order.setStatus(jso.get("status").toString().replace("\"", ""));
+                            order.setIn_time(jso.get("in_time").toString().replace("\"", ""));
+                            order.setOut_time(jso.get("out_time").toString().replace("\"", ""));
+                            //TODO:其他的属性，需要在此添加
+
+                            orderList.add(order);
+                            i++;
+                        } catch (Exception e) {
+                            i++;
+                            continue;
+                        }
+                    }
+                    i = 0;
+
+                    Message msg = new Message();
+                    handler.sendMessage(msg);
+                }
+            }).start();
 
             listView = (ListView) getActivity().findViewById(R.id.orderListView);
         }
@@ -71,60 +120,6 @@ public class TwoFragment extends Fragment {
     }
 
 
-    //新线程进行网络请求
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            JsonArray jsonArray = null;
-
-            String strUrl = "/tjpark/app/AppWebservice/findParkRecord?customerid=40288afd5c43e114015c43f2d85f0000";
-            jsonArray = NetConnection.getJsonArray(strUrl);
-
-            if (null == jsonArray) {
-                return;
-            }
-
-            Iterator it = jsonArray.iterator();
-
-            int i = 0;
-            while (it.hasNext()) {
-                Order order = new Order();
-                if (i == jsonArray.size()) {
-                    break;
-                }
-                try {
-                    JsonObject jso = jsonArray.get(i).getAsJsonObject();
-
-                    if (jso.get("status").toString().replace("\"", "").equals("待支付")) {
-                        order.setReservation_park_fee(jso.get("reservation_park_fee").toString().replace("\"", ""));
-                    }
-                    order.setId(jso.get("id").toString().replace("\"", ""));
-                    order.setPlace_id(jso.get("place_id").toString().replace("\"", ""));
-                    order.setPlace_name(jso.get("place_name").toString().replace("\"", ""));
-                    order.setPlace_number(jso.get("place_number").toString().replace("\"", ""));
-                    order.setPark_time(jso.get("park_time").toString().replace("\"", ""));
-                    order.setReal_park_fee(jso.get("real_park_fee").toString().replace("\"", ""));
-                    order.setStatus(jso.get("status").toString().replace("\"", ""));
-                    order.setIn_time(jso.get("in_time").toString().replace("\"", ""));
-                    order.setOut_time(jso.get("out_time").toString().replace("\"", ""));
-                    //TODO:其他的属性，需要在此添加
-
-                    orderList.add(order);
-                    i++;
-                } catch (Exception e) {
-                    i++;
-                    continue;
-                }
-            }
-            i = 0;
-
-            Message msg = new Message();
-            Bundle data = new Bundle();
-            data.putString("value", jsonArray.toString());
-            msg.setData(data);
-            handler.sendMessage(msg);
-        }
-    };
 
     Handler handler = new Handler() {
         @Override
@@ -145,8 +140,8 @@ public class TwoFragment extends Fragment {
     class ListViewListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //position指点击的行数,从第0行开始
-//            跳转
+
+//            跳转到详情页面
             Intent intent = new Intent();
             intent.setClass(getActivity(), DetailActivity.class);
             intent.putExtra("detail", orderList.get(position));

@@ -87,18 +87,15 @@ public class OneFragment extends Fragment  {
     private  String place_num;
     private ImageView imageView;
 
-    //定位SDK的核心类
-    private LocationClient mLocClient;
-    //定位SDK监听函数
-    public MyLocationListenner locListener = new MyLocationListenner();
-    //是否首次定位
-    private boolean isFirstLoc = true;
+
+
+
     //定位图层显示模式 (普通-跟随-罗盘)
     private MyLocationConfiguration.LocationMode mCurrentMode;
     //定位图标描述
     private BitmapDescriptor mCurrentMarker = null;//当前位置经纬度
-    private double latitude;
-    private double longitude;
+    public   static  double latitude = 0.0;
+    public static  double longitude = 0.0;
     //地址搜索框
     private SearchView sugSearch;
 private List<String> sugAddress  = new ArrayList<String>();
@@ -118,15 +115,7 @@ private   ListView searchListView;
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mMapView = (MapView)getActivity().findViewById(R.id.map_view);
-        //实例化定位服务 LocationClient类必须在主线程中声明 并注册定位监听接口
-        mLocClient = new LocationClient(getActivity());
-        mLocClient.registerLocationListener(locListener);
-        LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);              //打开GPS
-        option.setCoorType("bd09ll");        //设置坐标类型
-        option.setScanSpan(1000);            //设置发起定位请求的间隔时间为5000ms
-        mLocClient.setLocOption(option);     //设置定位参数
-        mLocClient.start();                  //调用此方法开始定位
+
         new Thread(runnable).start();
 
         //附近停车场监听事件
@@ -145,12 +134,10 @@ private   ListView searchListView;
         imageView= getActivity().findViewById(R.id.imageView);
         sugSearch = getActivity().findViewById(R.id.sugSearch);
         searchListView=(ListView)getActivity().findViewById(R.id.searchListView);
-        //为该sv设置监听
+        //为搜索地址框设置监听
         sugSearch.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-
-
                 searchListView.setVisibility(View.VISIBLE);
                 mMapView.setVisibility(View.INVISIBLE);
                 imageView.setVisibility(View.INVISIBLE);
@@ -158,8 +145,6 @@ private   ListView searchListView;
                  arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, sugAddress);
                 searchListView.setAdapter(arrayAdapter);
                 searchListView.setTextFilterEnabled(true);
-
-
             }
         });
 
@@ -195,6 +180,12 @@ private   ListView searchListView;
 
     //创建mark点
     private void createMarker(){
+
+
+
+
+
+
         //构建Marker图标
         for(int i =0;i<parkList.size();i++){
             LatLng point1 = new LatLng(Double.parseDouble(parkList.get(i).getAddpoint_y()), Double.parseDouble(parkList.get(i).getAddpoint_x()));
@@ -523,7 +514,6 @@ private   ListView searchListView;
         }
     };
 
-
     //新线程进行网络请求
     Runnable runnable = new Runnable(){
         @Override
@@ -612,11 +602,7 @@ private   ListView searchListView;
 
             }
             i=0;
-
             Message msg = new Message();
-            Bundle data = new Bundle();
-            data.putString("value",jsonArray.toString());
-            msg.setData(data);
             handler.sendMessage(msg);
             //在地图上批量添加Marker
             createMarker();
@@ -634,10 +620,10 @@ private   ListView searchListView;
             mBaiduMap.setOnMarkerClickListener(listener);
             //开启定位图层
             mBaiduMap.setMyLocationEnabled(true);
-            if (isFirstLoc) {
-                isFirstLoc = false;
+
                 //地理坐标基本数据结构
                 LatLng loc = new LatLng(latitude,longitude);
+         
                 //MapStatusUpdate描述地图将要发生的变化
                 //MapStatusUpdateFactory生成地图将要反生的变化
                 MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(loc);
@@ -646,10 +632,6 @@ private   ListView searchListView;
 
                 //更新地图状态
                 mBaiduMap.animateMapStatus(msu);
-
-
-
-            }
 
 
         }
@@ -666,53 +648,6 @@ private   ListView searchListView;
         }
     };
 
-    public   class MyLocationListenner implements BDLocationListener {
-
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-
-            if (latitude != 0.0 && longitude != 0.0) {
-                mLocClient.stop();
-                return;
-            }
-            //获取经纬度
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-
-            mMapView = (MapView)getActivity().findViewById(R.id.map_view);
-            //mapview 销毁后不在处理新接收的位置
-//            if (location == null || mBaiduMap == null) {
-//                mLocClient.stop();
-//                return;
-//            }
-            //MyLocationData.Builder定位数据建造器
-
-            MyLocationData locData = new MyLocationData.Builder()
-                    .accuracy(location.getRadius())
-                    .direction(100)
-                    .latitude(location.getLatitude())
-                    .longitude(location.getLongitude())
-                    .build();
-
-            //设置定位数据
-            mBaiduMap.setMyLocationData(locData);
-            mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
-            //地理坐标基本数据结构
-            LatLng loc = new LatLng(location.getLatitude(),location.getLongitude());
-            //MapStatusUpdate描述地图将要发生的变化
-            //MapStatusUpdateFactory生成地图将要反生的变化
-            MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(loc);
-//缩放级别
-            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
-
-            //更新地图状态
-            mBaiduMap.animateMapStatus(msu);
-
-
-
-        }
-    }
- 
 
     //自定义marker样式，xml变view对象
     private Bitmap getBitmapFromView(View view) {
@@ -783,16 +718,12 @@ private   ListView searchListView;
 
                 }
             }).start();
-
+            sugSearch.setQuery(address,true);
             //清除焦点
                      sugSearch.clearFocus();
         }
 
-
-
-
-
-
     }
+
 
 }

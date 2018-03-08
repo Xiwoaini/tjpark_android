@@ -1,6 +1,7 @@
 package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +33,8 @@ public class MyCarActivity  extends AppCompatActivity {
 
     private ListView listView;
     private   List<Car> myCarList = new LinkedList<Car>();
+
+    private SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,11 @@ public class MyCarActivity  extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
+            mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+             String customerid=mSharedPreferences.getString("personID","");
+
             JsonArray jsonArray = null;
-            String strUrl="/tjpark/app/AppWebservice/findPlate?customerid=40288afd5c43e114015c43f2d85f0000";
+            String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
             jsonArray = NetConnection.getJsonArray(strUrl);
 
 
@@ -84,9 +90,16 @@ public class MyCarActivity  extends AppCompatActivity {
                 if(i==jsonArray.size()){
                     break;
                 }
+
                 JsonObject jso = jsonArray.get(i).getAsJsonObject();
+
+
+
+
+
+
                 car.setId(jso.get("id").toString().replace("\"",""));
-//                car.setPark_id(jso.get("park_id").toString());
+
                 car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
                 car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
                 car.setPlace_number(jso.get("place_number").toString().replace("\"",""));

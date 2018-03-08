@@ -48,7 +48,7 @@ private ListView listView;
 
 //        //获取listView，
          listView = (ListView)findViewById(R.id.parkListView);
-//        //为listView赋值
+
 
     }
 
@@ -117,9 +117,6 @@ private ListView listView;
             ParkListActivity.ListViewListener listViewListener = new ParkListActivity.ListViewListener();
             listView.setOnItemClickListener(listViewListener);
 
-
-//            Bundle data = msg.getData();
-//            String val = data.getString("value");
     }
     };
 

@@ -21,6 +21,7 @@ import java.util.Iterator;
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.entity.ParkDetail;
+import tjpark.tjsinfo.com.tjpark.fragment.OneFragment;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
 /**
@@ -152,7 +153,7 @@ public class BlueParkActivity extends AppCompatActivity {
         Intent intent = null;
         try {
 
-            String uri = "intent://map/direction?origin=latlng:39.9761,116.3282|name:我的位置&destination=" + bluePark_address.getText() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+            String uri = "intent://map/direction?origin=latlng:"+ OneFragment.latitude+","+OneFragment.longitude+"|name:我的位置&destination=" + bluePark_address.getText() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
 Log.v("当前坐标","");
             intent = Intent.getIntent(uri);
         } catch (URISyntaxException e) {

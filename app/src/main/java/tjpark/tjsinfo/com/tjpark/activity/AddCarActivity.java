@@ -1,6 +1,7 @@
 package tjpark.tjsinfo.com.tjpark.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,8 @@ public class AddCarActivity  extends AppCompatActivity {
     private EditText addCar_PlateNum;
     private Button addCar_SaveBtn;
      private Car car;
+    private SharedPreferences mSharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,15 +85,18 @@ public class AddCarActivity  extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
+                mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                String customerid=mSharedPreferences.getString("personID","");
             JsonObject res = null;
             String strUrl = "";
             if (car == null){
                 strUrl ="/tjpark/app/AppWebservice/addPlateNumber?" +
-                        "customerid=40288afd5c43e114015c43f2d85f0000&plateNumber="+addCar_PlateNum.getText();
+                        "customerid=" +customerid+
+                        "&plateNumber="+addCar_PlateNum.getText();
             }
             else{
-                 strUrl="/tjpark/app/AppWebservice/updatePlateNumber?customerid=" +
-                         "40288afd5c43e114015c43f2d85f0000&plateNumber="+addCar_PlateNum.getText()+
+                 strUrl="/tjpark/app/AppWebservice/updatePlateNumber?customerid=" +customerid+
+                         "&plateNumber="+addCar_PlateNum.getText()+
                          "&plateid="+car.getId();
             }
             res = NetConnection.getXpath(strUrl);

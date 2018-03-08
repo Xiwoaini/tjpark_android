@@ -100,20 +100,45 @@ public class BlueYuYueActivity extends AppCompatActivity {
     //选择车位按钮
     public void blue_yuYueCar(View view) {
 
-        new Thread(runnable).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                    mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    String customerid=mSharedPreferences.getString("personID","");
+                JsonArray jsonArray = null;
+                String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
+                jsonArray = NetConnection.getJsonArray(strUrl);
 
-//        dialog = new Dialog(BlueYuYueActivity.this);
-//
-//        dialog.setContentView(R.layout.activity_selectcar);
-//        CarAdapter adapter = new CarAdapter(BlueYuYueActivity.this, R.layout.activity_mycarview, myCarList);
-//        //获取listView，
-//        listView = (ListView) dialog.findViewById(R.id.listView);
-//        //为listView赋值
-//        listView.setAdapter(adapter);
-//        BlueYuYueActivity.ListViewListener ll = new BlueYuYueActivity.ListViewListener();
-//        listView.setOnItemClickListener(ll);
-//
-//        dialog.show();
+
+                Iterator it = jsonArray.iterator();
+
+                int i=0;
+                while (it.hasNext()) {
+                    Car car = new Car();
+                    if(i==jsonArray.size()){
+                        break;
+                    }
+                    JsonObject jso = jsonArray.get(i).getAsJsonObject();
+                    car.setId(jso.get("id").toString().replace("\"",""));
+
+                    car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
+                    car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
+                    car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
+                    myCarList.add(car);
+                    i++;
+
+                }
+                i=0;
+
+
+                Message msg = new Message();
+                Bundle data = new Bundle();
+
+                msg.setData(data);
+                handler.sendMessage(msg);
+            }
+        }).start();
+
 
 
     }
@@ -169,7 +194,6 @@ public class BlueYuYueActivity extends AppCompatActivity {
             mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
             String customer_id=mSharedPreferences.getString("personID","");
             //普通预约需要的参数(reservableParkIn)
-//            customer_id  plate_number  plate_id  place_id  place_name  reservation_time  reservation_fee  payMode
             Intent intent = new Intent();
             ParkYuYue parkYuYue =new ParkYuYue();
             parkYuYue.setCustomer_id(customer_id);
@@ -199,43 +223,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
 
     }
 
-    //新线程进行网络请求
-    Runnable runnable = new Runnable(){
-        @Override
-        public void run() {
-            JsonArray jsonArray = null;
-            String strUrl="/tjpark/app/AppWebservice/findPlate?customerid=40288afd5c43e114015c43f2d85f0000";
-            jsonArray = NetConnection.getJsonArray(strUrl);
 
-
-            Iterator it = jsonArray.iterator();
-
-            int i=0;
-            while (it.hasNext()) {
-                Car car = new Car();
-                if(i==jsonArray.size()){
-                    break;
-                }
-                JsonObject jso = jsonArray.get(i).getAsJsonObject();
-                car.setId(jso.get("id").toString().replace("\"",""));
-
-                car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
-                car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
-                car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
-                myCarList.add(car);
-                i++;
-
-            }
-            i=0;
-
-
-            Message msg = new Message();
-            Bundle data = new Bundle();
-
-            msg.setData(data);
-            handler.sendMessage(msg);
-        }
-    };
     //处理远程结果
     Handler handler = new Handler() {
         @Override
