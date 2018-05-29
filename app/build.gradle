@@ -41,4 +41,5 @@ dependencies {
     implementation files('libs/BaiduLBS_Android.jar')
     compile files('libs/alipaySdk-20170922.jar')
     compile 'com.feezu.liuli:timeselector:1.1.3+'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }

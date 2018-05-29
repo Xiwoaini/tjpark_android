@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.hjm.bottomtabbar.BottomTabBar;
 
 import tjpark.tjsinfo.com.tjpark.R;
+import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
 import tjpark.tjsinfo.com.tjpark.fragment.OneFragment;
 import tjpark.tjsinfo.com.tjpark.fragment.ThreeFragment;
@@ -33,8 +35,16 @@ public class TabBarActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbar);
-        SDKInitializer.initialize(getApplicationContext());
         mBottomTabBar = (BottomTabBar) findViewById(R.id.bottom_tab_bar);
+        Bundle bundle = this.getIntent().getExtras();
+        int i = 0;
+        try{
+            i  =  Integer.parseInt(String.valueOf(bundle.get("currentTab")));
+        }
+        catch (Exception e){
+
+        }
+
         mBottomTabBar.init(getSupportFragmentManager())
                 .setImgSize(50,50)
                 .setFontSize(8)
@@ -45,7 +55,7 @@ public class TabBarActivity extends FragmentActivity {
                 .addTabItem("更多",R.drawable.iconyy, R.drawable.iconyy, ThreeFragment.class)
                 .addTabItem("我的",R.drawable.iconwd, R.drawable.iconwd, FourFragment.class)
                 .setTabBarBackgroundColor(Color.WHITE)
-                .isShowDivider(false);
+                .isShowDivider(false).setCurrentTab(i);
 
     }
 

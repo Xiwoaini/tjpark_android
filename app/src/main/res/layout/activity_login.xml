@@ -37,34 +37,49 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="15dp"
         android:inputType="numberSigned"
+        android:background="@null"
         />
+    <TableLayout  android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:stretchColumns="0,1"
+        android:gravity="center">
+    <TableRow>
     <EditText
         android:id="@+id/editText2"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
         android:ems="10"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:hint="请输入密码"
-        android:inputType="textPassword"
+        android:hint="请输入验证码"
+        android:inputType="numberSigned"
+        android:background="@null"
        />
+        <Button
+            android:id="@+id/button5"
+            android:layout_weight="1"
+            android:layout_height="45dp"
+            android:text="获取验证码"
+            android:textColor="#FFFFFF"
+            android:background="#3DC9CE"
+            />
+    </TableRow>
+    </TableLayout>
 
 
+    <!--<Button-->
+        <!--android:id="@+id/button5"-->
+        <!--android:layout_width="95dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:background="#FFFFFF"-->
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="95dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="15dp"
-        android:background="#FFFFFF"
-
-        android:text="注册新用户"
-         />
+        <!--android:text="注册新用户"-->
+         <!--/>-->
     <View  android:layout_height="1px"
         android:layout_width="match_parent"
         android:background="#BFBFBF"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="3dp"
         />
     <Button

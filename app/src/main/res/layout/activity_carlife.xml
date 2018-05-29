@@ -2,8 +2,9 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="0,1,2"
-     >
+    android:stretchColumns="*"
+
+    >
     <!--标题及撤回按钮-->
     <TextView
         android:id="@+id/textView"
@@ -17,20 +18,20 @@
         android:textSize="10pt"
         />
     <!--车生活，tabbar的第三页-->
-    <TableRow>
+    <TableRow android:layout_weight="1">
                 <ImageButton
                     android:id="@+id/imgBtn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh"
+                    android:src="@drawable/csh2"
                     />
                 <ImageButton
                     android:id="@+id/imgBtn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh2"
+                    android:src="@drawable/csh3"
                     />
 
                 <ImageButton
@@ -38,70 +39,70 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh3"
+                    android:src="@drawable/csh4"
                     />
             </TableRow>
 
-            <TableRow>
+            <TableRow android:layout_weight="1">
                 <ImageButton
                     android:id="@+id/imgBtn4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh4" />
+                    android:src="@drawable/csh5" />
                 <ImageButton
                     android:id="@+id/imgBtn5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh5" />
+                    android:src="@drawable/csh6" />
                 <ImageButton
                     android:id="@+id/imgBtn6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh6" />
+                    android:src="@drawable/csh7" />
             </TableRow>
-            <TableRow>
+            <TableRow android:layout_weight="1">
                 <ImageButton
                     android:id="@+id/imgBtn7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh7" />
+                    android:src="@drawable/csh8" />
                 <ImageButton
                     android:id="@+id/imgBtn8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh8" />
+                    android:src="@drawable/csh9" />
                 <ImageButton
                     android:id="@+id/imgBtn9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh9" />
+                    android:src="@drawable/csh10" />
 
             </TableRow>
-            <TableRow>
+            <TableRow android:layout_weight="1">
                 <ImageButton
                     android:id="@+id/imgBtn10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh10" />
+                    android:src="@drawable/csh11" />
                 <ImageButton
                     android:id="@+id/imgBtn11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh11" />
+                    android:src="@drawable/csh12" />
                 <ImageButton
                     android:id="@+id/imgBtn12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FCFCFC"
-                    android:src="@drawable/csh12" />
+                    android:src="@drawable/csh" />
             </TableRow>
 
 </TableLayout>

@@ -1,6 +1,8 @@
 package tjpark.tjsinfo.com.tjpark.fragment;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +26,11 @@ import java.util.List;
 
 import tjpark.tjsinfo.com.tjpark.activity.DetailActivity;
 import tjpark.tjsinfo.com.tjpark.R;
+import tjpark.tjsinfo.com.tjpark.activity.LoginActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Order;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 import tjpark.tjsinfo.com.tjpark.adapter.OrderAdapter;
+import tjpark.tjsinfo.com.tjpark.util.TjParkUtils;
 
 
 /**
@@ -35,6 +40,7 @@ public class TwoFragment extends Fragment {
     private ListView listView;
     private List<Order> orderList = new LinkedList<Order>();
     private SharedPreferences mSharedPreferences;
+    Dialog d;
 private String personID;
     public TwoFragment() {
 
@@ -59,10 +65,20 @@ private String personID;
             new AlertDialog.Builder(getActivity())
                     .setTitle("提示")
                     .setMessage("请先登录!")
-                    .setPositiveButton("确定", null)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                           //跳转到登录页
+                            Intent intent = new Intent();
+                            //(当前Activity，目标Activity)
+                            intent.setClass(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    })
                     .show();
 
         } else {
+             d =TjParkUtils.createLoadingDialog(getActivity(),"加载中");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -89,6 +105,12 @@ private String personID;
                             if (jso.get("status").toString().replace("\"", "").equals("待支付")) {
                                 order.setReservation_park_fee(jso.get("reservation_park_fee").toString().replace("\"", ""));
                             }
+                            else if(jso.get("status").toString().replace("\"", "").equals("正在计时")){
+
+                            }
+                            else if (jso.get("status").toString().replace("\"", "").equals("已完成")){
+                                order.setOut_time(jso.get("out_time").toString().replace("\"", ""));
+                            }
                             order.setId(jso.get("id").toString().replace("\"", ""));
                             order.setPlace_id(jso.get("place_id").toString().replace("\"", ""));
                             order.setPlace_name(jso.get("place_name").toString().replace("\"", ""));
@@ -97,9 +119,6 @@ private String personID;
                             order.setReal_park_fee(jso.get("real_park_fee").toString().replace("\"", ""));
                             order.setStatus(jso.get("status").toString().replace("\"", ""));
                             order.setIn_time(jso.get("in_time").toString().replace("\"", ""));
-                            order.setOut_time(jso.get("out_time").toString().replace("\"", ""));
-                            //TODO:其他的属性，需要在此添加
-
                             orderList.add(order);
                             i++;
                         } catch (Exception e) {
@@ -131,7 +150,7 @@ private String personID;
             //添加监听
             TwoFragment.ListViewListener listViewListener = new TwoFragment.ListViewListener();
             listView.setOnItemClickListener(listViewListener);
-
+            TjParkUtils.closeDialog(d);
 
         }
     };

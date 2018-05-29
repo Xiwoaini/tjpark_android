@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import tjpark.tjsinfo.com.tjpark.activity.BlueYuYueActivity;
@@ -40,7 +43,8 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
     private Context mContext;
     private int resourceId;
     private LayoutInflater bsman = null;
-    private String id,customer_id,status = "";
+    private String customer_id,status = "";
+    private  List<String> shareId = new LinkedList<String>();
 
     public MyShareAdapter(Context context, int textViewResourceId,
                           List<MyShare> objects) {
@@ -53,8 +57,8 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        MyShare myShare = getItem(position);
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final MyShare myShare = getItem(position);
         //为子项动态加载布局
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
 
@@ -66,27 +70,34 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
         final TextView JSSJ = (TextView) view.findViewById(R.id.JSSJ);
         final TextView GXMS = (TextView) view.findViewById(R.id.GXMS);
         TextView GTFY = (TextView) view.findViewById(R.id.GTFY);
-        Button ZT = (Button) view.findViewById(R.id.ZT);
+        final Button ZT = (Button) view.findViewById(R.id.ZT);
         Button BJ = (Button) view.findViewById(R.id.BJ);
         Button SRMX = (Button) view.findViewById(R.id.SRMX);
         customer_id=myShare.getCustomer_id();
+        if (myShare.getStatus().equals("审核中")){
+            DQZT.setText(myShare.getStatus());
+            ZT.setText("取消");
+        }
+        else{
+            DQZT.setText(myShare.getShare_status());
+            ZT.setText(myShare.getButtonName());
+        }
         status = myShare.getButtonName();
         FBSJ.setText(myShare.getCreate_time());
         TCCMG.setText(myShare.getPlace_name());
         CWH.setText(myShare.getPark_num());
-        DQZT.setText(myShare.getShare_status());
+
         KSSJ.setText(myShare.getStart_time());
         JSSJ.setText(myShare.getEnd_time());
         GXMS.setText(myShare.getModel());
         GTFY.setText(myShare.getPark_fee()+"元/小时");
-        id = myShare.getId();
+        shareId.add(myShare.getId());
+
         //状态按钮监听
-        ZT.setText(myShare.getButtonName());
+
         ZT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                updateShareStatus
-
                 final AlertDialog.Builder normalDialog =
                         new AlertDialog.Builder(mContext);
 
@@ -99,12 +110,22 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
                                 new Thread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        JsonObject res = null;
-                                        String strUrl="/tjpark/app/AppWebservice/updateShareStatus?" +
-                                                "id=" +id+
-                                                "&customerid=" +customer_id+
-                                                "&status=" +status;
-                                            res = NetConnection.getXpath(strUrl);
+                                        JsonArray res = null;
+                                        String  strUrl = "";
+                                        if (ZT.getText().toString().equals("取消")){
+                                            strUrl="/tjpark/app/AppWebservice/updateShareStatus?" +
+                                                    "id=" +shareId.get(position)+
+                                                    "&customerid=" +customer_id+
+                                                    "&status=取消";
+                                        }
+                                        else{
+                                            strUrl="/tjpark/app/AppWebservice/updateShareStatus?" +
+                                                    "id=" +shareId.get(position)+
+                                                    "&customerid=" +customer_id+
+                                                    "&status=" +status;
+                                        }
+
+                                            res = NetConnection.getJsonArray(strUrl);
 
 
                                         Message msg = new Message();
@@ -137,7 +158,7 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
                 intent.putExtra("KSSJ",KSSJ.getText());
                 intent.putExtra("JSSJ",JSSJ.getText());
                 intent.putExtra("GXMS",GXMS.getText());
-                intent.putExtra("id",id);
+                intent.putExtra("id",shareId.get(position));
                 mContext.startActivity(intent);
             }
 
@@ -149,7 +170,7 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(mContext, IncludeDetailActivity.class);
-                intent.putExtra("shareid",id);
+                intent.putExtra("shareid",shareId.get(position));
                 mContext.startActivity(intent);
 
 
@@ -166,9 +187,10 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
-
-
+//刷新页面
+            Intent intent = new Intent();
+            intent.setClass(mContext, MyShareActivity.class);
+            mContext.startActivity(intent);
         }};
 
 

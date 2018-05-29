@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
+        android:background="@color/white"
         android:queryHint="请输入搜索地址" />
 
     <ListView

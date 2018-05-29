@@ -37,8 +37,10 @@ import android.widget.Toast;
  *  真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
  *  防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险； 
  */
+//216.86
 public class 	PayDemoActivity extends FragmentActivity   {
-	
+
+	ParkYuYue parkYuYue = new ParkYuYue();
 	/** 支付宝支付业务：入参app_id */
 	public static final String APPID = "2017120600411807";
 	
@@ -88,37 +90,54 @@ public class 	PayDemoActivity extends FragmentActivity   {
 							String userid=mSharedPreferences.getString("personID","");
 
 							JsonObject res = null;
-							String strUrl="/tjpark/app/AppWebservice/reservableParkPay?" +
-									"userid=" + userid +
-									"&parkid=" +place_id+
-									"&payableAmout=" +1333212312 +
-									"&payAmout="+reservation_fee +
-									"&payMode=支付宝" +
-									"&couponId=\"\"" +
-									"&reason=停车缴费" +
-									"&fee_s="+reservation_fee;
-							res =NetConnection.getXpath(strUrl);
-
-							JsonObject res1 = null;
-							String strUrl1="/tjpark/app/AppWebservice/reservableParkIn?" +
-									"customer_id=" + userid +
-									"&plate_number=" +plate_number+
-									"&plate_id=" +plate_id+
-									"&place_id="+place_id +
-									"&place_name=" + place_name +
-									"&reservation_time=" +reservation_time+
-									"&reservation_fee=" +reservation_fee+
-									"&payMode=支付宝";
-							res1 =NetConnection.getXpath(strUrl);
-
+							String strUrl = "";
+							if (parkYuYue.getPayMode().equals("正在计时")){
+								strUrl="/tjpark/app/AppWebservice/parkPay?" +
+										"userid=" + userid +
+										"&parkid=" +parkYuYue.getRecord_id()+
+										"&fee=" +parkYuYue.getReservation_fee() +
+										"&place_name="+parkYuYue.getPlace_name() +
+										"&payMode=alipay" +
+										"&place_id="+parkYuYue.getPlace_id();
+								res =NetConnection.getXpath(strUrl);
+							}
+							else if (parkYuYue.getPayMode().contains("共享")){
+								strUrl="/tjpark/app/AppWebservice/reservableParkInByShare?" +
+										"customer_id=" + userid +
+										"&plate_number=" +parkYuYue.getPlate_number()+
+										"&plate_id=" +parkYuYue.getPlate_id() +
+										"&place_id="+parkYuYue.getPlace_id() +
+										"&place_name=" +parkYuYue.getPlace_name()+
+										"&reservation_time="+parkYuYue.getReservation_time() +
+										"&reservation_fee=" +parkYuYue.getReservation_fee().replace("元","") +
+										"&payMode=alipay" +
+										"&shareid="+parkYuYue.getShare_id() ;
+								res =NetConnection.getXpath(strUrl);
+							}
+							//默认为正在计时支付
+							else{
+//
+								JsonObject res1 = null;
+								strUrl="/tjpark/app/AppWebservice/reservableParkIn?" +
+										"customer_id=" + userid +
+										"&plate_number=" +plate_number+
+										"&plate_id=" +plate_id+
+										"&place_id="+place_id +
+										"&place_name=" + place_name +
+										"&reservation_time=" +reservation_time+
+										"&reservation_fee=" +reservation_fee.replace("元","")+
+										"&payMode=alipay";
+//
+								res1 =NetConnection.getXpath(strUrl);
+							}
+							Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+							Intent intent = new Intent();
+							intent.setClass(PayDemoActivity.this, OrdersActivity.class);
+							startActivity(intent);
 
 						}
 					}).start();
-					Intent intent = new Intent();
-					intent.setClass(PayDemoActivity.this, OrdersActivity.class);
-					startActivity(intent);
 
-					Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
 				} else {
 					// 该笔订单真实的支付结果，需要依赖服务端的异步通知。
 					new android.support.v7.app.AlertDialog.Builder(PayDemoActivity.this)
@@ -126,7 +145,7 @@ public class 	PayDemoActivity extends FragmentActivity   {
 							.setMessage("支付失败!")
 							.setPositiveButton("确定", null)
 							.show();
-					Toast.makeText(PayDemoActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+
 				}
 				break;
 			}
@@ -178,10 +197,9 @@ public class 	PayDemoActivity extends FragmentActivity   {
 
 
 		Bundle bundle = this.getIntent().getExtras();
-		ParkYuYue parkYuYue =(ParkYuYue)bundle.getSerializable("yuYueOrder");
+		 parkYuYue =(ParkYuYue)bundle.getSerializable("yuYueOrder");
 		TextView pay_placeName=(TextView)findViewById(R.id.pay_placeName);
 		pay_placeName.setText(parkYuYue.getPlace_name());
-
 		TextView pay_money=(TextView)findViewById(R.id.pay_money);
 		pay_money.setText(parkYuYue.getReservation_fee());
 
@@ -202,6 +220,7 @@ public class 	PayDemoActivity extends FragmentActivity   {
 	 * @param v
 	 */
 	public void payV2(View v) {
+
 		if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
 			new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
 					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -210,6 +229,7 @@ public class 	PayDemoActivity extends FragmentActivity   {
 							finish();
 						}
 					}).show();
+
 			return;
 		}
 	

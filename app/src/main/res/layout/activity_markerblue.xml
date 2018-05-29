@@ -8,14 +8,17 @@
 <!--点击marker弹出此视图-->
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:shrinkColumns="0">
     <TextView
         android:id="@+id/blue_placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="停车场名称"
+        android:textSize="17dp"
         android:layout_marginLeft="5dp"
+        android:textColor="#DC143C"
         />
     <TextView
         android:id="@+id/blue_label"
@@ -23,36 +26,37 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="停车场类型"
-        android:textColor="#DC143C"
+        android:textSize="12dp"
         android:layout_marginLeft="15dp"
+        android:textColor="#4876FF"
         />
 
-    <TableRow>
     <TextView
         android:id="@+id/blue_placeDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="停车场距离"
+        android:textSize="15dp"
         android:layout_marginLeft="5dp"
         />
-    <TextView
-        android:id="@+id/blue_placeAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="停车场地址"
-        android:layout_marginLeft="5dp"
-        />
-    </TableRow>
+            <TextView
+                android:id="@+id/blue_placeAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="停车场地址"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                />
         <TableRow>
-
     <TextView
         android:id="@+id/blue_placeFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="金额"
+        android:text="收费标准"
+        android:textSize="15dp"
         android:layout_marginLeft="5dp"
         />
     <TextView
@@ -61,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="车位情况"
+        android:textSize="15dp"
         android:layout_marginLeft="5dp"
         />
 
@@ -71,28 +76,26 @@
             android:background="#BFBFBF"
             android:layout_marginBottom="5dp"
             />
-        <TableRow>
+    </TableLayout>
+    <TableLayout  android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TableRow>
     <Button
         android:id="@+id/blue_parkDaoHang"
-        android:layout_weight="0.5"
-        android:layout_height="40dp"
-        android:background="#3DC9CE"
-        android:onClick="blueDaoHang"
-        android:layout_marginRight="20dp"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:background="@drawable/sdw_03"
         android:layout_marginLeft="20dp"
-        android:text="导航"
-         />
+        android:onClick="DaoHang"
+        />
     <Button
         android:id="@+id/blue_parkDetail"
-         android:layout_weight="0.5"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
         android:onClick="blueParkDetail"
-        android:background="#3DC9CE"
-        android:layout_marginRight="20dp"
+        android:background="@drawable/sdw_05"
         android:layout_marginLeft="20dp"
-        android:text="详情"
         />
-        </TableRow>
+    </TableRow>
     </TableLayout>
-
 </LinearLayout>

@@ -44,8 +44,10 @@
         android:layout_height="50dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:inputType="none"
-        android:hint="请务必输入真实有效的车牌号" />
+        android:hint="请务必输入真实有效的车牌号"
+        android:background="@drawable/bg_border"
+        android:layout_marginTop="5dp"
+        />
 
     <Button
         android:id="@+id/addCar_SaveBtn"
@@ -55,6 +57,7 @@
         android:layout_marginRight="3dp"
         android:textColor="#FFFFFF"
         android:background="#3DC9CE"
+        android:layout_marginTop="10dp"
         android:text="保存" />
 
     <TextView

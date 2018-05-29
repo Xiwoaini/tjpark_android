@@ -50,6 +50,9 @@ public class NetConnection  {
                 isr.close();
                 is.close();
                 res = buffer.toString();
+                if (res.equals("")){
+                    return null;
+                }
                 JsonParser parse =new JsonParser();
                 object = (JsonObject) parse.parse(res);
             }
@@ -85,6 +88,9 @@ public class NetConnection  {
                 isr.close();
                 is.close();
                 res = buffer.toString();
+                if (res.equals("")){
+                    return null;
+                }
                 JsonParser parse =new JsonParser();
                 jsonArray = (JsonArray) parse.parse(res);
             }
@@ -129,47 +135,41 @@ public class NetConnection  {
         }
         return object;
     }
-//    public static JsonObject postDownloadJson(String path,String post){
-//        URL url = null;
-//        try {
-//            url = new URL(path);
-//            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//            httpURLConnection.setRequestMethod("POST");// 提交模式
-//            // conn.setConnectTimeout(10000);//连接超时 单位毫秒
-//            // conn.setReadTimeout(2000);//读取超时 单位毫秒
-//            // 发送POST请求必须设置如下两行
-//            httpURLConnection.setDoOutput(true);
-//            httpURLConnection.setDoInput(true);
-//            // 获取URLConnection对象对应的输出流
-//            PrintWriter printWriter = new PrintWriter(httpURLConnection.getOutputStream());
-//            // 发送请求参数
-//            printWriter.write(post);//post的参数 xx=xx&yy=yy
-//            // flush输出流的缓冲
-//            printWriter.flush();
-//            //开始获取数据
-//            BufferedInputStream bis = new            BufferedInputStream(httpURLConnection.getInputStream());
-//            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//            int len;
-//            byte[] arr = new byte[1024];
-//            while((len=bis.read(arr))!= -1){
-//                bos.write(arr,0,len);
-//                bos.flush();
-//            }
-//            bos.close();
-//            JsonParser parse = new JsonParser();
-//            return (JsonObject)parse.parse(bos.toString("utf-8"));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
-//    //测试
-//    public static void main(String args [] ) {
-//        JsonObject res = null;
-//        res = getXpath("/tjpark/app/AppWebservice/userLogin?password=111111&registrationId=1&nameInput=13920775231");
-//        System.out.println(res);
-//        System.out.println(res.get("result"));
-//
-//    }
+    /**
+     * 发起http请求并获取结果，百度地图地址搜索专用
+     * @param requestUrl 请求地址
+     */
+
+    public static String getHttpString(String requestUrl){
+
+        String res="";
+        JsonObject object = null;
+        StringBuffer buffer = new StringBuffer();
+        try{
+            URL url = new URL(requestUrl);
+            HttpURLConnection urlCon= (HttpURLConnection)url.openConnection();
+
+            if(200==urlCon.getResponseCode()){
+                InputStream is = urlCon.getInputStream();
+                InputStreamReader isr = new InputStreamReader(is,"utf-8");
+                BufferedReader br = new BufferedReader(isr);
+
+                String str = null;
+                while((str = br.readLine())!=null){
+                    buffer.append(str);
+                }
+                br.close();
+                isr.close();
+                is.close();
+                res = buffer.toString();
+                if (res.equals("")){
+                    return "";
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
 }

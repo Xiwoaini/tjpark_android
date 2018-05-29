@@ -20,6 +20,8 @@ import java.time.Year;
 import java.util.Iterator;
 
 import tjpark.tjsinfo.com.tjpark.R;
+import tjpark.tjsinfo.com.tjpark.entity.Car;
+import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.fragment.OneFragment;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
@@ -34,12 +36,15 @@ public class YellowParkActivity extends AppCompatActivity {
             yellowPark_JTGZ2,yellowPark_JTFY, yellowPark_KSCD,yellowPark_MSCD,
             yellowPark_JTKFSJ;
     private Button exitBtn;
-
+    private Park park;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yellowpark);
+             /*获取Intent中的Bundle对象*/
+        Bundle bundle = this.getIntent().getExtras();
+        park  = (Park) bundle.get("park");
         exitBtn =(Button)findViewById(R.id.exitBtn);
         //返回按钮监听
         exitBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +70,20 @@ public class YellowParkActivity extends AppCompatActivity {
         yellowPark_MSCD =(TextView)findViewById(R.id.yellowPark_MSCD);
         yellowPark_JTKFSJ = (TextView)findViewById(R.id.yellowPark_JTKFSJ);
 
+        //默认为隐藏的id
+        placeId.setText(park.getId());
+        //名称
+        yellowPark_placeName.setText(park.getPlace_name());
+        //距离
+        yellowPark_distance.setText(park.getDistance());
+        //地址
+        yellowPark_address.setText(park.getPlace_address());
+        //类型
+        yellowPark_label.setText(park.getLable());
+        yellowPark_JTFY.setText(park.getPile_fee());
+        yellowPark_KSCD.setText("共"+park.getFast_pile_total_num()+"个,空闲"+park.getFast_pile_space_num());
+        yellowPark_MSCD.setText("共"+park.getSlow_pile_total_num()+"个,空闲"+park.getSlow_pile_space_num());
+        yellowPark_JTKFSJ.setText(park.getPile_time());
         new Thread(runnable).start();
 
     }
@@ -74,35 +93,24 @@ public class YellowParkActivity extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
-
 //调用接口查看普通
             JsonArray jsonArray0 = null;
-            Intent getIntent = getIntent();
-            String s = getIntent.getStringExtra("parkId");
-            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+s+"'";
+            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+park.getId()+"'";
             jsonArray0 = NetConnection.getJsonArray(strUrl);
+            if (jsonArray0 == null){
+                return;
+            }
             Iterator it = jsonArray0.iterator();
             JsonObject jso = jsonArray0.get(0).getAsJsonObject();
             //调用接口查看普通
             JsonArray jsonArray1 = null;
 
 
-            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+s+"'";
+            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+park.getId()+"'";
             jsonArray1 = NetConnection.getJsonArray(strUrl1);
             Iterator it1 = jsonArray1.iterator();
             JsonObject jso1 = jsonArray1.get(0).getAsJsonObject();
 
-
-            //默认为隐藏的id
-            placeId.setText(getIntent.getStringExtra("parkId"));
-            //名称
-            yellowPark_placeName.setText(getIntent.getStringExtra("place_name"));
-            //距离
-            yellowPark_distance.setText(getIntent.getStringExtra("place_distance"));
-            //地址
-            yellowPark_address.setText(getIntent.getStringExtra("place_address"));
-            //类型
-            yellowPark_label.setText(jso.get("lable").toString().replace("\"",""));
             //具体时间
 
             yellowPark_JTSJ.setText(jso.get("open_time").toString().replace("\"",""));
@@ -110,11 +118,6 @@ public class YellowParkActivity extends AppCompatActivity {
 
             yellowPark_JTGZ1.setText(jso1.get("fee").toString().replace("\"",""));
             yellowPark_JTGZ2.setText(jso.get("open_time").toString().replace("\"",""));
-            yellowPark_JTFY.setText(getIntent.getStringExtra("pile_fee"));
-            yellowPark_KSCD.setText(getIntent.getStringExtra("fast_pile_total_num"));
-            yellowPark_MSCD.setText(getIntent.getStringExtra("slow_pile_total_num"));
-            yellowPark_JTKFSJ.setText(getIntent.getStringExtra("pile_time"));
-
 
 
         }
@@ -124,8 +127,6 @@ public class YellowParkActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
-
 
         }
     };
@@ -137,11 +138,7 @@ public class YellowParkActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(YellowParkActivity.this, BlueYuYueActivity.class);
 //        <!--车场名称--> <!--距离-->  <!--类型--><!--地址-->
-        intent.putExtra("parkId",placeId.getText().toString());
-        intent.putExtra("bluePark_placeName",yellowPark_placeName.getText().toString());
-        intent.putExtra("bluePark_distance",yellowPark_distance.getText().toString());
-        intent.putExtra("bluePark_label",yellowPark_label.getText().toString());
-        intent.putExtra("bluePark_address",yellowPark_address.getText().toString());
+        intent.putExtra("park",park);
         startActivity(intent);
 
 
@@ -149,8 +146,6 @@ public class YellowParkActivity extends AppCompatActivity {
 
     //导航按钮
     public void blueDaoHang(View view) {
-
-
         //todo:当前位置
         Intent intent = null;
         try {
@@ -170,10 +165,7 @@ public class YellowParkActivity extends AppCompatActivity {
                     .setMessage("请先安装百度地图!")
                     .setPositiveButton("确定", null)
                     .show();
-
         }
-
-
     }
     private boolean isInstallByread(String packageName) {
         return new File("/data/data/" + packageName).exists();

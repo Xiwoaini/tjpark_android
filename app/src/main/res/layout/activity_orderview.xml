@@ -46,15 +46,7 @@
                 android:layout_marginTop="5dp"
                 android:text="1小时20分钟"
                 />
-            <!--订单状态-->
-            <TextView
-                android:id="@+id/order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="25dp"
-                android:text="订单状态"
-                />
+
         </TableRow>
         <TableRow>
             <!--停车费-->
@@ -72,6 +64,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="停车费"
+                />
+            <!--订单状态-->
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:text="订单状态"
                 />
         </TableRow>
         <TableRow>

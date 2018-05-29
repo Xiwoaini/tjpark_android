@@ -42,6 +42,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:hint="请输入手机号"
+        android:background="@null"
           />
 
     <TableLayout  android:layout_width="match_parent"
@@ -58,6 +59,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:inputType="numberSigned"
+            android:background="@null"
             />
 
         <Button

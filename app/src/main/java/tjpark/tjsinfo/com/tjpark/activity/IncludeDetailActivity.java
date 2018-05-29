@@ -89,9 +89,18 @@ public class IncludeDetailActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            KSSJ.setText("开始时间： "+ startTime);
+            if (startTime == null){
+                startTime = "暂无数据";
+            }
+            if (endTime == null){
+                endTime = "暂无数据";
+            }
+            if (shouRu == null){
+                shouRu = "暂无数据";
+            }
+            KSSJ.setText("开始时间： "+startTime );
             JSSJ.setText("结束时间： "+endTime);
-            SR.setText("收入： "+shouRu+"元");
+            SR.setText("收入： "+shouRu);
 
         }};
 

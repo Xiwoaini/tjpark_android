@@ -6,14 +6,17 @@
 <!--点击marker弹出此视图-->
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:shrinkColumns="0">
     <TextView
         android:id="@+id/green_placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
+        android:textSize="17dp"
         android:text="停车场名称"
+        android:textColor="#DC143C"
         />
     <TextView
         android:id="@+id/green_label"
@@ -22,7 +25,8 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="15dp"
         android:text="停车场类型"
-        android:textColor="#DC143C"
+        android:textSize="12dp"
+        android:textColor="#4876FF"
         />
     <TableRow>
     <TextView
@@ -32,16 +36,20 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:text="距离"
-        />
-    <TextView
-        android:id="@+id/green_placeAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
-        android:text="停车场地址"
+        android:textSize="15dp"
         />
     </TableRow>
+        <TableRow>
+        <TextView
+            android:id="@+id/green_placeAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="停车场地址"
+            android:textSize="15dp"
+            />
+        </TableRow>
     <TextView
         android:id="@+id/green_shareNum"
         android:layout_width="wrap_content"
@@ -49,6 +57,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:text="共享车位数"
+        android:textSize="15dp"
         />
         <!--横线-->
         <View  android:layout_height="1px"
@@ -56,25 +65,26 @@
             android:background="#BFBFBF"
             android:layout_marginBottom="5dp"
             />
-    <TableRow>
-    <Button
-        android:id="@+id/green_parkDaoHang"
-        android:layout_weight="1"
-        android:layout_height="40dp"
-        android:background="#3DC9CE"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="导航"
-         />
-    <Button
-        android:id="@+id/green_parkDetail"
-        android:layout_weight="1"
-        android:layout_height="40dp"
-        android:background="#3DC9CE"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="详情"
-        />
-    </TableRow>
+
+    </TableLayout>
+    <TableLayout  android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <Button
+                android:id="@+id/green_parkDaoHang"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:background="@drawable/sdw_03"
+                android:layout_marginLeft="20dp"
+                android:onClick="blueDaoHang"
+                />
+            <Button
+                android:id="@+id/green_parkDetail"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:background="@drawable/sdw_05"
+                android:layout_marginLeft="20dp"
+                />
+        </TableRow>
     </TableLayout>
 </LinearLayout>

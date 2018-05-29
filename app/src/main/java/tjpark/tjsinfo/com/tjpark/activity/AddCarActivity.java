@@ -11,12 +11,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
+import tjpark.tjsinfo.com.tjpark.fragment.FourFragment;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
+import tjpark.tjsinfo.com.tjpark.util.TjParkUtils;
 
 /**
  * Created by panning on 2018/1/12.
@@ -34,13 +37,15 @@ public class AddCarActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcar);
-
         Button exitBtn=(Button)findViewById(R.id.exitBtn);
         exitBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent();
+                intent.setClass(AddCarActivity.this, TabBarActivity.class);
+                intent.putExtra("currentTab",3);
+                startActivity(intent);
             }
 
         });
@@ -68,12 +73,11 @@ public class AddCarActivity  extends AppCompatActivity {
 
     }
 
-    //处理登录结果
+    //处理结果
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
             Intent intent = new Intent();
             intent.setClass(AddCarActivity.this, MyCarActivity.class);
             startActivity(intent);
@@ -85,26 +89,33 @@ public class AddCarActivity  extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
+            try{
                 mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
                 String customerid=mSharedPreferences.getString("personID","");
-            JsonObject res = null;
+                JsonArray res = null;
             String strUrl = "";
+
             if (car == null){
                 strUrl ="/tjpark/app/AppWebservice/addPlateNumber?" +
                         "customerid=" +customerid+
-                        "&plateNumber="+addCar_PlateNum.getText();
+                        "&plateNumber="+ TjParkUtils.StringToUTF(addCar_PlateNum.getText().toString());
             }
             else{
                  strUrl="/tjpark/app/AppWebservice/updatePlateNumber?customerid=" +customerid+
-                         "&plateNumber="+addCar_PlateNum.getText()+
+                         "&plateNumber="+TjParkUtils.StringToUTF(addCar_PlateNum.getText().toString())+
                          "&plateid="+car.getId();
             }
-            res = NetConnection.getXpath(strUrl);
-            //全部返回的字符串内容
+                res = NetConnection.getJsonArray(strUrl);
+                //全部返回的字符串内容
 
-            Message msg = new Message();
+                Message msg = new Message();
 
-            handler.sendMessage(msg);
+                handler.sendMessage(msg);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+
         }
     };
 

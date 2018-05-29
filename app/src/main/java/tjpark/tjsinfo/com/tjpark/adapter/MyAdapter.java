@@ -28,8 +28,8 @@ public class MyAdapter extends BaseAdapter {
 
 
 
-    public void setDatas(List<String> datas) {
-        this.datas = datas;
+    public void setDatas(List<String> data) {
+        this.datas = data;
         notifyDataSetChanged();
     }
 

@@ -20,7 +20,7 @@ import tjpark.tjsinfo.com.tjpark.entity.Park;
  * listview自定义格式的适配器
  */
 
-public class OrderAdapter extends ArrayAdapter<Order> {
+public class OrderAdapter extends ArrayAdapter<Order>  {
 
     private int resourceId;
 
@@ -34,26 +34,29 @@ public class OrderAdapter extends ArrayAdapter<Order> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //获取当前项的实例
-        Order order = getItem(position);
-        //为子项动态加载布局
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
-        TextView order_inTime = (TextView) view.findViewById(R.id.order_inTime);
-        TextView order_placeName = (TextView) view.findViewById(R.id.order_placeName);
-        TextView order_parkTime = (TextView) view.findViewById(R.id.order_parkTime);
-        TextView order_status = (TextView) view.findViewById(R.id.order_status);
-        TextView order_realParkFee = (TextView) view.findViewById(R.id.order_realParkFee);
-        TextView order_placeNumber = (TextView) view.findViewById(R.id.order_placeNumber);
-        TextView order_orderId= (TextView) view.findViewById(R.id.order_orderId);
-        order_inTime.setText(order.getIn_time());
-        order_placeName.setText(order.getPlace_name());
-        order_parkTime.setText(order.getPark_time());
-        order_status.setText(order.getStatus());
-        order_realParkFee.setText(order.getReal_park_fee());
-        order_placeNumber.setText(order.getPlace_number());
-        order_orderId.setText(order.getId());
 
-        return view;
+            //获取当前项的实例
+            Order order = getItem(position);
+            //为子项动态加载布局
+
+            TextView order_inTime = (TextView) view.findViewById(R.id.order_inTime);
+            TextView order_placeName = (TextView) view.findViewById(R.id.order_placeName);
+            TextView order_parkTime = (TextView) view.findViewById(R.id.order_parkTime);
+            TextView order_status = (TextView) view.findViewById(R.id.order_status);
+            TextView order_realParkFee = (TextView) view.findViewById(R.id.order_realParkFee);
+            TextView order_placeNumber = (TextView) view.findViewById(R.id.order_placeNumber);
+            TextView order_orderId= (TextView) view.findViewById(R.id.order_orderId);
+            order_inTime.setText(order.getIn_time());
+            order_placeName.setText(order.getPlace_name());
+            order_parkTime.setText(order.getPark_time());
+            order_status.setText(order.getStatus());
+            order_realParkFee.setText(order.getReal_park_fee());
+            order_placeNumber.setText(order.getPlace_number());
+            order_orderId.setText(order.getId());
+            return view;
+
+
     }
 
 }

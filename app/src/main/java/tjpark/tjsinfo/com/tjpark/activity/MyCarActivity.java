@@ -1,5 +1,6 @@
 package tjpark.tjsinfo.com.tjpark.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,13 +25,14 @@ import tjpark.tjsinfo.com.tjpark.activity.AddCarActivity;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
 import tjpark.tjsinfo.com.tjpark.adapter.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
+import tjpark.tjsinfo.com.tjpark.util.TjParkUtils;
 
 /**
  * Created by panning on 2018/1/12.
  */
 
 public class MyCarActivity  extends AppCompatActivity {
-
+    Dialog d;
     private ListView listView;
     private   List<Car> myCarList = new LinkedList<Car>();
 
@@ -39,7 +41,7 @@ public class MyCarActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         new Thread(runnable).start();
-
+        d = TjParkUtils.createLoadingDialog(MyCarActivity.this,"加载中");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mycar);
         Button exitBtn=(Button)findViewById(R.id.exitBtn);
@@ -74,14 +76,16 @@ public class MyCarActivity  extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
+
             mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
              String customerid=mSharedPreferences.getString("personID","");
 
             JsonArray jsonArray = null;
             String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
             jsonArray = NetConnection.getJsonArray(strUrl);
-
-
+            if (null == jsonArray) {
+                return;
+            }
             Iterator it = jsonArray.iterator();
 
             int i=0;
@@ -131,7 +135,7 @@ public class MyCarActivity  extends AppCompatActivity {
             listView.setAdapter(adapter);
             ListViewListener listViewListener =new ListViewListener();
             listView.setOnItemClickListener(listViewListener);
-
+            TjParkUtils.closeDialog(d);
 
 
         }

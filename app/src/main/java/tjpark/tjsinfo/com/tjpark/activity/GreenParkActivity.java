@@ -19,7 +19,7 @@ import java.util.List;
 
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.adapter.GreenParkAdapter;
-import tjpark.tjsinfo.com.tjpark.entity.GreenPark;
+import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
 /**
@@ -30,11 +30,15 @@ public class GreenParkActivity extends AppCompatActivity {
 
     private TextView parkId,greenPark_placeName,greenPark_distance,greenPark_address;
     private ListView listView;
-    private List<GreenPark> greenParkList = new ArrayList<GreenPark>();
+    private List<Park> greenParkList = new ArrayList<Park>();
+    private Park park;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_greenpark);
+            /*获取Intent中的Bundle对象*/
+        Bundle bundle = this.getIntent().getExtras();
+        park  = (Park) bundle.get("park");
         Button exitBtn=(Button)findViewById(R.id.exitBtn);
         exitBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -50,12 +54,11 @@ public class GreenParkActivity extends AppCompatActivity {
         greenPark_distance = (TextView)findViewById(R.id.greenPark_distance);
         greenPark_address = (TextView)findViewById(R.id.greenPark_address);
 
-        Intent getIntent = getIntent();
-        parkId.setText(getIntent.getStringExtra("parkId"));
 
-        greenPark_placeName.setText(getIntent.getStringExtra("place_name"));
-        greenPark_distance.setText(getIntent.getStringExtra("place_distance"));
-        greenPark_address.setText(getIntent.getStringExtra("place_address"));
+        parkId.setText(park.getId());
+        greenPark_placeName.setText(park.getPlace_name());
+        greenPark_distance.setText(park.getDistance());
+        greenPark_address.setText(park.getPlace_address());
         new Thread(runnable).start();
     }
 
@@ -68,17 +71,20 @@ public class GreenParkActivity extends AppCompatActivity {
             String parkid = parkId.getText().toString();
             String strUrl="/tjpark/app/AppWebservice/findSharePark?parkid="+parkid;
             jsonArray = NetConnection.getJsonArray(strUrl);
+            if (jsonArray == null){
+                return ;
+            }
 
             Iterator it = jsonArray.iterator();
 
             int i=0;
             while (it.hasNext()) {
-                GreenPark greenPark = new GreenPark();
+               Park greenPark = new Park();
                 if(i==jsonArray.size()){
                     break;
                 }
                 JsonObject jso = jsonArray.get(i).getAsJsonObject();
-                greenPark.setId(jso.get("id").toString().replace("\"",""));
+                greenPark.setShare_id(jso.get("id").toString().replace("\"",""));
                 greenPark.setPark_num(jso.get("park_num").toString().replace("\"",""));
                 greenPark.setStart_time(jso.get("start_time").toString().replace("\"",""));
                 greenPark.setEnd_time(jso.get("end_time").toString().replace("\"",""));
@@ -88,8 +94,9 @@ public class GreenParkActivity extends AppCompatActivity {
                 greenPark.setStatus(jso.get("status").toString().replace("\"",""));
                 greenPark.setShare_status(jso.get("share_status").toString().replace("\"",""));
                 greenPark.setDistance(greenPark_distance.getText().toString());
-                greenPark.setAddress(greenPark_address.getText().toString());
                 greenPark.setPlace_name(greenPark_placeName.getText().toString());
+                greenPark.setPlace_address(park.getPlace_address());
+                greenPark.setLable(park.getLable());
                 greenParkList.add(greenPark);
                 i++;
             }

@@ -32,6 +32,7 @@ import java.util.Map;
 
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Car;
+import tjpark.tjsinfo.com.tjpark.entity.Park;
 import tjpark.tjsinfo.com.tjpark.entity.ParkYuYue;
 import tjpark.tjsinfo.com.tjpark.adapter.CarAdapter;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
@@ -52,6 +53,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
     private Button blue_yuYueCar;
     private Button blue_yuYueTime;
     private Button blue_yuYueBtn;
+    private Park park = new Park();
 
     private ListView listView;
     Dialog dialog;
@@ -87,12 +89,13 @@ public class BlueYuYueActivity extends AppCompatActivity {
         blue_yuYueBtn = (Button) findViewById(R.id.blue_yuYueBtn);
 
 
-        Intent getIntent = getIntent();
-        placeId.setText(getIntent.getStringExtra("parkId"));
-        blue_yuYueParkName.setText(getIntent.getStringExtra("bluePark_placeName"));
-        blue_yuYueDistance.setText(getIntent.getStringExtra("bluePark_distance"));
-        blue_yuYueType.setText(getIntent.getStringExtra("bluePark_label"));
-        blue_yuYueAddress.setText(getIntent.getStringExtra("bluePark_address"));
+        Bundle bundle = this.getIntent().getExtras();
+        park  = (Park) bundle.get("park");
+        placeId.setText(park.getPlace_id());
+        blue_yuYueParkName.setText(park.getPlace_name());
+        blue_yuYueDistance.setText(park.getDistance());
+        blue_yuYueType.setText(park.getLable());
+        blue_yuYueAddress.setText(park.getPlace_address());
 
     }
 
@@ -103,34 +106,37 @@ public class BlueYuYueActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                    mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-                    String customerid=mSharedPreferences.getString("personID","");
-                JsonArray jsonArray = null;
-                String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
-                jsonArray = NetConnection.getJsonArray(strUrl);
-
-
-                Iterator it = jsonArray.iterator();
-
-                int i=0;
-                while (it.hasNext()) {
-                    Car car = new Car();
-                    if(i==jsonArray.size()){
-                        break;
-                    }
-                    JsonObject jso = jsonArray.get(i).getAsJsonObject();
-                    car.setId(jso.get("id").toString().replace("\"",""));
-
-                    car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
-                    car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
-                    car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
-                    myCarList.add(car);
-                    i++;
+                if (myCarList.size() != 0 ){
 
                 }
-                i=0;
+                else{
+                    mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    String customerid=mSharedPreferences.getString("personID","");
+                    JsonArray jsonArray = null;
+                    String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
+                    jsonArray = NetConnection.getJsonArray(strUrl);
 
 
+                    Iterator it = jsonArray.iterator();
+
+                    int i=0;
+                    while (it.hasNext()) {
+                        Car car = new Car();
+                        if(i==jsonArray.size()){
+                            break;
+                        }
+                        JsonObject jso = jsonArray.get(i).getAsJsonObject();
+                        car.setId(jso.get("id").toString().replace("\"",""));
+
+                        car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
+                        car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
+                        car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
+                        myCarList.add(car);
+                        i++;
+
+                    }
+                    i=0;
+                }
                 Message msg = new Message();
                 Bundle data = new Bundle();
 
@@ -145,13 +151,14 @@ public class BlueYuYueActivity extends AppCompatActivity {
 
     //选择时间按钮
     public void blue_yuYueTime(View view) {
+        //时间格式化
+        final DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
 
         TimeSelector timeSelector = new TimeSelector(BlueYuYueActivity.this, new TimeSelector.ResultHandler() {
+
             @Override
             public void handle(String time) {
-
-                //时间格式化
-                DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd mm:ss");
 
                 try {
                     Long l = (sdf.parse(time).getTime()) - (new Date().getTime());
@@ -174,7 +181,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
                 }
 
             }
-        }, "2018-01-01 00:00", "2030-12-31 23:59:59");
+        }, sdf.format(new Date()), sdf.format( new Date().getTime()+604800000));
 
         timeSelector.show();
     }
@@ -199,12 +206,12 @@ public class BlueYuYueActivity extends AppCompatActivity {
             parkYuYue.setCustomer_id(customer_id);
             parkYuYue.setPlate_number(blue_yuYueCar.getText().toString());
             parkYuYue.setPlate_id(plateId.getText().toString());
-            parkYuYue.setPlace_id(placeId.getText().toString());
+            parkYuYue.setPlace_id(park.getId());
             parkYuYue.setPlace_name(blue_yuYueParkName.getText().toString());
             parkYuYue.setReservation_time(blue_yuYueTime.getText().toString());
             parkYuYue.setReservation_fee(blue_yuYueMoney.getText().toString() );
-
-            parkYuYue.setPayMode("\"\"");
+            parkYuYue.setShare_id(park.getShare_id());
+            parkYuYue.setPayMode(park.getLable());
             intent.setClass(BlueYuYueActivity.this, PayDemoActivity.class);
             intent.putExtra("yuYueOrder", parkYuYue);
             startActivity(intent);

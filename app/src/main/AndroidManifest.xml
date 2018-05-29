@@ -67,9 +67,10 @@
         <activity android:name=".activity.YellowParkActivity"></activity>
         <activity android:name=".activity.GreenParkActivity"></activity>
         <activity android:name=".activity.SugAddressActivity"></activity>
-
+        <activity android:name=".feiqi.OrdersActivity"></activity>
         <activity android:name=".activity.IncludeDetailActivity"></activity>
         <activity android:name=".activity.UpdateShareActivity"></activity>
+
         <!--支付宝相关activity-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

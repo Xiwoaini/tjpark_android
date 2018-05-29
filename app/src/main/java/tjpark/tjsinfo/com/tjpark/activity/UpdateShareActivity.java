@@ -113,10 +113,7 @@ public class UpdateShareActivity extends AppCompatActivity {
                                 "&start_time=" +startTime.getText()+
                                 "&end_time=" +endTime.getText()+
                                 "&model="+sType.getSelectedItem().toString();
-                        res = NetConnection.getXpath(strUrl);
-
-
-
+                        String x = NetConnection.getHttpString(strUrl);
 
                         Message msg = new Message();
                         handler.sendMessage(msg);

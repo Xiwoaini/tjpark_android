@@ -20,7 +20,6 @@ import java.util.Iterator;
 
 import tjpark.tjsinfo.com.tjpark.R;
 import tjpark.tjsinfo.com.tjpark.entity.Park;
-import tjpark.tjsinfo.com.tjpark.entity.ParkDetail;
 import tjpark.tjsinfo.com.tjpark.fragment.OneFragment;
 import tjpark.tjsinfo.com.tjpark.util.NetConnection;
 
@@ -36,9 +35,8 @@ public class BlueParkActivity extends AppCompatActivity {
     private TextView bluePark_address;
     private TextView bluePark_JTSJ,bluePark_JTLX;
     private TextView bluePark_JTGZ1,bluePark_JTGZ2,bluePark_placeId;
-    private ParkDetail parkDetail = new ParkDetail();
 
-    private String parkid = "";
+
     JsonArray jsonArray = null;
     Intent getIntent = null;
     JsonObject jso = null;
@@ -50,6 +48,9 @@ public class BlueParkActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluepark);
+
+        Bundle bundle = this.getIntent().getExtras();
+        park  = (Park) bundle.get("park");
         Button exitBtn=(Button)findViewById(R.id.exitBtn);
         exitBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -59,9 +60,29 @@ public class BlueParkActivity extends AppCompatActivity {
             }
 
         });
-        getIntent= getIntent();
+        //获取控件
 
-        parkid = getIntent.getStringExtra("parkId");
+        bluePark_placeId=(TextView)findViewById(R.id.bluePark_placeId);
+        bluePark_placeName =(TextView)findViewById(R.id.bluePark_placeName);
+        bluePark_distance =(TextView)findViewById(R.id.bluePark_distance);
+        bluePark_label =(TextView)findViewById(R.id.bluePark_label);
+        bluePark_address =(TextView)findViewById(R.id.bluePark_address);
+        bluePark_JTSJ =(TextView)findViewById(R.id.bluePark_JTSJ);
+        bluePark_JTGZ1 =(TextView)findViewById(R.id.bluePark_JTGZ1);
+        bluePark_JTGZ2 =(TextView)findViewById(R.id.bluePark_JTGZ2);
+        bluePark_JTLX = (TextView)findViewById(R.id.bluePark_JTLX);
+
+        //id，默认为隐藏
+        bluePark_placeId.setText(park.getId());
+        //名称
+        bluePark_placeName.setText(park.getPlace_name());
+        //地址
+        bluePark_address.setText("地址:"+park.getPlace_address());
+
+        //距离
+        bluePark_distance.setText("距离:"+park.getDistance());
+        //类型
+        bluePark_label.setText("类型:"+park.getLable());
         new Thread(runnable).start();
 
     }
@@ -70,29 +91,25 @@ public class BlueParkActivity extends AppCompatActivity {
     Runnable runnable = new Runnable(){
         @Override
         public void run() {
-            //获取控件
 
-            bluePark_placeId=(TextView)findViewById(R.id.bluePark_placeId);
-            bluePark_placeName =(TextView)findViewById(R.id.bluePark_placeName);
-            bluePark_distance =(TextView)findViewById(R.id.bluePark_distance);
-            bluePark_label =(TextView)findViewById(R.id.bluePark_label);
-            bluePark_address =(TextView)findViewById(R.id.bluePark_address);
-            bluePark_JTSJ =(TextView)findViewById(R.id.bluePark_JTSJ);
-            bluePark_JTGZ1 =(TextView)findViewById(R.id.bluePark_JTGZ1);
-            bluePark_JTGZ2 =(TextView)findViewById(R.id.bluePark_JTGZ2);
-            bluePark_JTLX = (TextView)findViewById(R.id.bluePark_JTLX);
 
 
 //调用接口
 
-            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+parkid+"'";
+            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+park.getId()+"'";
             jsonArray = NetConnection.getJsonArray(strUrl);
+            if  (jsonArray == null){
+                return ;
+            }
             Iterator it = jsonArray.iterator();
             jso = jsonArray.get(0).getAsJsonObject();
 
 
-            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+parkid+"'";
+            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+park.getId()+"'";
             jsonArray1 = NetConnection.getJsonArray(strUrl1);
+            if  (jsonArray1 == null){
+                return ;
+            }
             Iterator it1 = jsonArray1.iterator();
               jso1 = jsonArray1.get(0).getAsJsonObject();
 
@@ -106,17 +123,6 @@ public class BlueParkActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            //id，默认为隐藏
-            bluePark_placeId.setText(parkid);
-            //名称
-            bluePark_placeName.setText(getIntent.getStringExtra("place_name"));
-            //地址
-            bluePark_address.setText("地址:"+getIntent.getStringExtra("place_address"));
-
-            //距离
-            bluePark_distance.setText("距离:"+getIntent.getStringExtra("place_distance"));
-            //类型
-            bluePark_label.setText("类型:"+jso.get("lable").toString().replace("\"",""));
 
 //计费时段下的开始和结束时间
             bluePark_JTSJ.setText(jso.get("open_time").toString().replace("\"",""));
@@ -136,25 +142,45 @@ public class BlueParkActivity extends AppCompatActivity {
 
         Intent intent = new Intent();
         intent.setClass(BlueParkActivity.this, BlueYuYueActivity.class);
-                intent.putExtra("parkId",bluePark_placeId.getText().toString());
-                intent.putExtra("bluePark_placeName",bluePark_placeName.getText().toString());
-                intent.putExtra("bluePark_distance",bluePark_distance.getText().toString());
-                intent.putExtra("bluePark_label",bluePark_label.getText().toString());
-                intent.putExtra("bluePark_address",bluePark_address.getText().toString());
-        startActivity(intent);
+                intent.putExtra("park",park);
+
+                startActivity(intent);
 
     }
+    //导航按钮
+    public void DaoHang(View view,String address) {
+        //todo:当前位置
+        Intent intent = null;
+        try {
 
+            String uri = "intent://map/direction?origin=latlng:"+ OneFragment.latitude+","+OneFragment.longitude+"|name:我的位置&destination=" + address + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+
+            intent = Intent.getIntent(uri);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        if(isInstallByread("com.baidu.BaiduMap")){
+            startActivity(intent); //启动调用
+
+        }else{
+            new AlertDialog.Builder(view.getContext())
+                    .setTitle("注意")
+                    .setMessage("请先安装百度地图!")
+                    .setPositiveButton("确定", null)
+                    .show();
+
+        }
+
+
+    }
     //导航按钮
     public void blueDaoHang(View view) {
-
-
   //todo:当前位置
         Intent intent = null;
         try {
 
             String uri = "intent://map/direction?origin=latlng:"+ OneFragment.latitude+","+OneFragment.longitude+"|name:我的位置&destination=" + bluePark_address.getText() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
-Log.v("当前坐标","");
+
             intent = Intent.getIntent(uri);
         } catch (URISyntaxException e) {
             e.printStackTrace();

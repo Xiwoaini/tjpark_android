@@ -53,6 +53,17 @@ public class Park  implements Serializable {
     private String distance ="";
     private String share_num = "";
 
+    private String place_id= "";
+    private String customer_id= "";
+    private String park_num= "";
+    private String electricity_fee= "";
+    private String park_fee= "";
+    private String start_time= "";
+    private String end_time= "";
+    private String share_status= "";
+    private String contacts_name= "";
+    private String model= "";
+    private String share_id= "";
 
     public void setId(String id) {
         this.id = id;
@@ -380,5 +391,93 @@ public class Park  implements Serializable {
 
     public String getShare_num() {
         return share_num;
+    }
+
+    public String getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(String place_id) {
+        this.place_id = place_id;
+    }
+
+    public String getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(String customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public String getPark_num() {
+        return park_num;
+    }
+
+    public void setPark_num(String park_num) {
+        this.park_num = park_num;
+    }
+
+    public String getElectricity_fee() {
+        return electricity_fee;
+    }
+
+    public void setElectricity_fee(String electricity_fee) {
+        this.electricity_fee = electricity_fee;
+    }
+
+    public String getPark_fee() {
+        return park_fee;
+    }
+
+    public void setPark_fee(String park_fee) {
+        this.park_fee = park_fee;
+    }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
+
+    public String getShare_status() {
+        return share_status;
+    }
+
+    public void setShare_status(String share_status) {
+        this.share_status = share_status;
+    }
+
+    public String getContacts_name() {
+        return contacts_name;
+    }
+
+    public void setContacts_name(String contacts_name) {
+        this.contacts_name = contacts_name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getShare_id() {
+        return share_id;
+    }
+
+    public void setShare_id(String share_id) {
+        this.share_id = share_id;
     }
 }

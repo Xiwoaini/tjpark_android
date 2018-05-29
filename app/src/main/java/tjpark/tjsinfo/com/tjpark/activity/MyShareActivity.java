@@ -1,5 +1,6 @@
 package tjpark.tjsinfo.com.tjpark.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -68,21 +69,17 @@ public class MyShareActivity extends AppCompatActivity {
                         myShare.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
                         myShare.setPhone(jso.get("phone").toString().replace("\"",""));
                         myShare.setCreate_time(jso.get("create_time").toString().replace("\"",""));
-                        myShare.setElectricity_fee(jso.get("electricity_fee").toString().replace("\"",""));
+//
                         myShare.setPark_fee(jso.get("park_fee").toString().replace("\"",""));
                         myShare.setStart_time(jso.get("start_time").toString().replace("\"",""));
                         myShare.setEnd_time(jso.get("end_time").toString().replace("\"",""));
                         myShare.setStatus(jso.get("status").toString().replace("\"",""));
-                        myShare.setExamine_time(jso.get("examine_time").toString().replace("\"",""));
-                        myShare.setExamine_id(jso.get("examine_id").toString().replace("\"",""));
-                        myShare.setExamine_name(jso.get("examine_name").toString().replace("\"",""));
+//
                         myShare.setShare_status(jso.get("share_status").toString().replace("\"",""));
-                        myShare.setMemo(jso.get("memo").toString().replace("\"",""));
+//
                         myShare.setContacts_name(jso.get("contacts_name").toString().replace("\"",""));
                         myShare.setModel(jso.get("model").toString().replace("\"",""));
                         myShare.setButtonName(jso.get("buttonName").toString().replace("\"",""));
-                        myShare.setIs_charing_pile(jso.get("is_charing_pile").toString().replace("\"",""));
-                        myShare.setIs_fast_pile(jso.get("is_fast_pile").toString().replace("\"",""));
                         i++;
 
                         myShareList.add(myShare);
@@ -104,7 +101,10 @@ public class MyShareActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent();
+                intent.setClass(MyShareActivity.this, TabBarActivity.class);
+                intent.putExtra("currentTab",3);
+                startActivity(intent);
             }
 
         });

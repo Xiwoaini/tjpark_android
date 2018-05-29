@@ -68,8 +68,32 @@ public class ParkYuYue implements Serializable {
         this.reservation_fee = reservation_fee;
     }
 
+    public String getRecord_id() {
+        return record_id;
+    }
+
+    public void setRecord_id(String record_id) {
+        this.record_id = record_id;
+    }
+
     public void setPayMode(String payMode) {
         this.payMode = payMode;
+    }
+
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
+
+    public String getShare_id() {
+        return share_id;
+    }
+
+    public void setShare_id(String share_id) {
+        this.share_id = share_id;
     }
 
     private String customer_id = "";
@@ -80,6 +104,8 @@ public class ParkYuYue implements Serializable {
     private String reservation_time = "";
     private String reservation_fee = "";
     private String payMode = "";
-
+    private String record_id = "";
+    private String fee = "";
+    private String share_id = "";
 
 }
