@@ -1,22 +1,41 @@
-package tjpark.tjsinfo.com.tjpark.util;
+package com.tjsinfo.tjpark.util;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
 import com.google.gson.JsonObject;
 
-import tjpark.tjsinfo.com.tjpark.activity.BlueYuYueActivity;
-import tjpark.tjsinfo.com.tjpark.R;
-import tjpark.tjsinfo.com.tjpark.entity.ParkYuYue;
-import tjpark.tjsinfo.com.tjpark.feiqi.OrdersActivity;
-import tjpark.tjsinfo.com.tjpark.util.OrderInfoUtil2_0;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.tjsinfo.tjpark.R;
+import com.tjsinfo.tjpark.activity.TabBarActivity;
+import com.tjsinfo.tjpark.entity.ParkYuYue;
+import com.tjsinfo.tjpark.entity.REQ;
+import com.tjsinfo.tjpark.wxapi.Constants;
+import com.tjsinfo.tjpark.wxapi.SignUtil;
+import com.tjsinfo.tjpark.wxapi.XMLUtil;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,10 +44,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 /**
  *  重要说明:
@@ -38,7 +56,7 @@ import android.widget.Toast;
  *  防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险； 
  */
 //216.86
-public class 	PayDemoActivity extends FragmentActivity   {
+public class 	PayDemoActivity extends FragmentActivity {
 
 	ParkYuYue parkYuYue = new ParkYuYue();
 	/** 支付宝支付业务：入参app_id */
@@ -100,6 +118,11 @@ public class 	PayDemoActivity extends FragmentActivity   {
 										"&payMode=alipay" +
 										"&place_id="+parkYuYue.getPlace_id();
 								res =NetConnection.getXpath(strUrl);
+								Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+								Intent intent = new Intent();
+								intent.setClass(PayDemoActivity.this, TabBarActivity.class);
+								intent.putExtra("currentTab",1);
+								startActivity(intent);
 							}
 							else if (parkYuYue.getPayMode().contains("共享")){
 								strUrl="/tjpark/app/AppWebservice/reservableParkInByShare?" +
@@ -113,6 +136,11 @@ public class 	PayDemoActivity extends FragmentActivity   {
 										"&payMode=alipay" +
 										"&shareid="+parkYuYue.getShare_id() ;
 								res =NetConnection.getXpath(strUrl);
+								Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+								Intent intent = new Intent();
+								intent.setClass(PayDemoActivity.this, TabBarActivity.class);
+								intent.putExtra("currentTab",1);
+								startActivity(intent);
 							}
 							//默认为正在计时支付
 							else{
@@ -129,11 +157,13 @@ public class 	PayDemoActivity extends FragmentActivity   {
 										"&payMode=alipay";
 //
 								res1 =NetConnection.getXpath(strUrl);
+								Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+								Intent intent = new Intent();
+								intent.setClass(PayDemoActivity.this, TabBarActivity.class);
+								intent.putExtra("currentTab",1);
+								startActivity(intent);
 							}
-							Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-							Intent intent = new Intent();
-							intent.setClass(PayDemoActivity.this, OrdersActivity.class);
-							startActivity(intent);
+
 
 						}
 					}).start();
@@ -179,6 +209,7 @@ public class 	PayDemoActivity extends FragmentActivity   {
 			}
 		};
 	};
+	private IWXAPI msgApi; //微信支付api
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +251,10 @@ public class 	PayDemoActivity extends FragmentActivity   {
 	 * @param v
 	 */
 	public void payV2(View v) {
+		if (true){
+			sendPayRequest();
+			return;
+		}
 
 		if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
 			new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
@@ -353,6 +388,121 @@ public class 	PayDemoActivity extends FragmentActivity   {
 		extras.putString("url", url);
 		intent.putExtras(extras);
 		startActivity(intent);
+	}
+
+
+
+	//微信支付
+	/**调用微信支付*/
+	public void sendPayRequest() {
+		msgApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+		msgApi.registerApp(Constants.APP_ID);
+
+		//请求的xml数据
+		final  String xmlString;
+		//SrotedMap集合可以自动排序安装规则
+		final SortedMap<Object, Object> map = new TreeMap<Object, Object>();
+
+		//请求参数、参与签名的参数
+
+		map.put("appid", Constants.APP_ID);
+		map.put("body", "天津停车APP-停车缴费");
+		map.put("mch_id", "1503922241");
+		map.put("spbill_create_ip", getIPAddress(PayDemoActivity.this));
+		map.put("nonce_str", SignUtil.getRandomString(16));
+
+		map.put("total_fee", "1");
+		map.put("out_trade_no", String.valueOf(System.currentTimeMillis()).toString().substring(0,10));
+		map.put("trade_type", "APP");
+		map.put("notify_url", "http://www.weixin.qq.com/wxpay/pay.php");
+		//签名的工具类SignUtil
+
+		String sign = SignUtil.createSign1("UTF-8", map);
+//		map.put("sign", sign);
+		//xml的工具类XMlUtil
+		xmlString = SignUtil.getRequestXML(map,sign);
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+
+				try {
+					//
+					String result = SignUtil.httpsRequest("https://api.mch.weixin.qq.com/pay/unifiedorder","POST", xmlString);
+					REQ req = XMLUtil.parseXmlString(result);
+					//发起调用(微信自带PayReq类，包含请求参数)
+					PayReq request = new PayReq();
+					//appid
+					request.appId = Constants.APP_ID;
+					//商户id
+					request.partnerId = req.getPartnerid();
+					request.prepayId= req.getPrepayid();
+					request.packageValue = req.getPackages();
+					request.nonceStr= req.getNoncestr();
+					request.timeStamp= req.getTimestamp();
+					request.sign= req.getSign();
+                    // 发出授权申请
+
+					Log.v("结果",String.valueOf(msgApi.sendReq(request)));
+
+
+				}
+				catch (Exception e){
+					e.printStackTrace();
+				}
+
+
+			}
+		}).start();
+
+	}
+
+
+
+
+	public static String getIPAddress(Context context) {
+		NetworkInfo info = ((ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+		if (info != null && info.isConnected()) {
+			if (info.getType() == ConnectivityManager.TYPE_MOBILE) {//当前使用2G/3G/4G网络
+				try {
+					//Enumeration<NetworkInterface> en=NetworkInterface.getNetworkInterfaces();
+					for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+						NetworkInterface intf = en.nextElement();
+						for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+							InetAddress inetAddress = enumIpAddr.nextElement();
+							if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+								return inetAddress.getHostAddress();
+							}
+						}
+					}
+				} catch (SocketException e) {
+					e.printStackTrace();
+				}
+
+			} else if (info.getType() == ConnectivityManager.TYPE_WIFI) {//当前使用无线网络
+				WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+				WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+				String ipAddress = intIP2StringIP(wifiInfo.getIpAddress());//得到IPV4地址
+				return ipAddress;
+			}
+		} else {
+			//当前无网络连接,请在设置中打开网络
+		}
+		return null;
+	}
+
+	/**
+	 * 将得到的int类型的IP转换为String类型
+	 *
+	 * @param ip
+	 * @return
+	 */
+	public static String intIP2StringIP(int ip) {
+		return (ip & 0xFF) + "." +
+				((ip >> 8) & 0xFF) + "." +
+				((ip >> 16) & 0xFF) + "." +
+				(ip >> 24 & 0xFF);
 	}
 
 }
