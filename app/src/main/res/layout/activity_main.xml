@@ -4,57 +4,68 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-     >
+    >
+    <!--导航栏-->
+    <TableLayout
+        android:id="@+id/pay_selectMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3DC9CE"
+        >
+        <TableRow>
+            <Button
+                android:id="@+id/exitBtn"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:text="返回"
+                android:textColor="#FFFFFF"
+                android:background="@android:color/transparent"
+                />
 
+            <ImageView
+                android:id="@+id/search_address"
+                android:layout_weight="2"
+                android:layout_height="45dp"
+                android:src="@drawable/search1"
+                android:layout_marginLeft="10dp"
+                />
+            <Button
+                android:id="@+id/exitBtn1"
+                android:enabled="false"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:background="@android:color/transparent"
+                />
+        </TableRow>
+    </TableLayout>
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_marginTop="45dp"/>
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/xintushi"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="match_parent">
-    <SearchView
-        android:id="@+id/sugSearch"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:iconifiedByDefault="false"
-        android:background="@color/white"
-        android:layout_marginLeft="20dp"
-        android:queryHint="请输入搜索地址" />
-    <Button
-        android:id="@+id/getParkList"
-        android:layout_width="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="5dp"
-        android:text="附近"
-        android:onClick="getParkList"
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/xintushi"
+        android:layout_marginTop="80dp"
         />
-
-
-</LinearLayout>
-
-    <ListView
-        android:id="@+id/searchListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:layout_marginTop="83dp"
-        android:layout_weight="1" />
-
-
-
-
-</FrameLayout >
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/xintushi"
+        android:layout_marginTop="150dp"
+        />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/xintushi"
+        android:layout_marginTop="220dp"
+        />
+</FrameLayout>

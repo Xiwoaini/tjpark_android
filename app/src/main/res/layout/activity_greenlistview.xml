@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="xx"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             />
 
             </TableRow>
@@ -42,15 +42,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="xx"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             />
             <Button
             android:id="@+id/yuYueBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="预约"
-            android:background="@android:color/transparent"/>
-
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/sdw_05"/>
             </TableRow>
             <TableRow>
             <TextView
@@ -67,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="xx"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             />
 
 

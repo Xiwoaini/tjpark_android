@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="未知"
+        android:textSize="18dp"
         android:layout_marginTop="15dp"
           />
     <!--收费标准-->
@@ -42,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="未知"
         />
     <!--停车开始时间-->
@@ -51,52 +52,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="未知"
         />
     <!--停车结束时间-->
-    <!--<TextView-->
-        <!--android:id="@+id/detail_endTime"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:text="未知"-->
-        <!--/>-->
+
     <!--center停车用时-->
     <TextView
         android:id="@+id/detail_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="未知"
         />
-    <!--总费用-->
-    <!--<TextView-->
-        <!--android:id="@+id/detail_money"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:text="未知"-->
-        <!--/>-->
-    <!--已支付费用-->
-    <!--<TextView-->
-        <!--android:id="@+id/detail_paySuccess"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:text="未知"-->
-        <!--/>-->
+
     <!--需支付费用，补差支付-->
     <TextView
         android:id="@+id/detail_payNeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="未知"
         />
 
@@ -108,6 +85,7 @@
         android:layout_height="40dp"
         android:background="#3DC9CE"
         android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
         android:text="支付"
         />
 

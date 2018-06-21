@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 android:text="距离"
                 />
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="类型"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 />
             <TextView
                 android:id="@+id/yellowPark_address"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="地址"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 />
 
             <!--横线-->
@@ -94,7 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="计费时段"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/blue"
                 />
                 <TableRow>
 
@@ -104,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="暂无数据"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 />
                 <TextView
                     android:id="@+id/bluePark_JTLX"
@@ -127,7 +128,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/blue"
                 android:text="收费规则"
                 />
             <TableRow>
@@ -171,7 +173,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/blue"
                 android:text="充电桩详情"
                 />
             <TableRow>
@@ -180,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 android:text="充电费用"
                 />
                 <TextView
@@ -234,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="开放时间"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 />
                     <TextView
                         android:id="@+id/yellowPark_JTKFSJ"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tjpark.tjsinfo.com.tjpark">
+    package="com.tjsinfo.tjpark">
 
     <!--百度地图权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -21,13 +21,14 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
+    <!--微信支付相关-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <!--访问网络-->
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logoestore_1024pt"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -43,7 +44,7 @@
 
 
         <!--应用程序初始页面的设定-->
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name="com.tjsinfo.tjpark.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,26 +52,44 @@
             </intent-filter>
         </activity>
         <!--声明所有activity用于跳转-->
-        <activity android:name=".activity.TabBarActivity"></activity>
-        <activity android:name=".activity.AddCarActivity"></activity>
-        <activity android:name=".activity.ParkListActivity"></activity>
-        <activity android:name=".activity.BlueParkActivity"></activity>
-        <activity android:name=".activity.DetailActivity"></activity>
-        <activity android:name=".activity.CarLifeDisPlayActivity"></activity>
-        <activity android:name=".activity.ShareReleaseActivity"></activity>
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.BlueYuYueActivity"></activity>
-        <activity android:name=".activity.RegActivity"></activity>
-        <activity android:name=".activity.MyShareActivity"></activity>
-        <activity android:name=".util.PayDemoActivity"></activity>
-        <activity android:name=".activity.MyCarActivity"></activity>
-        <activity android:name=".activity.YellowParkActivity"></activity>
-        <activity android:name=".activity.GreenParkActivity"></activity>
-        <activity android:name=".activity.SugAddressActivity"></activity>
-        <activity android:name=".feiqi.OrdersActivity"></activity>
-        <activity android:name=".activity.IncludeDetailActivity"></activity>
-        <activity android:name=".activity.UpdateShareActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.TabBarActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.AddCarActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.ParkListActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.BlueParkActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.DetailActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.CarLifeDisPlayActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.ShareReleaseActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.LoginActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.BlueYuYueActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.RegActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.MyShareActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.MyCarActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.YellowParkActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.GreenParkActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.SugAddressActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.feiqi.OrdersActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.IncludeDetailActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.MapActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.UpdateShareActivity"></activity>
+        <activity android:name="com.tjsinfo.tjpark.fragment.ThreeFragment"></activity>
+<!--微信支付-->
+        <activity
+            android:name="com.tjsinfo.tjpark.util.PayDemoActivity"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wxbda31b250a331d1d"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tjsinfo.tjpark.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
 
+        </activity>
         <!--支付宝相关activity-->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -86,8 +105,10 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
+
+
+
     </application>
 
-    <!--访问网络-->
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
 </manifest>

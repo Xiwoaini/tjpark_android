@@ -1,0 +1,175 @@
+package com.tjsinfo.tjpark.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.Iterator;
+
+import com.tjsinfo.tjpark.R;
+import com.tjsinfo.tjpark.entity.Park;
+import com.tjsinfo.tjpark.fragment.OneFragment;
+import com.tjsinfo.tjpark.util.NetConnection;
+
+/**
+ * Created by panning on 2018/1/12.
+ */
+//充电停车场
+public class YellowParkActivity extends AppCompatActivity {
+
+    private TextView placeId,yellowPark_placeName,yellowPark_distance,yellowPark_label,
+            yellowPark_address, yellowPark_JTSJ,bluePark_JTLX,yellowPark_JTGZ1,
+            yellowPark_JTGZ2,yellowPark_JTFY, yellowPark_KSCD,yellowPark_MSCD,
+            yellowPark_JTKFSJ;
+    private Button exitBtn,yellowPark_yuYue;
+    private Park park;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_yellowpark);
+             /*获取Intent中的Bundle对象*/
+        Bundle bundle = this.getIntent().getExtras();
+        park  = (Park) bundle.get("park");
+        exitBtn =(Button)findViewById(R.id.exitBtn);
+        //返回按钮监听
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
+        //获取控件
+        placeId=(TextView)findViewById(R.id.placeId);
+        yellowPark_placeName =(TextView)findViewById(R.id.yellowPark_placeName);
+        yellowPark_distance =(TextView)findViewById(R.id.yellowPark_distance);
+        yellowPark_label =(TextView)findViewById(R.id.yellowPark_label);
+        yellowPark_address =(TextView)findViewById(R.id.yellowPark_address);
+        yellowPark_JTSJ =(TextView)findViewById(R.id.yellowPark_JTSJ);
+        bluePark_JTLX =(TextView)findViewById(R.id.bluePark_JTLX);
+        yellowPark_JTGZ1 =(TextView)findViewById(R.id.yellowPark_JTGZ1);
+        yellowPark_JTGZ2 = (TextView)findViewById(R.id.yellowPark_JTGZ2);
+        yellowPark_JTFY =(TextView)findViewById(R.id.yellowPark_JTFY);
+        yellowPark_KSCD =(TextView)findViewById(R.id.yellowPark_KSCD);
+        yellowPark_MSCD =(TextView)findViewById(R.id.yellowPark_MSCD);
+        yellowPark_JTKFSJ = (TextView)findViewById(R.id.yellowPark_JTKFSJ);
+
+        //默认为隐藏的id
+        placeId.setText(park.getId());
+        //名称
+        yellowPark_placeName.setText(park.getPlace_name());
+        //距离
+        yellowPark_distance.setText(park.getDistance());
+        //地址
+        yellowPark_address.setText(park.getPlace_address());
+        //类型
+        yellowPark_label.setText(park.getLable());
+        if (!park.getLable().contains("预约")){
+            yellowPark_yuYue = (Button) findViewById(R.id.yellowPark_yuYue);
+            yellowPark_yuYue.setEnabled(false);
+            yellowPark_yuYue.setText("不支持预约");
+            yellowPark_yuYue.setBackgroundColor(getResources().getColor(R.color.gray));
+        }
+        yellowPark_JTFY.setText(park.getPile_fee());
+        yellowPark_KSCD.setText("共"+park.getFast_pile_total_num()+"个,空闲"+park.getFast_pile_space_num());
+        yellowPark_MSCD.setText("共"+park.getSlow_pile_total_num()+"个,空闲"+park.getSlow_pile_space_num());
+        yellowPark_JTKFSJ.setText(park.getPile_time());
+        new Thread(runnable).start();
+
+    }
+
+
+    //新线程进行网络请求
+    Runnable runnable = new Runnable(){
+        @Override
+        public void run() {
+//调用接口查看普通
+            JsonArray jsonArray0 = null;
+            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+park.getId()+"'";
+            jsonArray0 = NetConnection.getJsonArray(strUrl);
+            if (jsonArray0 == null){
+                return;
+            }
+            Iterator it = jsonArray0.iterator();
+            JsonObject jso = jsonArray0.get(0).getAsJsonObject();
+            //调用接口查看普通
+            JsonArray jsonArray1 = null;
+
+
+            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+park.getId()+"'";
+            jsonArray1 = NetConnection.getJsonArray(strUrl1);
+            Iterator it1 = jsonArray1.iterator();
+            JsonObject jso1 = jsonArray1.get(0).getAsJsonObject();
+
+            //具体时间
+
+            yellowPark_JTSJ.setText(jso.get("open_time").toString().replace("\"",""));
+            bluePark_JTLX.setText(jso.get("period_type").toString().replace("\"",""));
+
+            yellowPark_JTGZ1.setText(jso1.get("fee").toString().replace("\"",""));
+            yellowPark_JTGZ2.setText(jso.get("open_time").toString().replace("\"",""));
+
+
+        }
+    };
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+        }
+    };
+
+
+    //预约按钮click事件
+    public void yellowPark_yuYue(View view){
+
+        Intent intent = new Intent();
+        intent.setClass(YellowParkActivity.this, BlueYuYueActivity.class);
+        intent.putExtra("park",park);
+        startActivity(intent);
+
+
+    }
+
+    //导航按钮
+    public void blueDaoHang(View view) {
+        //todo:当前位置
+        Intent intent = null;
+        try {
+
+            String uri = "intent://map/direction?origin=latlng:"+ OneFragment.latitude+","+OneFragment.longitude+"|name:我的位置&destination=" + yellowPark_address.getText() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+
+            intent = Intent.getIntent(uri);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        if(isInstallByread("com.baidu.BaiduMap")){
+            startActivity(intent); //启动调用
+
+        }else{
+            new AlertDialog.Builder(YellowParkActivity.this)
+                    .setTitle("注意")
+                    .setMessage("请先安装百度地图!")
+                    .setPositiveButton("确定", null)
+                    .show();
+        }
+    }
+    private boolean isInstallByread(String packageName) {
+        return new File("/data/data/" + packageName).exists();
+    }
+}

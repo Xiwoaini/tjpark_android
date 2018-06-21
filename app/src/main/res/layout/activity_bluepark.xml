@@ -50,6 +50,7 @@ android:layout_height="match_parent" >
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="15dp"
                 android:text="停车场名称"
+                android:layout_marginLeft="5dp"
                 />
 
             <TextView
@@ -58,6 +59,7 @@ android:layout_height="match_parent" >
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="距离"
+                android:layout_marginLeft="10dp"
                 />
             <TextView
                 android:id="@+id/bluePark_label"
@@ -65,6 +67,7 @@ android:layout_height="match_parent" >
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="类型"
+                android:layout_marginLeft="10dp"
                 />
             <TextView
                 android:id="@+id/bluePark_address"
@@ -72,6 +75,7 @@ android:layout_height="match_parent" >
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="地址"
+                android:layout_marginLeft="10dp"
                 />
             <!--横线-->
             <View  android:layout_height="1px"
@@ -93,6 +97,8 @@ android:layout_height="match_parent" >
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="计费时段"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/blue"
                 />
                 <TableRow>
             <TextView
@@ -101,6 +107,7 @@ android:layout_height="match_parent" >
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="具体时间"
+                android:layout_marginLeft="10dp"
                 />
                     <TextView
                         android:id="@+id/bluePark_JTLX"
@@ -121,6 +128,8 @@ android:layout_height="match_parent" >
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="收费规则"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/blue"
                 />
                 <TableRow>
                     <ImageView
@@ -140,6 +149,7 @@ android:layout_height="match_parent" >
                         android:id="@+id/bluePark_JTGZ2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginBottom="10dp"
                         android:text="具体时间"
                         />
@@ -155,7 +165,6 @@ android:layout_height="match_parent" >
             <Button
                 android:id="@+id/bluePark_daoHang"
                 android:layout_weight="1"
-                android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:onClick="blueDaoHang"
@@ -163,17 +172,16 @@ android:layout_height="match_parent" >
                 android:textColor="#FFFFFF"
                 android:background="#3DC9CE"
                 android:layout_marginLeft="3dp"
-                android:layout_marginRight="5dp"
+
                 />
             <Button
                 android:id="@+id/bluePark_yuYue"
                 android:layout_weight="1"
-                android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:onClick="bluePark_yuYue"
                 android:text="预约"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
                 android:textColor="#FFFFFF"
                 android:background="#3DC9CE"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tjpark.tjsinfo.com.tjpark.activity.TabBarActivity">
+    tools:context="com.tjsinfo.tjpark.activity.TabBarActivity">
     <!--tabbar-->
     <com.hjm.bottomtabbar.BottomTabBar
         android:id="@+id/bottom_tab_bar"

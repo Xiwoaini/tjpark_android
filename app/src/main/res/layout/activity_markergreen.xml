@@ -82,7 +82,7 @@
                 android:id="@+id/green_parkDetail"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
-                android:background="@drawable/sdw_05"
+                android:background="@drawable/xq"
                 android:layout_marginLeft="20dp"
                 />
         </TableRow>
