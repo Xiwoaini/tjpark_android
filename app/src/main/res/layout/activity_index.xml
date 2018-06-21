@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
+
+    <!--tabbar 1.主页-->
+    <!--导航栏-->
+    <TableLayout
+        android:id="@+id/pay_selectMethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#3DC9CE"
+        >
+        <TableRow>
+        <TextView
+            android:id="@+id/current_address"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="天津市"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            />
+            <ImageView
+                android:id="@+id/search_address"
+                android:layout_weight="1"
+                android:layout_height="44dp"
+                android:src="@drawable/search1"
+                />
+            <ImageView
+                android:id="@+id/image_chat"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/i_chat"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <!--轮播图-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <!--存放图片的ViewPager-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+    <!--8个按钮-->
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        >
+        <TableRow >
+            <ImageButton
+                android:id="@+id/imgBtn1"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_zvw"
+                />
+
+            <ImageButton
+                android:id="@+id/imgBtn2"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_cwyy" />
+
+            <ImageButton
+                android:id="@+id/imgBtn3"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_gxcw"
+                />
+            <ImageButton
+                android:id="@+id/imgBtn4"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_cwcz"
+                />
+        </TableRow>
+
+        <TableRow>
+            <ImageButton
+                android:id="@+id/imgBtn5"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_wzcx" />
+            <ImageButton
+                android:id="@+id/imgBtn6"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_clnj" />
+
+            <ImageButton
+                android:id="@+id/imgBtn7"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_jsznj" />
+            <ImageButton
+                android:id="@+id/imgBtn8"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_gd" />
+        </TableRow>
+    </TableLayout>
+    <!--横线-->
+    <!--横线-->
+    <View  android:layout_height="5px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        />
+        <!--下划视图-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+<!--登录状态-->
+<TableRow   android:layout_weight="1"
+    android:layout_height="100dp"
+    android:background="@drawable/i_login">
+
+    <TextView
+        android:id="@+id/login_status"
+        android:layout_weight="1"
+        android:layout_height="40dp"
+        android:text="登录状态"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="130dp"
+        />
+</TableRow>
+                <View  android:layout_height="5px"
+                    android:layout_width="match_parent"
+                    android:background="#BFBFBF"
+                    />
+        <!--附近停车场-->
+        <TableRow  android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:background="@drawable/i_mapbj">
+  <TextView
+    android:id="@+id/nearPark"
+      android:layout_weight="1"
+      android:layout_height="40dp"
+    android:text="查看附近停车场"
+    android:textAlignment="center"
+      android:layout_marginTop="50dp"
+    />
+        </TableRow>
+        <!--充电桩-->
+        <TableRow android:layout_weight="1"
+            android:paddingLeft="-50dp"
+            >
+            <ImageButton
+                android:id="@+id/csh_cdz"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/csh_cdz"
+              />
+
+        </TableRow>
+                <View  android:layout_height="5px"
+                    android:layout_width="match_parent"
+                    android:background="#BFBFBF"
+                    />
+        <!--充电桩具体-->
+        <TableRow>
+            <ImageButton
+                android:id="@+id/csh_dzss"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/csh_dzss"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_marginRight="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+               />
+            <ImageButton
+                android:id="@+id/csh_cddt"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/csh_cddt"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+        </TableRow>
+                <View  android:layout_height="3px"
+                    android:layout_width="match_parent"
+                    android:background="#BFBFBF"
+                    />
+        <!--车生活-->
+        <TableRow android:layout_weight="1"
+            android:paddingLeft="-50dp">
+            <ImageButton
+                android:id="@+id/i_csh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FCFCFC"
+                android:src="@drawable/i_csh" />
+        </TableRow>
+                <View  android:layout_height="3px"
+                    android:layout_width="match_parent"
+                    android:background="#BFBFBF"
+                    />
+        <!--车生活具体-->
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/csh_xc"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="#FCFCFC"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/csh_xc"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <ImageButton
+                        android:id="@+id/csh_czcx"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="#FCFCFC"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/csh_czcx"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"/>
+                </TableRow>
+                <TextView
+                    android:id="@+id/bluePark_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="8dp"
+                    android:text="天津停车  智能的停车平台"
+
+                    />
+    </TableLayout>
+
+</ScrollView>
+
+
+</LinearLayout>
