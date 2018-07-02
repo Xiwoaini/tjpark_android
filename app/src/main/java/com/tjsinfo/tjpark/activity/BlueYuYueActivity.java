@@ -189,7 +189,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
     //预约车位按钮
     public void blue_yuYueBtn(View view) {
 
-        if (blue_yuYueCar.getText().equals("选择车辆") || blue_yuYueTime.getText().equals("选择时间")) {
+        if (blue_yuYueCar.getText().equals("选择入场车辆") || blue_yuYueTime.getText().equals("选择离场时间")) {
             new AlertDialog.Builder(BlueYuYueActivity.this)
                     .setTitle("提示")
                     .setMessage("请选择好所有信息!")
@@ -212,6 +212,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
             parkYuYue.setReservation_fee(blue_yuYueMoney.getText().toString() );
             parkYuYue.setShare_id(park.getShare_id());
             parkYuYue.setPayMode(park.getLable());
+            parkYuYue.setDetail_type("预约停车");
             intent.setClass(BlueYuYueActivity.this, PayDemoActivity.class);
             intent.putExtra("yuYueOrder", parkYuYue);
             startActivity(intent);

@@ -12,7 +12,7 @@
         android:text="我的共享车位"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textSize="10pt"
         />
     <Button

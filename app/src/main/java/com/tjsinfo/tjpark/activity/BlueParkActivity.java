@@ -79,9 +79,9 @@ public class BlueParkActivity extends AppCompatActivity {
         bluePark_address.setText("地址:"+park.getPlace_address());
 
         //距离
-        bluePark_distance.setText("距离:"+park.getDistance());
+        bluePark_distance.setText("【"+park.getDistance()+"】");
         //类型
-        bluePark_label.setText("类型:"+park.getLable());
+        bluePark_label.setText(park.getLable());
         if (!park.getLable().contains("预约")){
             bluePark_yuYue = (Button) findViewById(R.id.bluePark_yuYue);
             bluePark_yuYue.setEnabled(false);

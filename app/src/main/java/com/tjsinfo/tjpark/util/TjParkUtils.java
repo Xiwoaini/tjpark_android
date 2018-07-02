@@ -27,11 +27,20 @@ public class TjParkUtils {
 
     public static String windowIp="http://60.29.41.58:3000";
 //    public static String windowIp="http://192.168.168.221:8080";
-    //parkMap集合,地图显示等功能会用到此集合
+
+    //parkMap集合,地图显示等功能会用到此集合,所有集合
     public  static Map<String, Park> parkMap = new HashMap<String, Park>();
+    //普通停车场
     public  static Map<String, Park> parkMapByNormal = new HashMap<String, Park>();
+    //充电停车场
     public  static Map<String, Park> parkMapByCharge = new HashMap<String, Park>();
+    //在线支付停车场
     public  static Map<String, Park> parkMapByPay = new HashMap<String, Park>();
+    //共享停车场
+    public  static Map<String, Park> parkMapByShare = new HashMap<String, Park>();
+    //预约停车场
+    public  static Map<String, Park> parkMapByYuYue = new HashMap<String, Park>();
+
     public static String StringToUTF(String s) {
         try{
             return java.net.URLEncoder.encode(s,"utf-8");

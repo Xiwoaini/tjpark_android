@@ -53,16 +53,18 @@ public class TabBarActivity extends FragmentActivity {
                                              }
         );
         mBottomTabBar.init(getSupportFragmentManager())
-                .setImgSize(50,60)
-                .setFontSize(8)
+                .setImgSize(60,60)
+                .setFontSize(10)
                 .setTabPadding(4,6,10)
-                .setChangeColor(Color.GRAY,getResources().getColor(R.color.white))
-                .addTabItem("首页", R.drawable.icon1,R.drawable.icon1, IndexActivity.class)
-                .addTabItem("附近", R.drawable.icon2,R.drawable.icon2, MapFragment.class)
-                .addTabItem("订单",R.drawable.icon3, R.drawable.icon3, TwoFragment.class)
-                .addTabItem("我的",R.drawable.icon4, R.drawable.icon4, FourFragment.class)
-                .setTabBarBackgroundColor(getResources().getColor(R.color.gray))
+                .setChangeColor(getResources().getColor(R.color.dianjihou),getResources().getColor(R.color.dianjiqian))
+                .addTabItem("首页", R.drawable.icon1,R.drawable.icon11, IndexActivity.class)
+                .addTabItem("附近", R.drawable.icon2,R.drawable.icon21, MapFragment.class)
+                .addTabItem("订单",R.drawable.icon3, R.drawable.icon31, TwoFragment.class)
+                .addTabItem("我的",R.drawable.icon4, R.drawable.icon41, FourFragment.class)
+                .setTabBarBackgroundColor(getResources().getColor(R.color.tabback))
                 .isShowDivider(false).setCurrentTab(i);
+
+
 
     }
 

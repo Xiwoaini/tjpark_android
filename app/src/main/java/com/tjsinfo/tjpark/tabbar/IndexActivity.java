@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 
@@ -37,7 +39,8 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
     private  ImageView search_address;
     private ImageButton imgBtn1,imgBtn2,imgBtn3,imgBtn4,imgBtn5,imgBtn6,imgBtn7,imgBtn8;
     private  ImageButton csh_dzss,csh_cddt,csh_xc,csh_czcx;
-
+    private TableRow tabLogin;
+    private TableLayout tabLayout;
 
     //轮播图
     private ViewPager viewPager;
@@ -64,28 +67,37 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         initData();
         // Controller 控制器
         initAdapter();
-        // 开启轮询
-        new Thread() {
-            public void run() {
-                isRunning = true;
-                while (isRunning) {
-                    try {
-                        Thread.sleep(5000);
-                        // 往下跳一位
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+        try{
+            // 开启轮询
+            new Thread() {
+                public void run() {
+                    isRunning = true;
+                    while (isRunning) {
+                        try {
+                            Thread.sleep(5000);
+                            // 往下跳一位
+                            if (getActivity() == null){
+                                continue;
                             }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
+                    }
                 }
-            }
-            ;
-        }.start();
+                ;
+            }.start();
+        }
+        catch (Exception e){
+
+        }
+
         //轮播图结束
         //获取前台绑定控件
         current_address = getActivity().findViewById(R.id.current_address);
@@ -118,13 +130,17 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
             });
         }
         else{
+            tabLayout= getActivity().findViewById(R.id.tabLayout);
+            tabLogin = getActivity().findViewById(R.id.tabLogin);
+            tabLayout.removeView(tabLogin);
+
             //显示最近一个未完成的订单
         }
         //跳转到地图搜索
         search_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到登录页
+                //跳转到搜索
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), SugAddressActivity.class);
                 startActivity(intent);
@@ -133,27 +149,30 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         imgBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到登录页
+                //跳转到地图,普通类型
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), MapActivity.class);
+                MapActivity.parkType = "normal";
                 startActivity(intent);
             }
         });
         imgBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到登录页
+                //跳转到地图，预约类型
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), MapActivity.class);
+                MapActivity.parkType = "yuyue";
                 startActivity(intent);
             }
         });
         imgBtn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到登录页
+                //跳转到地图，共享类型
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), MapActivity.class);
+                MapActivity.parkType = "share";
                 startActivity(intent);
             }
         });
@@ -184,7 +203,7 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         imgBtn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到登录页
+                //跳转到城生活
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), ThreeFragment.class);
                 startActivity(intent);

@@ -7,44 +7,46 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TableRow>
-            <!--订单生成时间-->
-            <TextView
-                android:id="@+id/order_inTime"
-                android:layout_height="wrap_content"
-                android:background="#E6ECE8"
-                android:layout_weight="1"
-                android:text="订单生成时间"
-                />
-            <!--停车场名称-->
 
-        </TableRow>
 
             <TextView
                 android:id="@+id/order_placeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="3dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
                 android:text="停车场名称"
                 />
 
         <TableRow>
-            <!--停车时间-->
+            <!--车牌号-->
             <TextView
-                android:id="@+id/order_TCSJ"
+                android:id="@+id/order_CPH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="停车时间"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="车牌号"
                 />
             <TextView
-                android:id="@+id/order_parkTime"
+                android:id="@+id/order_placeNumber"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:text="车牌号"
+                />
+            <!--订单状态-->
+            <TextView
+                android:id="@+id/order_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="1小时20分钟"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/blue"
+                android:text="订单状态"
+                android:textSize="18dp"
                 />
 
         </TableRow>
@@ -54,45 +56,39 @@
                 android:id="@+id/order_TCF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+
                 android:text="停车费"
                 />
             <TextView
                 android:id="@+id/order_realParkFee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
                 android:text="停车费"
                 />
-            <!--订单状态-->
-            <TextView
-                android:id="@+id/order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="25dp"
-                android:text="订单状态"
-                />
+
         </TableRow>
         <TableRow>
-            <!--车牌号-->
+            <!--停车时间-->
             <TextView
-                android:id="@+id/order_CPH"
+                android:id="@+id/order_TCSJ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="车牌号"
-                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+
+                android:text="停车时间"
                 />
             <TextView
-                android:id="@+id/order_placeNumber"
+                android:id="@+id/order_parkTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="车牌号"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:text="1小时20分钟"
                 />
             <!--订单id(默认隐藏状态)-->
             <TextView
@@ -103,6 +99,35 @@
                 android:visibility="gone"
                 android:text="订单id"
                 />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/DDSJ"
+                android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                android:text="订单时间"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                />
+            <TextView
+                android:id="@+id/order_inTime"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="订单生成时间"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/order_kong"
+                android:layout_weight="1"
+                android:layout_height="15dp"
+                android:text=""
+                android:layout_marginTop="5dp"
+                android:background="#E6ECE8"
+                />
+
         </TableRow>
     </TableLayout>
 </LinearLayout>

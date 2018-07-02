@@ -98,12 +98,7 @@ public class MyCarActivity  extends AppCompatActivity {
                 if(i==jsonArray.size()){
                     break;
                 }
-
                 JsonObject jso = jsonArray.get(i).getAsJsonObject();
-
-
-
-
 
 
                 car.setId(jso.get("id").toString().replace("\"",""));

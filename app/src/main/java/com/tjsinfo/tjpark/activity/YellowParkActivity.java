@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -28,12 +29,13 @@ import com.tjsinfo.tjpark.util.NetConnection;
 //充电停车场
 public class YellowParkActivity extends AppCompatActivity {
 
-    private TextView placeId,yellowPark_placeName,yellowPark_distance,yellowPark_label,
-            yellowPark_address, yellowPark_JTSJ,bluePark_JTLX,yellowPark_JTGZ1,
-            yellowPark_JTGZ2,yellowPark_JTFY, yellowPark_KSCD,yellowPark_MSCD,
-            yellowPark_JTKFSJ;
-    private Button exitBtn,yellowPark_yuYue;
+    private TextView placeId,yellowPark_placeName,
+            yellowPark_address,bluePark_JTLX,KXCWKC,KXCWMC;
+    private TextView YYSCJT,ZCWSJT,MFSCJT,FDJGJT;
+    private Button exitBtn,yellowPark_yuYue,XQ;
     private Park park;
+    //类型图片
+    private ImageView img1,img2,img3,img4,img5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,40 +57,134 @@ public class YellowParkActivity extends AppCompatActivity {
         //获取控件
         placeId=(TextView)findViewById(R.id.placeId);
         yellowPark_placeName =(TextView)findViewById(R.id.yellowPark_placeName);
-        yellowPark_distance =(TextView)findViewById(R.id.yellowPark_distance);
-        yellowPark_label =(TextView)findViewById(R.id.yellowPark_label);
         yellowPark_address =(TextView)findViewById(R.id.yellowPark_address);
-        yellowPark_JTSJ =(TextView)findViewById(R.id.yellowPark_JTSJ);
         bluePark_JTLX =(TextView)findViewById(R.id.bluePark_JTLX);
-        yellowPark_JTGZ1 =(TextView)findViewById(R.id.yellowPark_JTGZ1);
-        yellowPark_JTGZ2 = (TextView)findViewById(R.id.yellowPark_JTGZ2);
-        yellowPark_JTFY =(TextView)findViewById(R.id.yellowPark_JTFY);
-        yellowPark_KSCD =(TextView)findViewById(R.id.yellowPark_KSCD);
-        yellowPark_MSCD =(TextView)findViewById(R.id.yellowPark_MSCD);
-        yellowPark_JTKFSJ = (TextView)findViewById(R.id.yellowPark_JTKFSJ);
-
+        KXCWKC= (TextView)findViewById(R.id.KXCWKC);
+        KXCWMC= (TextView)findViewById(R.id.KXCWMC);
+        YYSCJT= (TextView)findViewById(R.id.YYSCJT);
+        ZCWSJT= (TextView)findViewById(R.id.ZCWSJT);
+        MFSCJT= (TextView)findViewById(R.id.MFSCJT);
+        FDJGJT= (TextView)findViewById(R.id.FDJGJT);
+        img1 = (ImageView)findViewById(R.id.img1);
+        img2 = (ImageView)findViewById(R.id.img2);
+        img3 = (ImageView)findViewById(R.id.img3);
+        img4 = (ImageView)findViewById(R.id.img4);
+        img5 = (ImageView)findViewById(R.id.img5);
         //默认为隐藏的id
         placeId.setText(park.getId());
         //名称
         yellowPark_placeName.setText(park.getPlace_name());
-        //距离
-        yellowPark_distance.setText(park.getDistance());
         //地址
         yellowPark_address.setText(park.getPlace_address());
-        //类型
-        yellowPark_label.setText(park.getLable());
         if (!park.getLable().contains("预约")){
             yellowPark_yuYue = (Button) findViewById(R.id.yellowPark_yuYue);
             yellowPark_yuYue.setEnabled(false);
             yellowPark_yuYue.setText("不支持预约");
             yellowPark_yuYue.setBackgroundColor(getResources().getColor(R.color.gray));
         }
-        yellowPark_JTFY.setText(park.getPile_fee());
-        yellowPark_KSCD.setText("共"+park.getFast_pile_total_num()+"个,空闲"+park.getFast_pile_space_num());
-        yellowPark_MSCD.setText("共"+park.getSlow_pile_total_num()+"个,空闲"+park.getSlow_pile_space_num());
-        yellowPark_JTKFSJ.setText(park.getPile_time());
+
         new Thread(runnable).start();
 
+        int i = 1;
+        //类型图片
+        if (park.getLable().contains("地上")){
+            switch (i){
+                case 1:
+                    img1.setBackgroundResource(R.drawable.zntc);
+                    i = 2;
+                    break;
+            }
+        }
+        if (park.getLable().contains("预约")){
+            switch (i){
+                case 1:
+                    img1.setBackgroundResource(R.drawable.zntc);
+                    i = 2;
+                    break;
+                case 2:
+                    img2.setBackgroundResource(R.drawable.zntc);
+                    i = 3;
+                    break;
+            }
+
+        }
+        if (park.getLable().contains("充电")){
+            switch (i){
+                case 1:
+                    img1.setBackgroundResource(R.drawable.zntc);
+                    i = 2;
+                    break;
+                case 2:
+                    img2.setBackgroundResource(R.drawable.zntc);
+                    i = 3;
+                    break;
+                case 3:
+                    img3.setBackgroundResource(R.drawable.zntc);
+                    i = 4;
+                    break;
+
+            }
+        }
+        if (park.getLable().contains("共享")){
+            switch (i){
+                case 1:
+                    img1.setBackgroundResource(R.drawable.zntc);
+                    i = 2;
+                    break;
+                case 2:
+                    img2.setBackgroundResource(R.drawable.zntc);
+                    i = 3;
+                    break;
+                case 3:
+                    img3.setBackgroundResource(R.drawable.zntc);
+                    i = 4;
+                    break;
+                case 4:
+                    img4.setBackgroundResource(R.drawable.zntc);
+                    i = 5;
+                    break;
+            }
+        }
+        if (park.getLable().contains("在线支付")){
+            switch (i){
+                case 1:
+                    img1.setBackgroundResource(R.drawable.zntc);
+                    i = 2;
+                    break;
+                case 2:
+                    img2.setBackgroundResource(R.drawable.zntc);
+                    i = 3;
+                    break;
+                case 3:
+                    img3.setBackgroundResource(R.drawable.zntc);
+                    i = 4;
+                    break;
+                case 4:
+                    img4.setBackgroundResource(R.drawable.zntc);
+                    i = 5;
+                    break;
+                case 5:
+                    img5.setBackgroundResource(R.drawable.zntc);
+                    break;
+            }
+        }
+
+
+
+
+//详情跳转
+        XQ = (Button) findViewById(R.id.XQ);
+        XQ.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                intent.setClass(YellowParkActivity.this, ChargeActivity.class);
+                intent.putExtra("chargeParkId",park.getId());
+                startActivity(intent);
+
+            }
+        });
     }
 
 
@@ -98,29 +194,16 @@ public class YellowParkActivity extends AppCompatActivity {
         public void run() {
 //调用接口查看普通
             JsonArray jsonArray0 = null;
-            String strUrl="/tjpark/app/AppWebservice/detailPark?parkid='"+park.getId()+"'";
+            String strUrl="/tjpark/app/AppWebservice/findPilePark?parkid='"+park.getId()+"'";
             jsonArray0 = NetConnection.getJsonArray(strUrl);
             if (jsonArray0 == null){
                 return;
             }
             Iterator it = jsonArray0.iterator();
             JsonObject jso = jsonArray0.get(0).getAsJsonObject();
-            //调用接口查看普通
-            JsonArray jsonArray1 = null;
 
-
-            String strUrl1="/tjpark/app/AppWebservice/feePark?parkid='"+park.getId()+"'";
-            jsonArray1 = NetConnection.getJsonArray(strUrl1);
-            Iterator it1 = jsonArray1.iterator();
-            JsonObject jso1 = jsonArray1.get(0).getAsJsonObject();
-
-            //具体时间
-
-            yellowPark_JTSJ.setText(jso.get("open_time").toString().replace("\"",""));
-            bluePark_JTLX.setText(jso.get("period_type").toString().replace("\"",""));
-
-            yellowPark_JTGZ1.setText(jso1.get("fee").toString().replace("\"",""));
-            yellowPark_JTGZ2.setText(jso.get("open_time").toString().replace("\"",""));
+            Message msg = new Message();
+            handler.sendMessage(msg);
 
 
         }
@@ -130,7 +213,12 @@ public class YellowParkActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
+            FDJGJT.setText("无");
+            YYSCJT.setText(park.getPile_time());
+            ZCWSJT.setText(park.getPlace_total_num());
+            MFSCJT.setText(park.getPile_time());
+            KXCWKC.setText("空闲" + park.getFast_pile_space_num() +"/ 共 "+park.getFast_pile_total_num());
+            KXCWMC.setText("空闲" + park.getSlow_pile_space_num() +"/ 共 "+park.getSlow_pile_total_num());
         }
     };
 

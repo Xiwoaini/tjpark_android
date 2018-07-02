@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-android:layout_height="match_parent"
+    android:layout_height="match_parent"
     >
     <!--标题及撤回按钮-->
     <TextView
@@ -14,7 +13,7 @@ android:layout_height="match_parent"
         android:text="手机支付"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textSize="10pt"
         />
     <Button
@@ -23,117 +22,251 @@ android:layout_height="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="-45dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:text="返回"
-
         />
 
-    <!--普通停车场详情-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-
+    <!--支付订单详情-->
+    <TableLayout  android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--订单类型-->
+        <TableRow>
             <TextView
-                android:id="@+id/pay_placeName"
-                android:layout_width="wrap_content"
+                android:id="@+id/DDLX"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="15dp"
-                android:text="停车场名称"
-                android:layout_marginLeft="5dp"
-                />
-
-            <TextView
-                android:id="@+id/pay_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="金额"
-                android:layout_marginLeft="5dp"
+                android:text="订单类型"
+                android:layout_marginLeft="30dp"
                 />
             <TextView
-                android:id="@+id/pay_tx1"
+                android:id="@+id/DDLXJT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="当前无优惠券"
-                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:text="订单类型"
+                android:layout_marginLeft="10dp"
+                />
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <!--车牌号码-->
+        <TableRow>
+            <TextView
+                android:id="@+id/CPHM"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="车牌号码"
+                android:layout_marginLeft="30dp"
                 />
             <TextView
-                android:id="@+id/pay_tx2"
+                android:id="@+id/CPHMJT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="发票"
-                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:text="车牌号码"
+                android:layout_marginLeft="10dp"
                 />
-            <!--横线-->
-            <View  android:layout_height="1px"
-                android:layout_width="match_parent"
-                android:background="#BFBFBF"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
+
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <!--停车场-->
+        <TableRow>
+            <TextView
+                android:id="@+id/TCH"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="停车场"
+                android:layout_marginLeft="30dp"
                 />
-            <TableLayout
-                android:id="@+id/pay_selectMethod"
+            <TextView
+            android:id="@+id/pay_placeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+            android:text="停车场名称"
+            android:layout_marginLeft="10dp"
+            />
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <!--预约到-->
+        <TableRow>
+            <TextView
+                android:id="@+id/YYD"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="预约到"
+                android:layout_marginLeft="30dp"
+                />
+            <TextView
+                android:id="@+id/YYDJT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
-            <RadioGroup
-                android:id="@+id/radioGroup"
+                android:layout_marginTop="15dp"
+                android:text="停车时间"
+                android:layout_marginLeft="10dp"
+                />
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <!--停车时间-->
+        <TableRow>
+            <TextView
+                android:id="@+id/TCSJ"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="停车时间"
+                android:layout_marginLeft="30dp"
+                />
+            <TextView
+                android:id="@+id/TCSJJT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/pay_zfb"
-                >
-                <RadioButton
-                    android:id="@+id/pay_ye"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="余额"
-                    />
-
-                <RadioButton
-
-                    android:id="@+id/pay_zfb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="支付宝"/>
-                <RadioButton
-
-                    android:id="@+id/pay_wx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="微信"/>
-                <RadioButton
-
-                    android:id="@+id/pay_yl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="银联"/>
-            </RadioGroup>
-
-            </TableLayout>
-            <View  android:layout_height="1px"
-                android:layout_width="match_parent"
-                android:background="#BFBFBF"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginTop="15dp"
+                android:text="停车时间"
+                android:layout_marginLeft="10dp"
                 />
-            <Button
-                android:id="@+id/pay_btn"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:onClick="payV2"
-                android:background="#3DC9CE"
-                android:text="支付"
-                 />
-        </LinearLayout>
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <!--优惠券-->
+        <TableRow>
+            <TextView
+                android:id="@+id/YHQ"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="优惠券"
+                android:layout_marginLeft="30dp"
+                />
+            <TextView
+            android:id="@+id/pay_tx1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前无优惠券"
+                android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            />
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
+        <!--停车费用-->
+        <TableRow>
+            <TextView
+                android:id="@+id/TCFY"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="停车费用"
+                android:layout_marginLeft="30dp"
+                />
+            <TextView
+            android:id="@+id/pay_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金额"
+                android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            />
+        </TableRow>
+        <!--横线-->
+        <View  android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            />
 
+    </TableLayout>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/pay_zfb"
+        android:layout_marginTop="8dp"
+
+        >
+        <RadioButton
+            style="@style/radiobutton_right_style"
+            android:id="@+id/pay_ye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="余额"
+
+            />
+
+        <RadioButton
+            style="@style/radiobutton_right_style"
+            android:id="@+id/pay_zfb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝"/>
+        <RadioButton
+            style="@style/radiobutton_right_style"
+            android:id="@+id/pay_wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信"/>
+        <RadioButton
+            style="@style/radiobutton_right_style"
+            android:id="@+id/pay_yl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="银联"/>
+    </RadioGroup>
+    <Button
+        android:id="@+id/pay_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:onClick="payV2"
+        android:background="#00a0d8"
+        android:text="支付"
+        />
 
 </LinearLayout>

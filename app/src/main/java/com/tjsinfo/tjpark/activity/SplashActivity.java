@@ -157,7 +157,6 @@ public class SplashActivity extends Activity {
                             }
                             jsonArray.get(i).getAsJsonObject();
                             JsonObject jso = jsonArray.get(i).getAsJsonObject();
-
                             try {
                                 if (jso.get("lable").toString().contains("共享")) {
 
@@ -196,7 +195,7 @@ public class SplashActivity extends Activity {
 //计算距离
                                     LatLng p2 = new LatLng(Double.parseDouble(jso.get("addpoint_y").toString().replace("\"", "")), Double.parseDouble(jso.get("addpoint_x").toString().replace("\"", "")));
                                     park.setDistance(String.valueOf(Math.ceil(DistanceUtil.getDistance(p1, p2)) / 1000)+"KM");
-                                    TjParkUtils.parkMapByCharge.put(park.getId(), park);
+
                                 } else {
                                     park.setId(jso.get("id").toString().replace("\"", ""));
                                     park.setPlace_name(jso.get("place_name").toString().replace("\"", ""));
@@ -214,6 +213,19 @@ public class SplashActivity extends Activity {
                                     park.setDistance(String.valueOf(Math.ceil(DistanceUtil.getDistance(p1, p2)) / 1000)+"KM");
                                     TjParkUtils.parkMapByNormal.put(park.getId(), park);
                                 }
+                                if (park.getLable().contains("预约")){
+                                    TjParkUtils.parkMapByYuYue.put(park.getId(), park);
+                                }
+                                if (park.getLable().contains("共享")){
+                                    TjParkUtils.parkMapByShare.put(park.getId(), park);
+                                }
+                               if (park.getLable().contains("充电")){
+                                    TjParkUtils.parkMapByCharge.put(park.getId(), park);
+                                }
+                                if (park.getLable().contains("支付")){
+                                    TjParkUtils.parkMapByPay.put(park.getId(), park);
+                                }
+
                                 i++;
                                 TjParkUtils.parkMap.put(park.getId(), park);
 

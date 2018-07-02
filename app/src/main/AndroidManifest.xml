@@ -72,6 +72,8 @@
         <activity android:name="com.tjsinfo.tjpark.activity.MapActivity"></activity>
         <activity android:name="com.tjsinfo.tjpark.activity.UpdateShareActivity"></activity>
         <activity android:name="com.tjsinfo.tjpark.fragment.ThreeFragment"></activity>
+        <activity android:name="com.tjsinfo.tjpark.activity.ChargeActivity"></activity>
+
 <!--微信支付-->
         <activity
             android:name="com.tjsinfo.tjpark.util.PayDemoActivity"

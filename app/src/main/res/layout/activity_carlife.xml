@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="*"
-
-    >
-    <!--标题及撤回按钮-->
-
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/textView"
@@ -16,9 +12,27 @@
         android:text="车生活"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textSize="10pt"
+
         />
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-45dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        />
+
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    >
+
     <!--车生活，tabbar的第三页-->
     <TableRow android:layout_weight="1">
                 <ImageButton
@@ -108,3 +122,4 @@
             </TableRow>
 
 </TableLayout>
+</LinearLayout>

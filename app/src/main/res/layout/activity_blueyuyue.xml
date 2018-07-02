@@ -12,7 +12,7 @@
         android:text="预约车位"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textSize="10pt"
         />
     <Button
@@ -26,7 +26,6 @@
 
         />
 
-    <!--订单详情-->
     <!--车场名称-->
     <TextView
         android:id="@+id/placeId"
@@ -38,13 +37,16 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         />
+
+
     <TextView
         android:id="@+id/blue_yuYueParkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="5dp"
-        android:text="未知"
+        android:textSize="18dp"
+        android:text="停车场名字"
           />
 
     <!--距离-->
@@ -54,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="8dp"
-        android:text="未知"
+        android:text="距离"
         />
     <!--类型-->
     <TextView
@@ -63,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="5dp"
-        android:text="未知"
+        android:text="类型"
         />
     <!--地址-->
     <TextView
@@ -72,13 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="5dp"
-        android:text="未知"
+        android:text="地址"
         />
     <!--横线-->
     <View  android:layout_height="1px"
         android:layout_width="match_parent"
         android:background="#BFBFBF"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
 
         />
     <!--预约入场-->
@@ -88,7 +90,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:textSize="8pt"
-        android:layout_marginTop="3dp"
+        android:textColor="@color/blue"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="预约入场"
         />
     <TableLayout
@@ -101,30 +105,32 @@
 
     <ImageView
         android:id="@+id/mycar"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/mycar"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
          />
     <Button
         android:id="@+id/blue_yuYueCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="blue_yuYueCar"
-        android:text="选择车辆"
-        android:layout_marginLeft="3dp"
+        android:text="选择入场车辆"
+        android:layout_marginLeft="10dp"
         android:textColor="#FF4040"
-        android:background="#FFFFFF"
+
         />
     </TableRow>
         <TableRow >
     <!--选择时间-->
     <ImageView
         android:id="@+id/myticket"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/myticket"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
 
         />
     <Button
@@ -132,27 +138,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="blue_yuYueTime"
-        android:layout_marginLeft="3dp"
-        android:text="选择时间"
+        android:layout_marginLeft="10dp"
+        android:text="选择离场时间"
+        android:layout_marginTop="8dp"
         android:textColor="#FF4040"
-        android:background="#FFFFFF"
+
         />
         </TableRow>
         <TableRow >
     <!--具体金额-->
     <ImageView
         android:id="@+id/qianian"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/qian"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
         />
             <TextView
                 android:id="@+id/blue_yuYueMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:textSize="16dp"
                 android:text="预约金额"
                 />
         </TableRow>
@@ -161,7 +170,7 @@
     <!--预约车位按钮-->
     <Button
         android:id="@+id/blue_yuYueBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
@@ -169,7 +178,7 @@
         android:onClick="blue_yuYueBtn"
         android:text="预约车位"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
          />
 
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
+
+<!--支付结果-->
+    <!--标题-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="支付结果"
+        android:paddingTop="8dp"
+        android:textColor="#FFFFFF"
+        android:background="#00a0d8"
+        android:textSize="10pt"
+
+        />
+    <TextView
+        android:id="@+id/payResult"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="支付成功"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:textSize="7pt"
+        />
+    <TextView
+        android:id="@+id/payMoney"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="支付金额"
+        android:paddingTop="8dp"
+        android:textColor="@color/red"
+        android:textSize="10pt"
+        />
+    <TextView
+        android:id="@+id/payDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:textAlignment="center"
+        android:text="费用明细 >"
+        android:textSize="5pt"
+        android:paddingTop="8dp"
+        />
+    <View  android:layout_height="3px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        android:layout_marginBottom="5dp"
+        />
+    <TableLayout
+        android:id="@+id/pay_selectMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <TableRow>
+        <TextView
+            android:id="@+id/ZFSJ"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="支付时间"
+            android:textSize="5pt"
+            android:paddingTop="8dp"
+            android:gravity="center"
+            android:layout_marginLeft="30dp"
+            />
+            <TextView
+                android:id="@+id/ZFSJJT"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="支付时间具体"
+                android:textSize="5pt"
+                android:paddingTop="8dp"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <View  android:layout_height="3px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        android:layout_marginTop="5dp"
+        />
+
+    <Button
+        android:id="@+id/pay_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:textColor="#FFFFFF"
+        android:background="#00a0d8"
+        android:layout_marginTop="10dp"
+        android:text="支付结果" />
+    <TextView
+        android:id="@+id/ts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="温馨提示:请您在支付后15分钟内离场，否则会产生新的费用"
+        android:paddingTop="8dp"
+        />
+
+
+
+
+
+</LinearLayout>

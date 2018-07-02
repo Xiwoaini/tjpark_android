@@ -14,7 +14,7 @@
         android:text="停车场详情"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textSize="10pt"
 
         />
@@ -27,26 +27,19 @@
         android:textColor="#FFFFFF"
         android:background="@android:color/transparent"
         />
-
-    <!--充电停车场详情-->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+         <TextView
+        android:id="@+id/placeId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        />
+    <!--&lt;!&ndash;充电停车场详情&ndash;&gt;-->
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-            <TableLayout
-                android:id="@+id/pay_selectMethod"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                >
-                <TextView
-                    android:id="@+id/placeId"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    />
             <TextView
                 android:id="@+id/yellowPark_placeName"
                 android:layout_width="wrap_content"
@@ -54,205 +47,233 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="5dp"
+                android:textSize="8pt"
                 android:text="停车场名称"
                 />
+            <TableLayout
+                android:id="@+id/pay_selectMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/yellowPark_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="距离"
-                />
-            <TextView
-                android:id="@+id/yellowPark_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="类型"
-                android:layout_marginLeft="10dp"
-                />
-            <TextView
-                android:id="@+id/yellowPark_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="地址"
-                android:layout_marginLeft="10dp"
-                />
-
-            <!--横线-->
-            <View  android:layout_height="1px"
-                android:layout_width="match_parent"
-                android:background="#BFBFBF"
-                android:layout_marginBottom="10dp"
-                />
-            <TextView
-                android:id="@+id/yellowPark_JFSD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="计费时段"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/blue"
-                />
+                >
+                <!--停车场类型-->
                 <TableRow>
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_weight="1"
+                        android:layout_height="28dp"
 
-            <TextView
-                android:id="@+id/yellowPark_JTSJ"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        />
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_weight="1"
+                        android:layout_height="28dp"
+
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        />
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_weight="1"
+                        android:layout_height="28dp"
+
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        />
+                    <ImageView
+                        android:id="@+id/img4"
+                        android:layout_weight="1"
+                        android:layout_height="28dp"
+
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        />
+                    <ImageView
+                        android:id="@+id/img5"
+                        android:layout_weight="1"
+                        android:layout_height="28dp"
+
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="1dp"
+                        />
+                </TableRow>
+            </TableLayout>
+            <TableLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="暂无数据"
-                android:layout_marginLeft="10dp"
-                />
-                <TextView
-                    android:id="@+id/bluePark_JTLX"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="暂无数据"
-                    android:layout_marginLeft="10dp"
-                    />
+                >
+                <TableRow>
+                    <ImageView
+                        android:id="@+id/img6"
+                       android:layout_width="30dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/qian"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginLeft="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/yellowPark_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:text="地址"
+                        />
                 </TableRow>
+            </TableLayout>
 
             <!--横线-->
             <View  android:layout_height="1px"
                 android:layout_width="match_parent"
                 android:background="#BFBFBF"
-                android:layout_marginBottom="5dp"
-                />
-            <TextView
-                android:id="@+id/yellowPark_SFGZ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/blue"
-                android:text="收费规则"
                 />
-            <TableRow>
-                <ImageView
-                    android:id="@+id/imageQian"
-                    android:layout_width="wrap_content"
+            <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:gravity="center"
+            >
+                <TableRow>
+                    <TextView
+                        android:id="@+id/YYSC"
+                        android:layout_weight="1"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="营业时长"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/ZCWS"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="总车位数"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/MFSC"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="免费时长"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/FDJG"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="封顶价格"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/YYSCJT"
+                        android:layout_weight="1"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="营业时长具体"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/ZCWSJT"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="总车位数具体"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/MFSCJT"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="免费时长具体"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/FDJGJT"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="封顶价格具体"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="5dp"
+                        />
+                </TableRow>
+            </TableLayout>
+
+            <!--横线-->
+            <View  android:layout_height="1px"
+                android:layout_width="match_parent"
+                android:background="#BFBFBF"
+                android:layout_marginBottom="10dp"
+                />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableRow>
+                    <ImageView
+                        android:id="@+id/img7"
+                        android:layout_width="37dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/kc"
+                        />
+                    <TextView
+                        android:id="@+id/KXCWKC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="空闲2 / 共2"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <ImageView
+                        android:id="@+id/img8"
+                        android:layout_width="37dp"
+                        android:layout_height="33dp"
+                        android:src="@drawable/mc"
+                        />
+                    <TextView
+                        android:id="@+id/KXCWMC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="空闲2 / 共2"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <Button
+                        android:id="@+id/XQ"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/icon3"
+
+                        android:layout_marginLeft="15dp"
+                        />
+                </TableRow>
+                <TextView
+                   android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:src="@drawable/qian"
-                    />
-                <TextView
-                    android:id="@+id/yellowPark_JTGZ0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="1小时"
-                    />
-            <TextView
-                android:id="@+id/yellowPark_JTGZ1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="暂无数据"
-                />
-            <TextView
-                android:id="@+id/yellowPark_JTGZ2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="暂无数据"
-                />
-            </TableRow>
-<!--横线-->
-            <View  android:layout_height="1px"
-                android:layout_width="match_parent"
-                android:background="#BFBFBF"
-                />
-            <TextView
-                android:id="@+id/yellowPark_CDZXQ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
-                android:textColor="@color/blue"
-                android:text="充电桩详情"
-                />
-            <TableRow>
-            <TextView
-                android:id="@+id/yellowPark_CDFY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="充电费用"
-                />
-                <TextView
-                    android:id="@+id/yellowPark_JTFY"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="具体费用"
-                    android:layout_marginLeft="20dp"
+                    android:background="@color/gray"
+                    android:text="以上信息仅供参考，具体收费价格按车场为准。"
+                    android:gravity="center"
+                    android:textSize="3pt"
+                    android:layout_marginTop="5dp"
                     />
 
 
-        </TableRow>
-                <TableRow>
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:src="@drawable/chongdian"
-              />
-                    <TextView
-                        android:id="@+id/yellowPark_KSCD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="开放时间"
-                        android:layout_marginLeft="20dp"
-                        />
-
-                </TableRow>
-                <TableRow>
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:src="@drawable/chongdian"
-                 />
-                    <TextView
-                        android:id="@+id/yellowPark_MSCD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="开放时间"
-                        android:layout_marginLeft="20dp"
-                        />
-                </TableRow>
-                <TableRow>
-            <TextView
-                android:id="@+id/yellowPark_KFSJ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="开放时间"
-                android:layout_marginLeft="10dp"
-                />
-                    <TextView
-                        android:id="@+id/yellowPark_JTKFSJ"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:text="开放时间"
-                        android:layout_marginLeft="20dp"
-                        />
-                </TableRow>
-            <!--横线-->
-            <View  android:layout_height="1px"
-                android:layout_width="match_parent"
-                android:background="#BFBFBF"
-                />
                 <TableRow>
             <Button
                 android:id="@+id/yellowPark_daoHang"
@@ -261,9 +282,10 @@
                 android:onClick="blueDaoHang"
                 android:text="导航"
                 android:textColor="#FFFFFF"
-                android:background="#3DC9CE"
-                android:layout_marginRight="5dp"
+                android:background="#00a0d8"
+                android:layout_marginRight="1dp"
                 android:layout_marginLeft="3dp"
+                android:layout_marginTop="1dp"
                 />
             <Button
                 android:id="@+id/yellowPark_yuYue"
@@ -272,13 +294,14 @@
                 android:onClick="yellowPark_yuYue"
                 android:text="预约"
                 android:layout_marginRight="3dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="1dp"
                 android:textColor="#FFFFFF"
-                android:background="#3DC9CE"
+                android:background="#00a0d8"
+                android:layout_marginTop="1dp"
                 />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 </LinearLayout>
 

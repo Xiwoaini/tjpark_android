@@ -13,7 +13,7 @@
         android:text="车位发布"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textSize="10pt"
 
         />
@@ -140,24 +140,38 @@
         android:background="@drawable/bg_border"
         />
 
-    <!--共享模式-->
-    <Spinner
-        android:id="@+id/sType"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-         />
-    <!--是否含有充电桩-->
-    <CheckBox
-        android:id="@+id/checkBtn"
+
+    <TableLayout
+        android:id="@+id/pay_selectMethod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="是否含有充电桩"
-        />
+        android:layout_marginTop="10dp"
+        >
+        <TableRow>
+        <!--共享模式-->
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="共享模式 : "
+            android:layout_marginLeft="10dp"
+            android:gravity="center"/>
+    <Spinner
+        android:id="@+id/sType"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+
+         />
+            <!--是否含有充电桩-->
+            <CheckBox
+                android:id="@+id/checkBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:text="是否含有充电桩"
+                />
+        </TableRow>
+    </TableLayout>
+
     <!--发布按钮-->
     <Button
         android:id="@+id/shareBtn"
@@ -165,9 +179,9 @@
         android:layout_marginRight="3dp"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="发布"
         />
 

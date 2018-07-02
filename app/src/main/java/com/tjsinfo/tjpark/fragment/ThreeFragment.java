@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.tjsinfo.tjpark.activity.CarLifeDisPlayActivity;
@@ -38,6 +39,17 @@ public class ThreeFragment extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carlife);
+
+        //返回按钮
+        Button exitBtn = findViewById(R.id.exitBtn);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+
+        });
         carLifeBtn1 = (ImageButton)findViewById(R.id.imgBtn1);
         carLifeBtn2 = (ImageButton)findViewById(R.id.imgBtn2);
         carLifeBtn3 = (ImageButton)findViewById(R.id.imgBtn3);

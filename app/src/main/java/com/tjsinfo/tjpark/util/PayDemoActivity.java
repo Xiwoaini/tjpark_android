@@ -19,6 +19,7 @@ import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tjsinfo.tjpark.R;
+import com.tjsinfo.tjpark.activity.PayResultActivity;
 import com.tjsinfo.tjpark.activity.TabBarActivity;
 import com.tjsinfo.tjpark.entity.ParkYuYue;
 import com.tjsinfo.tjpark.entity.REQ;
@@ -44,6 +45,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,15 +69,11 @@ public class 	PayDemoActivity extends FragmentActivity {
 	/** 支付宝账户登录授权业务：入参target_id值 */
 	public static final String TARGET_ID = "";
 
+	private RadioButton pay_wx,pay_zfb;
 	private String plate_number,plate_id,place_id,place_name,reservation_time,reservation_fee;
 
 
 	/** 商户私钥，pkcs8格式 */
-	/** 如下私钥，RSA2_PRIVATE 或者 RSA_PRIVATE 只需要填入一个 */
-	/** 如果商户两个都设置了，优先使用 RSA2_PRIVATE */
-	/** RSA2_PRIVATE 可以保证商户交易在更加安全的环境下进行，建议使用 RSA2_PRIVATE */
-	/** 获取 RSA2_PRIVATE，建议使用支付宝提供的公私钥生成工具生成， */
-	/** 工具地址：https://doc.open.alipay.com/docs/doc.htm?treeId=291&articleId=106097&docType=1 */
 	public static final String RSA2_PRIVATE = "MIIEowIBAAKCAQEApWEVBmdvsBp676mALL9QELrHm6AkG0gVZvDvNca7ItrmPp4iLMNvlqe0H6UfhjEiz/QPz6vjPzT0MeZ5rywEQU4UdRBCtEWte6krTVzBjamoqfxpkJ+urVme0iuCMUMO8FoiN84sRVJJ5oIf1IagJsdUIS15LdBr1Q2WniCse7uxGkRBEK0OTT6bFQz8P1Aq4y651aecFDvGxqr7vCzWgMlh0PyNo+Piiy3m6aqFFDZmw06rNIaOg6CztLAOav9UEHxkSJuczIHuRSFOOVzlu+EN4eGm3j8/NUO5c8XzrqupRo5DYOtyl5h8RLBwe0Zoh9fq7lwmGZeRspUl8sr7cQIDAQABAoIBACvgsh9c2jkzDWMA6cz1hVyq8cLMnkfOvD7vtcfizkvVIDmE4zRVNgoWvKeYu+BysPXTn05OIKDof9GtgKOFXiuld7AHfGswAXNJ0v9XmNLpLKLNIYUJmOLNYGIKwSQo0pHamDGONhi+WHUcGS3d+ifPwvZ6higtoC6KyGdz6893836Gmd3FArvux4ER1WpMdM4lGuTHUF6SSZFajQdjjmYuCTw31iCrrD6tiKrd1J/JCG/w/+JW4Tfaf69bmSO4PLg5VFvUo+a9VF/0UxxViIYkj6rmwYMNbqPOiU/Xeee+oFTT3NQFUm842ZoLbwwyOxMf4XgK/BBhat+yg48QjjECgYEA26D3baaWi6Yp6QzvNepNKrMgANXP6pU7fp8jpSBCtQ4mTlq5ztWP2+ieUyYNFb2ha01gpGCp3wVrWDhG05TFNVg6g7iMv8WQZrgRK8ZUjgx1JxmA9UIVbnk+jEAbiEt5ABIUlgLWoziyQVnXhAgXmebA0YjvMK5VsVqX99vRA98CgYEAwMQ83E0wWy6CH6Fj77sK58S6yZQ3QcBy8OIJCmASkAUXzpXAcYiEAj4Q+IVjnHvlAxon+mlJheAmDW2Fqr14809mneF9Z/Xn4ma27Z0/gsxhRkDVWeT36NyR2eUIy9zb+NV7IAfGJ3bCw/kzmZhxMDEnSRlj8l2wx4i6/06Raq8CgYBP4gs80bO+FXD2+CJljNQGbOJ+C0a1fxQFqSJQ5Bv/OKdMJomgpmLNzJ0RhyyJNNDqc1lsUFBY8uKpUsbIHDtifLXDxTNEaTptchOkxV1p0TQnRYp3KlMbPHQ4lPSurSzUjr74FQ42jd+gD2po9nyHGLwXOmQtY6t9d4MAvu4WJwKBgQCZ039lpcsy2DhKmXWwdqhLL3iHJ9m4hKS0iQwB1Yy6lPXcizAY6YG+cF0GlRtaYpvsD9FbSO29AZQcHwwNpkmAkBopXym97kPvLVxI3bUy4Xm2oEIhDFCw6GMTaGvOkx6OwX0RoGKGV4Uw8go1Rar9dBwPf018uTs632eqGL5+TQKBgAz/rOXeKCUzn4fbLf/hOG0Xvy6VaznRTHJGgciiTOkvZj9LESfOBiNEtFZyyVhLm1W2tlGm3cHApLU7f7ETe1tm5RI0AX8BLUM/7L7iI2aEuI3F2G8sVv0oi2aPJbX4IcK/242wQqrF6MCiA10UHLEwvUCaDs239cWoRYUmB1WR";
 	public static final String RSA_PRIVATE = "";
 	
@@ -120,8 +118,8 @@ public class 	PayDemoActivity extends FragmentActivity {
 								res =NetConnection.getXpath(strUrl);
 								Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
 								Intent intent = new Intent();
-								intent.setClass(PayDemoActivity.this, TabBarActivity.class);
-								intent.putExtra("currentTab",1);
+								intent.setClass(PayDemoActivity.this, PayResultActivity.class);
+								intent.putExtra("money",parkYuYue.getReservation_fee());
 								startActivity(intent);
 							}
 							else if (parkYuYue.getPayMode().contains("共享")){
@@ -138,8 +136,9 @@ public class 	PayDemoActivity extends FragmentActivity {
 								res =NetConnection.getXpath(strUrl);
 								Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
 								Intent intent = new Intent();
-								intent.setClass(PayDemoActivity.this, TabBarActivity.class);
-								intent.putExtra("currentTab",1);
+								intent.setClass(PayDemoActivity.this, PayResultActivity.class);
+								intent.putExtra("money",parkYuYue.getReservation_fee());
+//								intent.putExtra("currentTab",1);
 								startActivity(intent);
 							}
 							//默认为正在计时支付
@@ -159,8 +158,9 @@ public class 	PayDemoActivity extends FragmentActivity {
 								res1 =NetConnection.getXpath(strUrl);
 								Toast.makeText(PayDemoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
 								Intent intent = new Intent();
-								intent.setClass(PayDemoActivity.this, TabBarActivity.class);
-								intent.putExtra("currentTab",1);
+								intent.setClass(PayDemoActivity.this, PayResultActivity.class);
+								intent.putExtra("money",reservation_fee);
+//								intent.putExtra("currentTab",1);
 								startActivity(intent);
 							}
 
@@ -230,9 +230,18 @@ public class 	PayDemoActivity extends FragmentActivity {
 		Bundle bundle = this.getIntent().getExtras();
 		 parkYuYue =(ParkYuYue)bundle.getSerializable("yuYueOrder");
 		TextView pay_placeName=(TextView)findViewById(R.id.pay_placeName);
-		pay_placeName.setText(parkYuYue.getPlace_name());
 		TextView pay_money=(TextView)findViewById(R.id.pay_money);
+		TextView DDLXJT=(TextView)findViewById(R.id.DDLXJT);
+		TextView CPHMJT=(TextView)findViewById(R.id.CPHMJT);
+		TextView YYDJT =(TextView)findViewById(R.id.YYDJT);
+		TextView TCSJJT =(TextView)findViewById(R.id.TCSJJT);
+		pay_placeName.setText(parkYuYue.getPlace_name());
 		pay_money.setText(parkYuYue.getReservation_fee());
+		DDLXJT.setText(parkYuYue.getDetail_type());
+		CPHMJT.setText(parkYuYue.getPlate_number());
+		YYDJT.setText(parkYuYue.getReservation_time().equals("")?"已进场":parkYuYue.getReservation_time());
+		TCSJJT.setText(parkYuYue.getPark_time().equals("")?"暂未进场":parkYuYue.getPark_time());
+
 
 		plate_number = parkYuYue.getPlate_number();
 		plate_id=parkYuYue.getPlate_id();
@@ -241,6 +250,9 @@ public class 	PayDemoActivity extends FragmentActivity {
 		reservation_time=parkYuYue.getReservation_time();
 		reservation_fee=parkYuYue.getReservation_fee();
 
+		//选中支付方式
+		  pay_wx = findViewById(R.id.pay_wx);
+		pay_zfb = findViewById(R.id.pay_wx);
 
 	}
 
@@ -251,10 +263,12 @@ public class 	PayDemoActivity extends FragmentActivity {
 	 * @param v
 	 */
 	public void payV2(View v) {
-		if (true){
+		//微信支付
+		if (pay_wx.isChecked()){
 			sendPayRequest();
 			return;
 		}
+		//默认为支付宝
 
 		if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
 			new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
@@ -396,12 +410,13 @@ public class 	PayDemoActivity extends FragmentActivity {
 	/**调用微信支付*/
 	public void sendPayRequest() {
 		msgApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
-		msgApi.registerApp(Constants.APP_ID);
+
 
 		//请求的xml数据
 		final  String xmlString;
 		//SrotedMap集合可以自动排序安装规则
 		final SortedMap<Object, Object> map = new TreeMap<Object, Object>();
+
 
 		//请求参数、参与签名的参数
 
@@ -409,7 +424,8 @@ public class 	PayDemoActivity extends FragmentActivity {
 		map.put("body", "天津停车APP-停车缴费");
 		map.put("mch_id", "1503922241");
 		map.put("spbill_create_ip", getIPAddress(PayDemoActivity.this));
-		map.put("nonce_str", SignUtil.getRandomString(16));
+		final String nor_str =  SignUtil.getRandomString(32);
+		map.put("nonce_str", nor_str);
 
 		map.put("total_fee", "1");
 		map.put("out_trade_no", String.valueOf(System.currentTimeMillis()).toString().substring(0,10));
@@ -438,11 +454,11 @@ public class 	PayDemoActivity extends FragmentActivity {
 					request.partnerId = req.getPartnerid();
 					request.prepayId= req.getPrepayid();
 					request.packageValue = req.getPackages();
-					request.nonceStr= req.getNoncestr();
+					request.nonceStr= nor_str;
 					request.timeStamp= req.getTimestamp();
 					request.sign= req.getSign();
                     // 发出授权申请
-
+					msgApi.registerApp(Constants.APP_ID);
 					Log.v("结果",String.valueOf(msgApi.sendReq(request)));
 
 

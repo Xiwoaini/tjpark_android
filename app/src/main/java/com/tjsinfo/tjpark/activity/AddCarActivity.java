@@ -123,10 +123,10 @@ public class AddCarActivity  extends AppCompatActivity {
         public void onClick(View view) {
 
 
-            if (addCar_PlateNum.getText().length()!=7){
+            if ((addCar_PlateNum.getText().length()!=7)||(addCar_PlateNum.getText().length()!=8)){
                 new AlertDialog.Builder(AddCarActivity.this)
                         .setTitle("注意")
-                        .setMessage("车牌号不符合长度!")
+                        .setMessage("车牌号不符合长度(普通车7位，节能车为8位)!")
                         .setPositiveButton("确定", null)
                         .show();
             }

@@ -72,8 +72,8 @@ public class OrderInfoUtil2_0 {
 
 		keyValues.put("app_id", app_id);
 
-		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+totalMoney+"\",\"subject\":\"天津停车\",\"body\":\"天津停车缴费\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
-//		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+0.01+"\",\"subject\":\"天津停车\",\"body\":\"天津停车缴费\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
+//		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+totalMoney+"\",\"subject\":\"天津停车\",\"body\":\"天津停车缴费\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
+		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+0.01+"\",\"subject\":\"天津停车\",\"body\":\"天津停车缴费\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
 		keyValues.put("charset", "utf-8");
 
 		keyValues.put("method", "alipay.trade.app.pay");

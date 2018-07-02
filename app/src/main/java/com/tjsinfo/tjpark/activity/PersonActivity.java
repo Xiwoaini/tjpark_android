@@ -43,7 +43,7 @@ public class PersonActivity extends FragmentActivity {
         String username=mSharedPreferences.getString("loginName","");
         String password=mSharedPreferences.getString("password","");
 
-        System.out.print("值为:"+username);
+//        System.out.print("值为:"+username);
         if ((username!="")&&(password!="")){
             textStatus.setText("已登录");
             btnStatus.setText("退出");

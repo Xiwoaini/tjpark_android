@@ -96,6 +96,22 @@ public class ParkYuYue implements Serializable {
         this.share_id = share_id;
     }
 
+    public String getDetail_type() {
+        return detail_type;
+    }
+
+    public void setDetail_type(String detail_type) {
+        this.detail_type = detail_type;
+    }
+
+    public String getPark_time() {
+        return park_time;
+    }
+
+    public void setPark_time(String park_time) {
+        this.park_time = park_time;
+    }
+
     private String customer_id = "";
     private String plate_number = "";
     private String plate_id = "";
@@ -107,5 +123,6 @@ public class ParkYuYue implements Serializable {
     private String record_id = "";
     private String fee = "";
     private String share_id = "";
-
+    private String detail_type = "";
+    private String park_time = "";
 }

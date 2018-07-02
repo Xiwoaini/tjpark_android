@@ -63,7 +63,15 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
     private SharedPreferences mSharedPreferences;
     private String personID;
     //停车场类型，用于筛选不同类型的停车场
-    private  String parkType = "normal";
+    public  static  String parkType = "normal";
+
+    //返回键
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.setClass(MapActivity.this, TabBarActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -404,6 +412,7 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
             this.park = park;
         }
 
+
         @Override
         public LatLng getPosition() {
             return mPosition;
@@ -501,6 +510,12 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
         }
         else if (parkType.equals("pay")){
            iter = TjParkUtils.parkMapByPay.entrySet().iterator();
+        }
+        else if (parkType.equals("yuyue")){
+            iter = TjParkUtils.parkMapByYuYue.entrySet().iterator();
+        }
+        else if (parkType.equals("share")){
+            iter = TjParkUtils.parkMapByShare.entrySet().iterator();
         }
         else{
             iter = TjParkUtils.parkMap.entrySet().iterator();

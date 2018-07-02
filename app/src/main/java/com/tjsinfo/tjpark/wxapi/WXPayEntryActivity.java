@@ -12,11 +12,13 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.ShowMessageFromWX;
 import com.tencent.mm.opensdk.modelmsg.WXAppExtendObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tjsinfo.tjpark.R;
 import com.tjsinfo.tjpark.activity.BlueParkActivity;
+import com.tjsinfo.tjpark.util.PayDemoActivity;
 
 
 /**
@@ -42,10 +44,12 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
         setIntent(intent);
         api.handleIntent(intent, this);
+
     }
 
     @Override
     public void onReq(BaseReq req) {
+
         switch (req.getType()) {
             case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
                 goToGetMsg();
@@ -90,12 +94,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         msg.append("\n");
         msg.append("filePath: ");
         msg.append(obj.filePath);
-
-//        Intent intent = new Intent(this, ShowFromWXActivity.class);
-//        intent.putExtra(Constants.ShowMsgActivity.STitle, wxMsg.title);
-//        intent.putExtra(Constants.ShowMsgActivity.SMessage, msg.toString());
-//        intent.putExtra(Constants.ShowMsgActivity.BAThumbData, wxMsg.thumbData);
-//        startActivity(intent);
           finish();
     }
 

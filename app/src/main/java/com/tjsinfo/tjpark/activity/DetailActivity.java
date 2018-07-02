@@ -110,11 +110,11 @@ public class DetailActivity  extends AppCompatActivity {
                             parkYuYue.setPlace_name(order.getPlace_name());
                             parkYuYue.setPlace_id(order.getPlace_id());
                             parkYuYue.setPayMode("正在计时");
+                            parkYuYue.setDetail_type("出场缴费");
+                            parkYuYue.setPark_time(order.getPark_time());
                             //分转元
                             String tmp = jso.get("fee").toString().replace("\"", "");
                             parkYuYue.setReservation_fee(String.valueOf(Double.parseDouble(tmp)/100));
-
-//                            detail_payNeed.setText("需支付费用: "+parkYuYue.getFee()+"元");
                             intent.setClass(DetailActivity.this, PayDemoActivity.class);
                             intent.putExtra("yuYueOrder", parkYuYue);
                             startActivity(intent);

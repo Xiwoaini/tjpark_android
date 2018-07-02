@@ -10,7 +10,7 @@
         android:id="@+id/pay_selectMethod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3DC9CE"
+        android:background="#00a0d8"
         >
         <TableRow>
             <Button
