@@ -23,10 +23,10 @@ import com.tjsinfo.tjpark.R;
 
 ///ip地址.
 public class TjParkUtils {
-
-
-    public static String windowIp="http://60.29.41.58:3000";
-//    public static String windowIp="http://192.168.168.221:8080";
+      public static String windowIp="http://60.29.41.58:3000";
+//    public static String windowIp="http://192.168.10.153:8080";
+//    public static String windowIp="http://192.168.10.180:8080";
+//      public static String windowIp="http://192.168.168.221:8080";
 
     //parkMap集合,地图显示等功能会用到此集合,所有集合
     public  static Map<String, Park> parkMap = new HashMap<String, Park>();

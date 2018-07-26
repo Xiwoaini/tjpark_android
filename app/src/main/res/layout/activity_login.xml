@@ -68,6 +68,7 @@
     </TableRow>
     </TableLayout>
 
+    
 
 
     <View  android:layout_height="1px"
@@ -76,14 +77,26 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="3dp"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:text="输入验证码即代表同意《天津停车用户注册协议》和《天津停车隐私协议》"
+        android:textSize="6pt"
+        />
+    
     <Button
         android:id="@+id/button6"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="#00a0d8"
         android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
         android:text="登录"
         />
 

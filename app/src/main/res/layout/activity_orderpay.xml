@@ -25,7 +25,13 @@
         android:background="#00a0d8"
         android:text="返回"
         />
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <!--支付订单详情-->
     <TableLayout  android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -221,42 +227,72 @@
             />
 
     </TableLayout>
+            <TableLayout  android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <!--订单类型-->
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checkedButton="@+id/pay_zfb"
         android:layout_marginTop="8dp"
-
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         >
-        <RadioButton
-            style="@style/radiobutton_right_style"
-            android:id="@+id/pay_ye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="余额"
+
+        <TableRow>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/zhifubao"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
 
             />
-
         <RadioButton
             style="@style/radiobutton_right_style"
             android:id="@+id/pay_zfb"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="支付宝"/>
+            />
+        </TableRow>
+        <TableRow>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/weixin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            />
         <RadioButton
             style="@style/radiobutton_right_style"
             android:id="@+id/pay_wx"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="微信"/>
+          />
+        </TableRow>
+        <TableRow>
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/yinlian"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            />
         <RadioButton
             style="@style/radiobutton_right_style"
             android:id="@+id/pay_yl"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="银联"/>
+
+            />
+        </TableRow>
     </RadioGroup>
+
+            </TableLayout>
     <Button
         android:id="@+id/pay_btn"
         android:layout_width="match_parent"
@@ -266,7 +302,9 @@
         android:layout_marginRight="3dp"
         android:onClick="payV2"
         android:background="#00a0d8"
+        android:textColor="@color/white"
         android:text="支付"
         />
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

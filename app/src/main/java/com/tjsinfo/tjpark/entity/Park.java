@@ -64,6 +64,7 @@ public class Park  implements Serializable {
     private String contacts_name= "";
     private String model= "";
     private String share_id= "";
+    private String parkPileId= "";
 
     public void setId(String id) {
         this.id = id;
@@ -479,5 +480,13 @@ public class Park  implements Serializable {
 
     public void setShare_id(String share_id) {
         this.share_id = share_id;
+    }
+
+    public String getParkPileId() {
+        return parkPileId;
+    }
+
+    public void setParkPileId(String parkPileId) {
+        this.parkPileId = parkPileId;
     }
 }

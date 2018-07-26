@@ -40,7 +40,8 @@
             android:id="@+id/imageView"
             android:layout_width="120dp"
             android:layout_height="150dp"
-            android:src="@drawable/gxcwtb" />
+            android:src="@drawable/gxcwtb"
+            android:layout_marginLeft="10dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:text="停车场名称"
             />
@@ -66,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:text="距离"
             />
         <TextView

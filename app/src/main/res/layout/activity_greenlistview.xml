@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="车位号"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
             />
             <TextView
             android:id="@+id/CWH"
@@ -23,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="xx"
+                android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             />
 
@@ -34,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="开放时间"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             />
             <TextView
             android:id="@+id/JTSJ"
@@ -48,7 +50,7 @@
             android:id="@+id/yuYueBtn"
             android:layout_width="50dp"
             android:layout_height="30dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="80dp"
                 android:background="@drawable/sdw_05"/>
             </TableRow>
             <TableRow>
@@ -58,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="费用:"
-            android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
             />
             <TextView
             android:id="@+id/JTFY"
@@ -66,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="xx"
+                android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
             />
 

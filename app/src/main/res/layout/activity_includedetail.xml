@@ -33,7 +33,7 @@
         android:id="@+id/KSSJ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="15dp"
         android:text="开始时间: "
         android:layout_marginTop="15dp"
         />
@@ -41,7 +41,7 @@
         android:id="@+id/JSSJ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="15dp"
         android:text="结束时间: "
         android:layout_marginTop="15dp"
         />
@@ -49,7 +49,7 @@
         android:id="@+id/SR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="15dp"
         android:text="收入明细: "
         android:layout_marginTop="15dp"
         />

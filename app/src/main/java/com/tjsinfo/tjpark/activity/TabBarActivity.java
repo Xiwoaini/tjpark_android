@@ -22,6 +22,7 @@ import com.tjsinfo.tjpark.tabbar.IndexActivity;
 //tabbar
 public class TabBarActivity extends FragmentActivity {
 
+
     private BottomTabBar mBottomTabBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

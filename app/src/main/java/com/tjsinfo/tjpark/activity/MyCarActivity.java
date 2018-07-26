@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -41,7 +42,7 @@ public class MyCarActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         new Thread(runnable).start();
-        d = TjParkUtils.createLoadingDialog(MyCarActivity.this,"加载中");
+        d = TjParkUtils.createLoadingDialog(MyCarActivity.this,"加载中...");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mycar);
         Button exitBtn=(Button)findViewById(R.id.exitBtn);
@@ -88,6 +89,8 @@ public class MyCarActivity  extends AppCompatActivity {
             String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
             jsonArray = NetConnection.getJsonArray(strUrl);
             if (null == jsonArray) {
+                Message msg = new Message();
+                handler.sendMessage(msg);
                 return;
             }
             Iterator it = jsonArray.iterator();
@@ -127,7 +130,11 @@ public class MyCarActivity  extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Bundle data = msg.getData();
-
+            if (myCarList.size() == 0){
+                Toast.makeText(MyCarActivity.this, "暂无车辆。", Toast.LENGTH_SHORT).show();
+                TjParkUtils.closeDialog(d);
+                return;
+            }
 
             CarAdapter adapter = new CarAdapter(MyCarActivity.this, R.layout.activity_mycarview,myCarList);
             //为listView赋值

@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -19,12 +22,15 @@ import android.widget.TextView;
 
 
 import com.tjsinfo.tjpark.R;
+import com.tjsinfo.tjpark.activity.AddCarActivity;
 import com.tjsinfo.tjpark.activity.BlueParkActivity;
 import com.tjsinfo.tjpark.activity.LoginActivity;
 import com.tjsinfo.tjpark.activity.MapActivity;
+import com.tjsinfo.tjpark.activity.NewsActivity;
 import com.tjsinfo.tjpark.activity.SugAddressActivity;
 import com.tjsinfo.tjpark.fragment.ThreeFragment;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 
@@ -97,6 +103,30 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         catch (Exception e){
 
         }
+        viewPager.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                //阻止手指离开时onTouch方法的继续执行
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // 新的条目被选中时调用
+                        int newPosition = viewPager.getCurrentItem() % imageViewList.size();
+                        Log.v("1",String.valueOf(newPosition));
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), NewsActivity.class);
+                        intent.putExtra("currentPage", newPosition);
+                        startActivity(intent);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        break;
+                }
+                return true;
+            }
+        });
+
+
 
         //轮播图结束
         //获取前台绑定控件
@@ -179,25 +209,41 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         imgBtn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
             }
         });
         imgBtn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
             }
         });
         imgBtn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
             }
         });
         imgBtn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
             }
         });
         imgBtn8.setOnClickListener(new View.OnClickListener() {
@@ -212,42 +258,59 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         csh_dzss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                            new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
 
             }
         });
         csh_cddt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
             }
         });
         csh_xc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
             }
         });
         csh_czcx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("敬请期待!")
+                        .setPositiveButton("确定", null)
+                        .show();
+            }
+        });
+        TextView nearPark = getActivity().findViewById(R.id.nearPark);
+        nearPark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到地图,普通类型
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), MapActivity.class);
+                MapActivity.parkType = "normal";
+                startActivity(intent);
             }
         });
 
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -290,10 +353,11 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         // 设置适配器
         viewPager.setAdapter(new MyAdapter());
 
+
         // 默认设置到中间的某个位置
         int pos = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2 % imageViewList.size());
         // 2147483647 / 2 = 1073741823 - (1073741823 % 5)
-        viewPager.setCurrentItem(5000000); // 设置到某个位置
+        viewPager.setCurrentItem(1); // 设置到某个位置
     }
 
     class MyAdapter extends PagerAdapter {
@@ -353,8 +417,6 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
     public void onPageSelected(int position) {
         // 新的条目被选中时调用
         int newPosition = position % imageViewList.size();
-
-
 
     }
 

@@ -69,6 +69,7 @@ public class DetailActivity  extends AppCompatActivity {
         }
 //        正在计时
         else if (order.getStatus().equals("正在计时")){
+           final ParkYuYue parkYuYue =new ParkYuYue();
             setContentView(R.layout.activity_detailcurrent);
             //获取
             detail_parkName=(TextView)findViewById(R.id.detail_parkName);
@@ -81,49 +82,51 @@ public class DetailActivity  extends AppCompatActivity {
             detail_startTime.setText("开始时间："+order.getIn_time());
             detail_fee.setText("收费标准：6元/小时");
             detail_time.setText("停车用时："+order.getPark_time());
-            detail_payNeed.setText("共需支付："+order.getReal_park_fee());
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    JsonArray jsonArray = null;
+                    String strUrl = "/tjpark/app/AppWebservice/getPayMoney?" +
+                            "parkRecordId=" + order.getId() ;
+                    jsonArray = NetConnection.getJsonArray(strUrl);
+                    JsonObject jso = jsonArray.get(0).getAsJsonObject();
+                    mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+                    String customer_id=mSharedPreferences.getString("personID","");
+                    //普通预约需要的参数(reservableParkIn)
+
+                    parkYuYue.setCustomer_id(customer_id);
+                    parkYuYue.setPlate_number(order.getPlace_number());
+                    parkYuYue.setRecord_id(order.getId());
+                    parkYuYue.setPlace_name(order.getPlace_name());
+                    parkYuYue.setPlace_id(order.getPlace_id());
+                    parkYuYue.setPayMode("正在计时");
+                    parkYuYue.setDetail_type("出场缴费");
+                    parkYuYue.setPark_time(order.getPark_time());
+                    //分转元
+                    String tmp = jso.get("fee").toString().replace("\"", "");
+                    parkYuYue.setReservation_fee(String.valueOf(Double.parseDouble(tmp)/100));
+                    detail_payNeed.setText("共需支付："+parkYuYue.getReservation_fee()+"元");
+                }
+            }).start();
 
 
             detail_pay =(Button)findViewById(R.id.detail_pay);
 
-//            正在计时支付
+//            正在计时支付 TODO 前一页
             detail_pay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent = new Intent();
+                     intent.setClass(DetailActivity.this, PayDemoActivity.class);
+                     intent.putExtra("yuYueOrder", parkYuYue);
+                     startActivity(intent);
 
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            JsonArray jsonArray = null;
-                            String strUrl = "/tjpark/app/AppWebservice/getPayMoney?" +
-                                    "parkRecordId=" + order.getId() ;
-                            jsonArray = NetConnection.getJsonArray(strUrl);
-                            JsonObject jso = jsonArray.get(0).getAsJsonObject();
-                            mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
-                            String customer_id=mSharedPreferences.getString("personID","");
-                            //普通预约需要的参数(reservableParkIn)
-                            Intent intent = new Intent();
-                            ParkYuYue parkYuYue =new ParkYuYue();
-                            parkYuYue.setCustomer_id(customer_id);
-                            parkYuYue.setPlate_number(order.getPlace_number());
-                            parkYuYue.setRecord_id(order.getId());
-                            parkYuYue.setPlace_name(order.getPlace_name());
-                            parkYuYue.setPlace_id(order.getPlace_id());
-                            parkYuYue.setPayMode("正在计时");
-                            parkYuYue.setDetail_type("出场缴费");
-                            parkYuYue.setPark_time(order.getPark_time());
-                            //分转元
-                            String tmp = jso.get("fee").toString().replace("\"", "");
-                            parkYuYue.setReservation_fee(String.valueOf(Double.parseDouble(tmp)/100));
-                            intent.setClass(DetailActivity.this, PayDemoActivity.class);
-                            intent.putExtra("yuYueOrder", parkYuYue);
-                            startActivity(intent);
-                        }
-                        }).start();
                 }
 
             });
         }
+//
 //        已完成
         else{
             setContentView(R.layout.activity_detail);
@@ -156,6 +159,8 @@ public class DetailActivity  extends AppCompatActivity {
 
 
     }
+
+
 
 
 }

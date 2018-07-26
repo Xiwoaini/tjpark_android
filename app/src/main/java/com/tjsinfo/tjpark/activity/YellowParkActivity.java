@@ -90,65 +90,75 @@ public class YellowParkActivity extends AppCompatActivity {
         if (park.getLable().contains("地上")){
             switch (i){
                 case 1:
-                    img1.setBackgroundResource(R.drawable.zntc);
+                    img1.setBackgroundResource(R.drawable.ditc);
                     i = 2;
                     break;
             }
         }
-        if (park.getLable().contains("预约")){
+        if (park.getLable().contains("地上,预约")){
             switch (i){
                 case 1:
-                    img1.setBackgroundResource(R.drawable.zntc);
+                    img1.setBackgroundResource(R.drawable.ditc);
                     i = 2;
                     break;
                 case 2:
-                    img2.setBackgroundResource(R.drawable.zntc);
+                    img2.setBackgroundResource(R.drawable.yytc);
                     i = 3;
                     break;
             }
 
         }
-        if (park.getLable().contains("充电")){
+        if (park.getLable().equals("地上,预约,充电")){
             switch (i){
                 case 1:
-                    img1.setBackgroundResource(R.drawable.zntc);
+                    img1.setBackgroundResource(R.drawable.ditc);
                     i = 2;
                     break;
                 case 2:
-                    img2.setBackgroundResource(R.drawable.zntc);
+                    img2.setBackgroundResource(R.drawable.yytc);
                     i = 3;
                     break;
                 case 3:
-                    img3.setBackgroundResource(R.drawable.zntc);
+                    img3.setBackgroundResource(R.drawable.ccz);
                     i = 4;
                     break;
 
             }
         }
-        if (park.getLable().contains("共享")){
+        if (park.getLable().equals("地上,充电")){
             switch (i){
                 case 1:
-                    img1.setBackgroundResource(R.drawable.zntc);
+                    img1.setBackgroundResource(R.drawable.ditc);
                     i = 2;
                     break;
                 case 2:
-                    img2.setBackgroundResource(R.drawable.zntc);
+                    img2.setBackgroundResource(R.drawable.ccz);
+                    i = 3;
+                    break;
+
+
+            }
+        }
+        if (park.getLable().equals("地上,预约,共享")){
+            switch (i){
+                case 1:
+                    img1.setBackgroundResource(R.drawable.ditc);
+                    i = 2;
+                    break;
+                case 2:
+                    img2.setBackgroundResource(R.drawable.yytc);
                     i = 3;
                     break;
                 case 3:
-                    img3.setBackgroundResource(R.drawable.zntc);
-                    i = 4;
-                    break;
-                case 4:
                     img4.setBackgroundResource(R.drawable.zntc);
-                    i = 5;
+                    i = 4;
                     break;
             }
         }
         if (park.getLable().contains("在线支付")){
             switch (i){
                 case 1:
-                    img1.setBackgroundResource(R.drawable.zntc);
+                    img1.setBackgroundResource(R.drawable.ditc);
                     i = 2;
                     break;
                 case 2:
@@ -164,7 +174,7 @@ public class YellowParkActivity extends AppCompatActivity {
                     i = 5;
                     break;
                 case 5:
-                    img5.setBackgroundResource(R.drawable.zntc);
+                    img5.setBackgroundResource(R.drawable.dzzf);
                     break;
             }
         }
@@ -180,7 +190,7 @@ public class YellowParkActivity extends AppCompatActivity {
 
                 Intent intent = new Intent();
                 intent.setClass(YellowParkActivity.this, ChargeActivity.class);
-                intent.putExtra("chargeParkId",park.getId());
+                intent.putExtra("chargeParkId",park.getParkPileId());
                 startActivity(intent);
 
             }

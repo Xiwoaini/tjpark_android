@@ -105,8 +105,8 @@
 
     <ImageView
         android:id="@+id/mycar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/mycar"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
@@ -119,15 +119,15 @@
         android:text="选择入场车辆"
         android:layout_marginLeft="10dp"
         android:textColor="#FF4040"
-
+        android:background="#FFFFFF"
         />
     </TableRow>
         <TableRow >
     <!--选择时间-->
     <ImageView
         android:id="@+id/myticket"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/myticket"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
@@ -142,15 +142,15 @@
         android:text="选择离场时间"
         android:layout_marginTop="8dp"
         android:textColor="#FF4040"
-
+        android:background="#FFFFFF"
         />
         </TableRow>
         <TableRow >
     <!--具体金额-->
     <ImageView
         android:id="@+id/qianian"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/qian"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"

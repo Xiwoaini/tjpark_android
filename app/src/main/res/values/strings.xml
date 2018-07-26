@@ -2,7 +2,7 @@
 
 
     <!--百度地图点聚合相关-->
-    <string name="app_name">天津停车APP</string>
+    <string name="app_name">天津停车</string>
     <string name="demo_name_basemap">基本地图功能</string>
     <string name="demo_title_basemap">基本地图功能--BaseMapDemo</string>
     <string name="demo_desc_basemap">创建一张百度地图并管理地图的生命周期, 包含个性化地图与普通地图切换功能</string>

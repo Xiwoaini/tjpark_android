@@ -10,11 +10,13 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -154,7 +156,7 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
                     int height = outMetrics.heightPixels;
                     lp.x = 0; // 新位置X坐标
                     lp.width = width; // 宽度
-                    lp.height = (int) (height * 0.33);// 高度
+                    lp.height = (int) (height * 0.37);// 高度
                     lp.y = height - ((lp.height) + 120);
                     lp.alpha = 0.9f; // 透明
                     dialogWindow.setAttributes(lp);
@@ -221,11 +223,14 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
                     int height = outMetrics.heightPixels;
 
                     lp.width = width; // 宽度
-                    lp.height = (int) (height * 0.38);// 高度
+                    lp.height = (int) (height * 0.42);// 高度
                     lp.alpha = 0.9f; // 透明
                     lp.x = 0; // 新位置X坐标
                     lp.y = height - ((lp.height) + 150); // 新位置Y坐标
                     dialogWindow.setAttributes(lp);
+
+
+
 
                     TextView yellow_placeName = (TextView) dialog.findViewById(R.id.yellow_placeName);
                     TextView yellow_label = (TextView) dialog.findViewById(R.id.yellow_label);
@@ -295,7 +300,7 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
                     int height = outMetrics.heightPixels;
                     lp.x = 0; // 新位置X坐标
                     lp.width = width; // 宽度
-                    lp.height = (int) (height * 0.33);// 高度
+                    lp.height = (int) (height * 0.37);// 高度
                     lp.y = height - ((lp.height) + 120);
                     lp.alpha = 0.9f; // 透明
                     dialogWindow.setAttributes(lp);

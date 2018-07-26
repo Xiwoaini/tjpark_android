@@ -193,6 +193,7 @@ public class SplashActivity extends Activity {
                                     park.setSlow_pile_total_num(jso.get("slow_pile_total_num").toString().replace("\"", ""));
                                     park.setSpace_num(jso.get("space_num").toString().replace("\"", ""));
 //计算距离
+                                    park.setParkPileId(jso.get("parkPileId").toString().replace("\"", ""));
                                     LatLng p2 = new LatLng(Double.parseDouble(jso.get("addpoint_y").toString().replace("\"", "")), Double.parseDouble(jso.get("addpoint_x").toString().replace("\"", "")));
                                     park.setDistance(String.valueOf(Math.ceil(DistanceUtil.getDistance(p1, p2)) / 1000)+"KM");
 

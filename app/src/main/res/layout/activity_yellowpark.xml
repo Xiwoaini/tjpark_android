@@ -109,7 +109,7 @@
                         android:id="@+id/img6"
                        android:layout_width="30dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/qian"
+                        android:src="@drawable/dqwz"
                         android:layout_marginRight="1dp"
                         android:layout_marginLeft="10dp"
                         />

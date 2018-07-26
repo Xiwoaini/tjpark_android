@@ -20,6 +20,7 @@ import com.tjsinfo.tjpark.activity.MyCarActivity;
 import com.tjsinfo.tjpark.activity.MyShareActivity;
 import com.tjsinfo.tjpark.R;
 import com.tjsinfo.tjpark.activity.ShareReleaseActivity;
+import com.tjsinfo.tjpark.activity.TabBarActivity;
 import com.tjsinfo.tjpark.entity.Person;
 import com.tjsinfo.tjpark.adapter.PersonAdapter;
 
@@ -85,7 +86,7 @@ public class FourFragment extends Fragment {
 
     private List<Person> getData(){
     String[] strData = new String[]{"停车订单","我的车辆","我的钱包","长租车位","我的共享车位","我的充电桩","设置"};
-    int[] imgData = new int[]{R.drawable.mycar,R.drawable.sharecar,R.drawable.releasecar,R.drawable.yueka,R.drawable.youhui,R.drawable.qian,R.drawable.fapiao};
+    int[] imgData = new int[]{R.drawable.tcdd,R.drawable.wdcl,R.drawable.wdqb,R.drawable.czcw,R.drawable.wdgxcw,R.drawable.fjcdz,R.drawable.xtsz};
         List<Person> data = new ArrayList<Person>();
         for(int i =0;i<7;i++){
             Person p =new Person();
@@ -116,8 +117,10 @@ public class FourFragment extends Fragment {
                     //停车订单
                     case 0:
                         //跳转代码，(当前Activity，目标Activity)
-//                        intent.setClass(getActivity(), MyCarActivity.class);
-//                        startActivity(intent);
+
+                        intent.setClass(getActivity(), TabBarActivity.class);
+                        intent.putExtra("currentTab",2);
+                        startActivity(intent);
                         break;
                     //我的车辆
                     case 1:

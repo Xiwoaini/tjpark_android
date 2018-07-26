@@ -14,9 +14,11 @@
         <TableRow>
             <Button
                 android:id="@+id/exitBtn"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:text="返回"
+                android:text="返 回"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:textColor="#FFFFFF"
                 android:background="@android:color/transparent"
                 />
@@ -46,14 +48,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
          />
-
-
+    <!--横线-->
+    <View  android:layout_height="2px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        />
     <TextView
         android:id="@+id/deleteExit"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
-        android:text="清空删除历史记录" />
+        android:text="删除历史记录" />
 
 </LinearLayout>

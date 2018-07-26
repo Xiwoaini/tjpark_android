@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
@@ -41,12 +42,16 @@ public class LoginActivity  extends AppCompatActivity {
 
     private SharedPreferences mSharedPreferences;
 
+    private TimeCount timeCount;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        timeCount = new TimeCount(60000, 1000);
         //获取对应控件
         username = (EditText) findViewById(R.id.editText4);
         password = (EditText) findViewById(R.id.editText2);
@@ -128,48 +133,50 @@ public class LoginActivity  extends AppCompatActivity {
         public void onClick(View view) {
 
             //用户名或密码为空
-//            if (TextUtils.isEmpty(username.getText().toString().trim()) || TextUtils.isEmpty(password.getText().toString().trim())) {
-                if (1==2){
-                new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("注意")
-                        .setMessage("请输入用户名或验证码!")
-                        .setPositiveButton("确定", null)
-                        .show();
+            if (TextUtils.isEmpty(username.getText().toString().trim()) || TextUtils.isEmpty(password.getText().toString().trim())) {
+                if (1 == 2) {
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("注意")
+                            .setMessage("请输入用户名或验证码!")
+                            .setPositiveButton("确定", null)
+                            .show();
+                }
             }
 
             else {
 
                 //安卓访问http需要在子线程中进行
-if(true){
-//                if (username.getText().toString().equals(nameInput) && password.getText().toString().equals(mobileCode)){
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-//进行注册
-                            JsonObject res1 = null;
 
-                            String strUrl1 = "/tjpark/app/AppWebservice/saveUser?password=111111" + "&nameInput="
-                                    + username.getText().toString() + "&registrationId=1";
-                            res1 = NetConnection.getXpath(strUrl1);
+    if (username.getText().toString().equals(nameInput) && password.getText().toString().equals(mobileCode)) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//进行注册
+                JsonObject res1 = null;
+
+                String strUrl1 = "/tjpark/app/AppWebservice/saveUser?password=111111" + "&nameInput="
+                        + username.getText().toString() + "&registrationId=1";
+                res1 = NetConnection.getXpath(strUrl1);
 
 //进行登录
-                            JsonObject res = null;
+                JsonObject res = null;
 
-                            String strUrl = "/tjpark/app/AppWebservice/userLogin?nameInput=" + username.getText().toString() +
-                                    "&password=111111&registrationId=1";
-                            res = NetConnection.getXpath(strUrl);
-                            //全部返回的字符串内容
+                String strUrl = "/tjpark/app/AppWebservice/userLogin?nameInput=" + username.getText().toString() +
+                        "&password=111111&registrationId=1";
+                res = NetConnection.getXpath(strUrl);
+                //全部返回的字符串内容
 
-                            String result = res.get("result").toString();
+                String result = res.get("result").toString();
 
-                            Message msg = new Message();
-                            Bundle data = new Bundle();
-                            data.putString("value", result);
-                            msg.setData(data);
-                            handler.sendMessage(msg);
-                        }
-                    }).start();
-                }
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("value", result);
+                msg.setData(data);
+                handler.sendMessage(msg);
+            }
+        }).start();
+    }
+
                 else{
                     new AlertDialog.Builder(LoginActivity.this)
                             .setTitle("注意")
@@ -202,8 +209,7 @@ if(true){
                 return;
             }
             else{
-                regBtn.setEnabled(false);
-                regBtn.setBackgroundColor(Color.parseColor("#EDEDED"));
+                timeCount.start();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -228,5 +234,25 @@ if(true){
         Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
         Matcher m = p.matcher(mobiles);
         return m.matches();
+    }
+
+
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        public void onFinish() {
+            regBtn.setText("获取验证码");
+            regBtn.setBackgroundResource(R.color.normalBack);//正常背景
+            regBtn.setClickable(true);
+        }
+
+        public void onTick(long millisUntilFinished) {
+            regBtn.setClickable(false);
+            regBtn.setBackgroundResource(R.color.gray);//倒计时时灰色背景
+
+            regBtn.setText(millisUntilFinished / 1000 + "s后重新获取");
+        }
     }
 }

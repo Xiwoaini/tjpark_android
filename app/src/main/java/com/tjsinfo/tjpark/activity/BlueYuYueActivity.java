@@ -137,6 +137,13 @@ public class BlueYuYueActivity extends AppCompatActivity {
                     }
                     i=0;
                 }
+                if (myCarList.size() ==0){
+                    new AlertDialog.Builder(BlueYuYueActivity.this)
+                            .setTitle("提示")
+                            .setMessage("请先添加车辆。")
+                            .setPositiveButton("确定", null)
+                            .show();
+                }
                 Message msg = new Message();
                 Bundle data = new Bundle();
 
@@ -250,10 +257,12 @@ public class BlueYuYueActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
             BlueYuYueActivity.ListViewListener ll = new BlueYuYueActivity.ListViewListener();
             listView.setOnItemClickListener(ll);
+            try{
+                dialog.show();
+            }
+            catch (Exception e){
 
-            dialog.show();
-
-
+            }
 
         }
     };

@@ -73,7 +73,13 @@ public class MyShareAdapter extends ArrayAdapter<MyShare> {
         }
         else{
             DQZT.setText(myShare.getShare_status());
-            ZT.setText(myShare.getButtonName());
+            if (null == myShare.getButtonName()){
+                ZT.setText("暂停");
+            }
+            else{
+                ZT.setText(myShare.getButtonName());
+            }
+
         }
         status = myShare.getButtonName();
         FBSJ.setText(myShare.getCreate_time());

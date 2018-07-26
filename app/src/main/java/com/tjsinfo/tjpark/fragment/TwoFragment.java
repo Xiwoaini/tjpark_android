@@ -33,6 +33,7 @@ import java.util.List;
 import com.tjsinfo.tjpark.activity.DetailActivity;
 import com.tjsinfo.tjpark.R;
 
+import com.tjsinfo.tjpark.activity.SplashActivity;
 import com.tjsinfo.tjpark.entity.Order;
 import com.tjsinfo.tjpark.util.NetConnection;
 import com.tjsinfo.tjpark.adapter.OrderAdapter;
@@ -94,7 +95,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         } else {
 
-             d =TjParkUtils.createLoadingDialog(getActivity(),"加载中");
+             d =TjParkUtils.createLoadingDialog(getActivity(),"加载中...");
             //初始化下拉控件
             swipeRefreshLayout = (SwipeRefreshLayout)getActivity().findViewById(R.id.swipe_refresh_layout);
             swipeRefreshLayout.setColorSchemeResources(
@@ -112,6 +113,8 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                     jsonArray = NetConnection.getJsonArray(strUrl);
 
                     if (null == jsonArray) {
+                        Message msg = new Message();
+                        handler.sendMessage(msg);
                         return;
                     }
                     Iterator it = jsonArray.iterator();
@@ -173,6 +176,8 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             // 初始化数据
             initData();
             if (orderList.size() == 0){
+                //暂无数据
+                Toast.makeText(getActivity(), "暂无停车订单。", Toast.LENGTH_SHORT).show();
                 TjParkUtils.closeDialog(d);
                 return;
             }
@@ -279,7 +284,9 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 //    监听listView的滑动状态的改变
     @Override
     public void onScrollStateChanged(AbsListView absListView, int i) {
+
         if (i == SCROLL_STATE_IDLE) {
+
             pb.setVisibility(View.VISIBLE);
             tvLoad.setVisibility(View.VISIBLE);
             loadMoreData();//加载更多数据

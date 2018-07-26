@@ -1,5 +1,6 @@
 package com.tjsinfo.tjpark.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -21,6 +23,7 @@ import com.tjsinfo.tjpark.R;
 import com.tjsinfo.tjpark.adapter.MyShareAdapter;
 import com.tjsinfo.tjpark.entity.MyShare;
 import com.tjsinfo.tjpark.util.NetConnection;
+import com.tjsinfo.tjpark.util.TjParkUtils;
 
 /**
  * Created by panning on 2018/1/12.
@@ -31,10 +34,12 @@ public class MyShareActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     List<MyShare> myShareList =new ArrayList<MyShare>();
     private ListView listview;
+    Dialog d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshare);
+        d = TjParkUtils.createLoadingDialog(MyShareActivity.this,"加载中...");
         listview=(ListView)findViewById(R.id.listView);
 
         mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
@@ -47,6 +52,8 @@ public class MyShareActivity extends AppCompatActivity {
                 jsonArray = NetConnection.getJsonArray(strUrl);
                 //全部返回的字符串内容
                 if (null==jsonArray ){
+                    Message msg = new Message();
+                    handler.sendMessage(msg);
                     return;
                 }
                 Iterator it = jsonArray.iterator();
@@ -114,8 +121,15 @@ public class MyShareActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if (myShareList.size() == 0){
+
+                TjParkUtils.closeDialog(d);
+                Toast.makeText(MyShareActivity.this, "您当前没有发布过车位或当前没有审核通过的车位信息。", Toast.LENGTH_SHORT).show();
+                return;
+            }
             MyShareAdapter adapter = new MyShareAdapter(MyShareActivity.this, R.layout.activity_sharelistview,myShareList);
             listview.setAdapter(adapter);
+            TjParkUtils.closeDialog(d);
 
         }};
 

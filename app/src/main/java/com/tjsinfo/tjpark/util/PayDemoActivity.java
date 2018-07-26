@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -46,6 +47,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +71,7 @@ public class 	PayDemoActivity extends FragmentActivity {
 	/** 支付宝账户登录授权业务：入参target_id值 */
 	public static final String TARGET_ID = "";
 
-	private RadioButton pay_wx,pay_zfb;
+	private RadioButton pay_wx,pay_zfb,pay_yl;
 	private String plate_number,plate_id,place_id,place_name,reservation_time,reservation_fee;
 
 
@@ -250,9 +252,35 @@ public class 	PayDemoActivity extends FragmentActivity {
 		reservation_time=parkYuYue.getReservation_time();
 		reservation_fee=parkYuYue.getReservation_fee();
 
-		//选中支付方式
-		  pay_wx = findViewById(R.id.pay_wx);
-		pay_zfb = findViewById(R.id.pay_wx);
+
+		pay_wx = findViewById(R.id.pay_wx);
+		pay_zfb = findViewById(R.id.pay_zfb);
+		pay_yl= findViewById(R.id.pay_yl);
+
+
+		pay_wx.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View view) {
+				pay_wx.setChecked(false);
+				new android.support.v7.app.AlertDialog.Builder(PayDemoActivity.this)
+						.setTitle("信息")
+						.setMessage("暂未开通，当前版本只支持支付宝。")
+						.setPositiveButton("确定", null)
+						.show();
+			}
+		});
+		pay_yl.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View view) {
+				pay_yl.setChecked(false);
+				new android.support.v7.app.AlertDialog.Builder(PayDemoActivity.this)
+						.setTitle("信息")
+						.setMessage("暂未开通，当前版本只支持支付宝。")
+						.setPositiveButton("确定", null)
+						.show();
+			}
+		});
 
 	}
 
@@ -263,57 +291,95 @@ public class 	PayDemoActivity extends FragmentActivity {
 	 * @param v
 	 */
 	public void payV2(View v) {
-		//微信支付
-		if (pay_wx.isChecked()){
-			sendPayRequest();
-			return;
-		}
-		//默认为支付宝
 
-		if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
-			new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
-					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialoginterface, int i) {
-							//
-							finish();
+		final android.support.v7.app.AlertDialog.Builder normalDialog =
+				new android.support.v7.app.AlertDialog.Builder(PayDemoActivity.this);
+
+		normalDialog.setTitle("提示");
+		normalDialog.setMessage("当前处于测试阶段，支付费用为0.01元,目前仅支持支付宝用户。");
+		normalDialog.setPositiveButton("确定",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						//微信支付
+						if (pay_wx.isChecked()){
+//开始
+							msgApi = WXAPIFactory.createWXAPI(PayDemoActivity.this, Constants.APP_ID);
+						if (!msgApi.isWXAppInstalled()){
+						new AlertDialog.Builder(PayDemoActivity.this).setTitle("警告").setMessage("请安装微信APP!")
+							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialoginterface, int i) {
+							}
+						}).show();
+						return;
+
+				}
+							sendPayRequest();
+							return;
+//结束
 						}
-					}).show();
+						//默认为支付宝
 
-			return;
-		}
-	
-		/**
-		 * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-		 * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-		 * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险； 
-		 * 
-		 * orderInfo的获取必须来自服务端；
-		 */
-        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-		Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2,reservation_fee.replace("元",""));
-		String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+						if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
+							new AlertDialog.Builder(PayDemoActivity.this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
+									.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialoginterface, int i) {
+											//
+											finish();
+										}
+									}).show();
 
-		String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-		String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-		final String orderInfo = orderParam + "&" + sign;
-		
-		Runnable payRunnable = new Runnable() {
+							return;
+						}
 
-			@Override
-			public void run() {
-				PayTask alipay = new PayTask(PayDemoActivity.this);
-				Map<String, String> result = alipay.payV2(orderInfo, true);
+						/**
+						 * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
+						 * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
+						 * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
+						 *
+						 * orderInfo的获取必须来自服务端；
+						 */
+						boolean rsa2 = (RSA2_PRIVATE.length() > 0);
+						Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2,reservation_fee.replace("元",""));
+						String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+
+						String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
+						String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+						final String orderInfo = orderParam + "&" + sign;
+
+						Runnable payRunnable = new Runnable() {
+
+							@Override
+							public void run() {
+								PayTask alipay = new PayTask(PayDemoActivity.this);
+								Map<String, String> result = alipay.payV2(orderInfo, true);
 //				Log.i("msp", result.toString());
-				
-				Message msg = new Message();
-				msg.what = SDK_PAY_FLAG;
-				msg.obj = result;
-				mHandler.sendMessage(msg);
-			}
-		};
 
-		Thread payThread = new Thread(payRunnable);
-		payThread.start();
+								Message msg = new Message();
+								msg.what = SDK_PAY_FLAG;
+								msg.obj = result;
+								mHandler.sendMessage(msg);
+							}
+						};
+
+						Thread payThread = new Thread(payRunnable);
+						payThread.start();
+
+					}
+				});
+				normalDialog.setNegativeButton("取消",
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				});
+		// 显示
+		normalDialog.show();
+
+
+
 	}
 
 	/**
@@ -409,7 +475,7 @@ public class 	PayDemoActivity extends FragmentActivity {
 	//微信支付
 	/**调用微信支付*/
 	public void sendPayRequest() {
-		msgApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+
 
 
 		//请求的xml数据
@@ -419,22 +485,18 @@ public class 	PayDemoActivity extends FragmentActivity {
 
 
 		//请求参数、参与签名的参数
-
-		map.put("appid", Constants.APP_ID);
-		map.put("body", "天津停车APP-停车缴费");
-		map.put("mch_id", "1503922241");
-		map.put("spbill_create_ip", getIPAddress(PayDemoActivity.this));
 		final String nor_str =  SignUtil.getRandomString(32);
+		map.put("appid", Constants.APP_ID);
+		map.put("mch_id", "1503922241");
 		map.put("nonce_str", nor_str);
-
-		map.put("total_fee", "1");
+		map.put("body", "天津停车APP-停车缴费");
 		map.put("out_trade_no", String.valueOf(System.currentTimeMillis()).toString().substring(0,10));
+		map.put("spbill_create_ip", getIPAddress(PayDemoActivity.this));
+		map.put("total_fee", "1");
 		map.put("trade_type", "APP");
 		map.put("notify_url", "http://www.weixin.qq.com/wxpay/pay.php");
 		//签名的工具类SignUtil
-
 		String sign = SignUtil.createSign1("UTF-8", map);
-//		map.put("sign", sign);
 		//xml的工具类XMlUtil
 		xmlString = SignUtil.getRequestXML(map,sign);
 

@@ -1,5 +1,6 @@
 package com.tjsinfo.tjpark.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -125,15 +126,30 @@ public class ShareReleaseActivity  extends AppCompatActivity implements TimePick
                         try{
                             jsonObject = NetConnection.getXpath(strUrl);
 
-                            Intent intent = new Intent();
-                            intent.setClass(ShareReleaseActivity.this, TabBarActivity.class);
-                            startActivity(intent);
+                            final AlertDialog.Builder normalDialog =
+                                    new AlertDialog.Builder(ShareReleaseActivity.this);
+                            normalDialog.setTitle("提示");
+                            normalDialog.setMessage("请等待审核信息。");
+                            normalDialog.setPositiveButton("确定",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent();
+                                            intent.setClass(ShareReleaseActivity.this, TabBarActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                            // 显示
+                            normalDialog.show();
+
 
                         }
                        catch (Exception e){
-                           Intent intent = new Intent();
-                           intent.setClass(ShareReleaseActivity.this, TabBarActivity.class);
-                           startActivity(intent);
+                           new AlertDialog.Builder(ShareReleaseActivity.this)
+                                   .setTitle("提示")
+                                   .setMessage("发布失败，请稍后重试。")
+                                   .setPositiveButton("确定", null)
+                                   .show();
                        }
 
                     }
@@ -162,6 +178,8 @@ public class ShareReleaseActivity  extends AppCompatActivity implements TimePick
                             return;
                         }
                         if (null==jsonArray ){
+                            Message msg = new Message();
+                            handler.sendMessage(msg);
                             return;
                         }
                         Iterator it = jsonArray.iterator();

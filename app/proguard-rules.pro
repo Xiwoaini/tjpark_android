@@ -50,3 +50,5 @@
 -keep class com.tencent.mm.sdk.** {
    *;
 }
+#混淆打包
+-ignorewarnings -keep class * { public private *; }

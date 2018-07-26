@@ -11,8 +11,8 @@ android {
         applicationId "com.tjsinfo.tjpark"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "2.0"
+        versionCode 12
+        versionName "2.0.2"
 
         ndk { abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
             }

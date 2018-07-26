@@ -177,6 +177,7 @@ public class SugAddressActivity extends AppCompatActivity {
                 String city =sugArredss.city+sugArredss.district+sugArredss.key;
                 sugAddress.add(city);
             }
+            deleteExit.setVisibility(View.INVISIBLE);
             arrayAdapter.notifyDataSetChanged();
 
         }

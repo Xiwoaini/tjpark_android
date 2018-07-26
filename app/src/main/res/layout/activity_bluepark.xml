@@ -136,6 +136,7 @@ android:layout_height="match_parent" >
                 android:text="收费规则"
                 android:textSize="8pt"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/blue"
                 />
                 <TableRow>
@@ -144,12 +145,13 @@ android:layout_height="match_parent" >
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/qian"
+                        android:layout_marginTop="10dp"
                          />
             <TextView
                 android:id="@+id/bluePark_JTGZ1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
                 android:text="1小时   6.0元/小时     "
                 />
                     <TextView
@@ -157,7 +159,7 @@ android:layout_height="match_parent" >
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="具体时间"
                         />
                 </TableRow>
@@ -173,7 +175,7 @@ android:layout_height="match_parent" >
                 android:id="@+id/bluePark_daoHang"
                 android:layout_weight="1"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:onClick="blueDaoHang"
                 android:text="导航"
                 android:textColor="#FFFFFF"
@@ -185,7 +187,7 @@ android:layout_height="match_parent" >
                 android:id="@+id/bluePark_yuYue"
                 android:layout_weight="1"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:onClick="bluePark_yuYue"
                 android:text="预约"
                 android:layout_marginLeft="3dp"

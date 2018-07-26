@@ -1,5 +1,7 @@
 package com.tjsinfo.tjpark.util;
 
+import android.util.Log;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -9,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -51,11 +54,15 @@ public class NetConnection  {
                 if (res.equals("")){
                     return null;
                 }
+                if (res.equals("\"1\"")){
+                    return null;
+                }
                 JsonParser parse =new JsonParser();
+
                 object = (JsonObject) parse.parse(res);
             }
         }catch(IOException e){
-            e.printStackTrace();
+            return null;
         }
         return object;
     }
@@ -82,6 +89,7 @@ public class NetConnection  {
                 while((str = br.readLine())!=null){
                     buffer.append(str);
                 }
+
                 br.close();
                 isr.close();
                 is.close();
@@ -170,4 +178,6 @@ public class NetConnection  {
         }
         return res;
     }
+
+
 }
