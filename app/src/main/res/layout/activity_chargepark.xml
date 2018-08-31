@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
+
+    <!--标题及撤回按钮-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="充电桩详情"
+        android:paddingTop="8dp"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-40dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        />
+    <ListView
+        android:id="@+id/chargeListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </ListView>
+
+
+
+
+
+
+</LinearLayout>

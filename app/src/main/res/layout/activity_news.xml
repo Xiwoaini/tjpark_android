@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent" >
+
+    <!--标题及撤回按钮-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAlignment="center"
+        android:text="咨讯"
+        android:paddingTop="8dp"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        android:textSize="10pt"
+
+        />
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="-40dp"
+        android:text="返回"
+        android:textColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        />
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--新闻标题-->
+        <TextView
+            android:id="@+id/XWBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:textAlignment="center"
+            android:textSize="9pt"
+            android:text="新闻标题" />
+
+        <TextView
+            android:id="@+id/FBSJ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="6pt"
+            android:textColor="#00a0d8"
+            android:text="新闻发布时间" />
+
+        <!--横线-->
+        <View  android:layout_height="5px"
+            android:layout_width="match_parent"
+            android:background="#BFBFBF"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            />
+    <!--新闻具体内容-->
+    <TextView
+        android:id="@+id/XWJTNR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="8pt"
+        android:text="新闻具体内容 "/>
+    </TableLayout>
+
+</ScrollView>
+</LinearLayout>

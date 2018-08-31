@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--充电桩详情-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<TableRow>
+
+    <TextView
+        android:id="@+id/chargeParkId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@color/orange"
+        android:text="111"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <TextView
+        android:id="@+id/numbers"
+        android:layout_weight="1"
+        android:layout_height="25dp"
+        android:text="序列号"
+        android:layout_marginTop="8dp"
+        android:textSize="8pt"
+        />
+
+    <TextView
+        android:id="@+id/parkStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="状态"
+        android:textColor="@color/red"
+        android:textSize="7pt"
+        android:textAlignment="center" />
+</TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/K1"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="芝麻信用"
+                android:textColor="#00a0d8"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/CWH"
+                android:layout_weight="1"
+                android:layout_height="25dp"
+                android:text="车位号     无"
+                android:layout_marginTop="8dp"
+                android:textSize="8pt"
+                />
+
+            <ImageView
+                android:id="@+id/mycar"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:src="@drawable/kc"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <!--横线-->
+    <View  android:layout_height="2px"
+        android:layout_width="match_parent"
+        android:background="#BFBFBF"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="95dp"
+        />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+         >
+        <TableRow  android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="终端类型                  "
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="直流快充"
+
+
+                />
+        </TableRow>
+        <TableRow android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="充电接口"
+                android:layout_marginTop="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="国标2011"
+                android:layout_marginTop="8dp"
+
+                />
+        </TableRow>
+        <TableRow android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="功       率"
+                android:layout_marginTop="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="30KW-30KW"
+                android:layout_marginTop="8dp"
+                />
+        </TableRow>
+        <TableRow android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="电       压"
+                android:layout_marginTop="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="200V-450V"
+                android:layout_marginTop="8dp"
+                />
+        </TableRow>
+        <TableRow android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="辅源类型"
+                android:layout_marginTop="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="12V"
+                android:layout_marginTop="8dp"
+                />
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
+
+
