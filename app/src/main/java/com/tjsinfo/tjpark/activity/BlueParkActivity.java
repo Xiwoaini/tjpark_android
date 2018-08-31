@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -29,12 +30,11 @@ import com.tjsinfo.tjpark.R;
 public class BlueParkActivity extends AppCompatActivity {
 
     private TextView bluePark_placeName;
-    private TextView bluePark_distance;
-    private TextView bluePark_label;
     private TextView bluePark_address;
     private TextView bluePark_JTSJ,bluePark_JTLX;
     private TextView bluePark_JTGZ1,bluePark_JTGZ2,bluePark_placeId;
     private Button bluePark_yuYue;
+    private ImageView imageView1,imageView2,imageView3,imageView4,imageView5;
 
     JsonArray jsonArray = null;
     Intent getIntent = null;
@@ -63,25 +63,63 @@ public class BlueParkActivity extends AppCompatActivity {
 
         bluePark_placeId=(TextView)findViewById(R.id.bluePark_placeId);
         bluePark_placeName =(TextView)findViewById(R.id.bluePark_placeName);
-        bluePark_distance =(TextView)findViewById(R.id.bluePark_distance);
-        bluePark_label =(TextView)findViewById(R.id.bluePark_label);
         bluePark_address =(TextView)findViewById(R.id.bluePark_address);
         bluePark_JTSJ =(TextView)findViewById(R.id.bluePark_JTSJ);
         bluePark_JTGZ1 =(TextView)findViewById(R.id.bluePark_JTGZ1);
         bluePark_JTGZ2 =(TextView)findViewById(R.id.bluePark_JTGZ2);
         bluePark_JTLX = (TextView)findViewById(R.id.bluePark_JTLX);
+        imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
+        imageView4 = (ImageView) findViewById(R.id.imageView4);
+        imageView5 = (ImageView) findViewById(R.id.imageView5);
 
         //id，默认为隐藏
         bluePark_placeId.setText(park.getId());
         //名称
         bluePark_placeName.setText(park.getPlace_name());
         //地址
-        bluePark_address.setText("地址:"+park.getPlace_address());
+        bluePark_address.setText("地址:"+park.getPlace_address()+"   [" +park.getDistance() + "]");
 
-        //距离
-        bluePark_distance.setText("【"+park.getDistance()+"】");
-        //类型
-        bluePark_label.setText(park.getLable());
+
+        //类型图片
+        if (park.getLable().equals("地上")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+
+        }
+        else if (park.getLable().equals("地上,预约")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.yytb);
+            imageView2.setVisibility(View.VISIBLE);
+        }
+        else if (park.getLable().equals("地上,预约，共享")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.yytb);
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setImageResource(R.drawable.gxtb);
+            imageView3.setVisibility(View.VISIBLE);
+
+        }
+        else if (park.getLable().equals("地上,充电")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.cdtb);
+            imageView2.setVisibility(View.VISIBLE);
+        }
+        else if (park.getLable().equals("地上,预约,充电")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.yytb);
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setImageResource(R.drawable.cdtb);
+            imageView3.setVisibility(View.VISIBLE);
+        }
+
+
+
         if (!park.getLable().contains("预约")){
             bluePark_yuYue = (Button) findViewById(R.id.bluePark_yuYue);
             bluePark_yuYue.setEnabled(false);

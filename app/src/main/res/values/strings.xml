@@ -2,7 +2,7 @@
 
 
     <!--百度地图点聚合相关-->
-    <string name="app_name">天津停车</string>
+    <string name="app_name">天津停车APP</string>
     <string name="demo_name_basemap">基本地图功能</string>
     <string name="demo_title_basemap">基本地图功能--BaseMapDemo</string>
     <string name="demo_desc_basemap">创建一张百度地图并管理地图的生命周期, 包含个性化地图与普通地图切换功能</string>
@@ -127,5 +127,10 @@
     <string name="title_activity_texture_map_view_demo">TextureMapViewDemo</string>
     <string name="title_activity_poi_near_by_search_demo">PoiNearBySearchDemo</string>
     <string name="instruction">当设计的UI与地图部分重叠时，设置地图的padding值,以防止UI遮挡</string>
+
+    <!--相机相册相关-->
+    <string name="paizhaoxuanqu">拍照选取</string>
+    <string name="xiangcexuanqu">相册选取</string>
+    <string name="exit">取消</string>
 
 </resources>

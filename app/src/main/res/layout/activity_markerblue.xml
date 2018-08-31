@@ -14,32 +14,94 @@
         android:id="@+id/blue_placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+         android:layout_marginTop="5dp"
         android:text="停车场名称"
         android:textSize="17dp"
         android:layout_marginLeft="5dp"
         android:textColor="#DC143C"
         />
-    <TextView
-        android:id="@+id/blue_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="停车场类型"
-        android:textSize="12dp"
-        android:layout_marginLeft="15dp"
-        android:textColor="#4876FF"
-        />
 
-    <TextView
-        android:id="@+id/blue_placeDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="停车场距离"
-        android:textSize="15dp"
-        android:layout_marginLeft="5dp"
-        />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+
+                />
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:src="@drawable/qian"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible"
+                />
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:src="@drawable/qian"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible"
+                />
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:src="@drawable/qian"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible"
+                />
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:src="@drawable/qian"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible"
+                />
+
+        </TableRow>
+    </TableLayout>
+
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/cwqk"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:src="@drawable/cwqk"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+
+                />
+            <TextView
+                android:id="@+id/blue_placeNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="车位情况"
+                android:layout_marginTop="8dp"
+                android:textSize="15dp"
+                />
+
+        </TableRow>
+
             <TextView
                 android:id="@+id/blue_placeAddress"
                 android:layout_width="wrap_content"
@@ -49,32 +111,12 @@
                 android:textSize="15dp"
                 android:layout_marginLeft="5dp"
                 />
-        <TableRow>
-    <TextView
-        android:id="@+id/blue_placeFee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="收费标准"
-        android:textSize="15dp"
-        android:layout_marginLeft="5dp"
-        />
-    <TextView
-        android:id="@+id/blue_placeNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="车位情况"
-        android:textSize="15dp"
-        android:layout_marginLeft="5dp"
-        />
 
-        </TableRow>
         <!--横线-->
         <View  android:layout_height="1px"
             android:layout_width="match_parent"
             android:background="#BFBFBF"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             />
     </TableLayout>
     <TableLayout  android:layout_width="match_parent"

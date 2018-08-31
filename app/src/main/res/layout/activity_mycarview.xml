@@ -6,33 +6,59 @@
     android:orientation="horizontal"
      >
 <!--我的车辆-->
-    <ImageView
-        android:id="@+id/carIcon"
-        android:layout_width="30dp"
-        android:src="@drawable/mycar"
-        android:paddingTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="3dp"
-        />
-    <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:textSize="8pt"
-        android:paddingTop="10dp"
-        android:layout_height="40dp"
-        android:text="|"
-        />
+     <TableLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/plate"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textSize="8pt"
-        android:paddingTop="10dp"
-        android:layout_height="40dp"
-        android:text="XXXXXXX"
-        />
+         <TableRow
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+             android:layout_marginTop="20dp"
+             android:background="@color/gray"
+
+             >
+
+             <ImageView
+                 android:id="@+id/carIcon"
+                 android:layout_width="40dp"
+                 android:layout_height="40dp"
+                 android:layout_marginRight="3dp"
+                 android:paddingTop="10dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginLeft="30dp"
+
+                 android:src="@drawable/mycar" />
+
+
+             <TextView
+                 android:id="@+id/plate"
+                 android:layout_width="match_parent"
+                 android:paddingTop="10dp"
+                 android:layout_height="40dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginTop="10dp"
+                 android:text="XXXXXXX"
+                 android:textSize="11pt"
+                 android:layout_marginBottom="10dp"/>
+
+         </TableRow>
+         <TableRow android:background="@color/gray"
+             android:layout_marginLeft="20dp"
+             android:layout_marginRight="20dp"
+            >
+             <Button
+                 android:id="@+id/verBtn"
+                 android:layout_width="match_parent"
+                 android:layout_weight="4"
+                 android:layout_height="wrap_content"
+                 android:textColor="@color/red"
+                 android:background="@color/gray"
+                 android:textSize="8pt"
+                 android:text="立即认证"/>
+
+         </TableRow>
+     </TableLayout>
+
 
 </LinearLayout>

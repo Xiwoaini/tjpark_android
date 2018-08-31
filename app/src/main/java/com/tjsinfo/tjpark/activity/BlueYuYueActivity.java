@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,15 +29,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import com.tjsinfo.tjpark.R;
+import com.tjsinfo.tjpark.adapter.SelectCarAdapter;
 import com.tjsinfo.tjpark.entity.Car;
 import com.tjsinfo.tjpark.entity.Park;
 import com.tjsinfo.tjpark.entity.ParkYuYue;
-import com.tjsinfo.tjpark.adapter.CarAdapter;
 import com.tjsinfo.tjpark.util.NetConnection;
-import com.tjsinfo.tjpark.util.PayDemoActivity;
+import com.tjsinfo.tjpark.wxapi.PayDemoActivity;
 
 /**
  * Created by panning on 2018/1/12.
@@ -46,10 +49,9 @@ public class BlueYuYueActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private   List<Car> myCarList = new LinkedList<Car>();
     private TextView blue_yuYueParkName;
-    private TextView blue_yuYueDistance;
-    private TextView blue_yuYueType;
     private TextView blue_yuYueAddress;
     private TextView blue_yuYueMoney,placeId, plateId;
+    private ImageView imageView1,imageView2,imageView3,imageView4,imageView5;
     private Button blue_yuYueCar;
     private Button blue_yuYueTime;
     private Button blue_yuYueBtn;
@@ -80,22 +82,59 @@ public class BlueYuYueActivity extends AppCompatActivity {
         plateId= (TextView) findViewById(R.id.plateId);
         placeId= (TextView) findViewById(R.id.placeId);
         blue_yuYueParkName = (TextView) findViewById(R.id.blue_yuYueParkName);
-        blue_yuYueDistance = (TextView) findViewById(R.id.blue_yuYueDistance);
-        blue_yuYueType = (TextView) findViewById(R.id.blue_yuYueType);
         blue_yuYueAddress = (TextView) findViewById(R.id.blue_yuYueAddress);
         blue_yuYueMoney = (TextView) findViewById(R.id.blue_yuYueMoney);
         blue_yuYueCar = (Button) findViewById(R.id.blue_yuYueCar);
         blue_yuYueTime = (Button) findViewById(R.id.blue_yuYueTime);
         blue_yuYueBtn = (Button) findViewById(R.id.blue_yuYueBtn);
+        imageView1 = (ImageView) findViewById(R.id.imageView1);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
+        imageView3 = (ImageView) findViewById(R.id.imageView3);
+        imageView4 = (ImageView) findViewById(R.id.imageView4);
+        imageView5 = (ImageView) findViewById(R.id.imageView5);
 
 
         Bundle bundle = this.getIntent().getExtras();
         park  = (Park) bundle.get("park");
         placeId.setText(park.getPlace_id());
         blue_yuYueParkName.setText(park.getPlace_name());
-        blue_yuYueDistance.setText(park.getDistance());
-        blue_yuYueType.setText(park.getLable());
-        blue_yuYueAddress.setText(park.getPlace_address());
+        blue_yuYueAddress.setText("地址: "+park.getPlace_address() +"   [" +park.getDistance()+"]");
+
+        //类型图片
+        if (park.getLable().equals("地上")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+
+        }
+        else if (park.getLable().equals("地上,预约")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.yytb);
+            imageView2.setVisibility(View.VISIBLE);
+        }
+        else if (park.getLable().equals("地上,预约，共享")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.yytb);
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setImageResource(R.drawable.gxtb);
+            imageView3.setVisibility(View.VISIBLE);
+
+        }
+        else if (park.getLable().equals("地上,充电")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.cdtb);
+            imageView2.setVisibility(View.VISIBLE);
+        }
+        else if (park.getLable().equals("地上,预约,充电")){
+            imageView1.setImageResource(R.drawable.dstb);
+            imageView1.setVisibility(View.VISIBLE);
+            imageView2.setImageResource(R.drawable.yytb);
+            imageView2.setVisibility(View.VISIBLE);
+            imageView3.setImageResource(R.drawable.cdtb);
+            imageView3.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -158,16 +197,18 @@ public class BlueYuYueActivity extends AppCompatActivity {
 
     //选择时间按钮
     public void blue_yuYueTime(View view) {
+
         //时间格式化
-        final DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        final DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
 
-
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         TimeSelector timeSelector = new TimeSelector(BlueYuYueActivity.this, new TimeSelector.ResultHandler() {
 
             @Override
             public void handle(String time) {
 
                 try {
+
                     Long l = (sdf.parse(time).getTime()) - (new Date().getTime());
                     Double d = Math.ceil(l.doubleValue() / 3600000);
                     if ((d * 6)<=0){
@@ -188,7 +229,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
                 }
 
             }
-        }, sdf.format(new Date()), sdf.format( new Date().getTime()+604800000));
+        }, sdf.format(new Date().getTime()), sdf.format( new Date().getTime()+604800000));
 
         timeSelector.show();
     }
@@ -250,7 +291,7 @@ public class BlueYuYueActivity extends AppCompatActivity {
             dialog = new Dialog(BlueYuYueActivity.this);
 
             dialog.setContentView(R.layout.activity_selectcar);
-            CarAdapter adapter = new CarAdapter(BlueYuYueActivity.this, R.layout.activity_mycarview, myCarList);
+            SelectCarAdapter adapter = new SelectCarAdapter(BlueYuYueActivity.this, R.layout.activity_selectcaradapter, myCarList);
             //获取listView，
             listView = (ListView) dialog.findViewById(R.id.listView);
             //为listView赋值

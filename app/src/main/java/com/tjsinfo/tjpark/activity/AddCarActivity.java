@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -123,16 +124,17 @@ public class AddCarActivity  extends AppCompatActivity {
         public void onClick(View view) {
 
 
-            if ((addCar_PlateNum.getText().length()!=7)||(addCar_PlateNum.getText().length()!=8)){
+            if ((addCar_PlateNum.getText().length() == 7||addCar_PlateNum.getText().length() == 8)){
+                new Thread(runnable).start();
+
+            }
+            else{
+
                 new AlertDialog.Builder(AddCarActivity.this)
                         .setTitle("注意")
                         .setMessage("车牌号不符合长度(普通车7位，节能车为8位)!")
                         .setPositiveButton("确定", null)
                         .show();
-            }
-            else{
-                new Thread(runnable).start();
-
 
             }
 

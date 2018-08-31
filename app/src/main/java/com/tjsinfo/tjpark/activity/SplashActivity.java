@@ -42,6 +42,7 @@ public class SplashActivity extends Activity {
 
     //定位SDK的核心类
     private LocationClient mLocClient;
+    public static boolean locationTrue = true;
     //定位SDK监听函数
     public SplashActivity.MyLocationListenner locListener = new SplashActivity.MyLocationListenner();
 
@@ -82,7 +83,10 @@ public class SplashActivity extends Activity {
             if (ok) {
                 if (ContextCompat.checkSelfPermission(SplashActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(SplashActivity.this, "天津停车获取位置权限被关闭，请允许使用您的位置以此来显示附近停车场。", Toast.LENGTH_SHORT).show();
+                    SplashActivity.locationTrue = false;
+                }
+                else{
+                    SplashActivity.locationTrue = true;
                 }
 
             }

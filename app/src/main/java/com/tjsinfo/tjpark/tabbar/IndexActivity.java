@@ -24,9 +24,11 @@ import android.widget.TextView;
 import com.tjsinfo.tjpark.R;
 import com.tjsinfo.tjpark.activity.AddCarActivity;
 import com.tjsinfo.tjpark.activity.BlueParkActivity;
+import com.tjsinfo.tjpark.activity.CarLifeDisPlayActivity;
 import com.tjsinfo.tjpark.activity.LoginActivity;
 import com.tjsinfo.tjpark.activity.MapActivity;
 import com.tjsinfo.tjpark.activity.NewsActivity;
+import com.tjsinfo.tjpark.activity.SplashActivity;
 import com.tjsinfo.tjpark.activity.SugAddressActivity;
 import com.tjsinfo.tjpark.fragment.ThreeFragment;
 
@@ -43,10 +45,11 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
 //前台控件绑定
     private TextView current_address,login_status;
     private  ImageView search_address;
-    private ImageButton imgBtn1,imgBtn2,imgBtn3,imgBtn4,imgBtn5,imgBtn6,imgBtn7,imgBtn8;
-    private  ImageButton csh_dzss,csh_cddt,csh_xc,csh_czcx;
+    private ImageButton imgBtn1,imgBtn2,imgBtn3,imgBtn8;
     private TableRow tabLogin;
     private TableLayout tabLayout;
+    private ImageButton csh1,csh2,csh3,csh4,csh5,csh6,csh7,csh8;
+    private static boolean jg = true;
 
     //轮播图
     private ViewPager viewPager;
@@ -66,6 +69,7 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         //初始化控件
         super.onActivityCreated(savedInstanceState);
         super.onCreate(savedInstanceState);
+
         //轮播图开始
         // 初始化布局 View视图
         initViews();
@@ -127,7 +131,6 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         });
 
 
-
         //轮播图结束
         //获取前台绑定控件
         current_address = getActivity().findViewById(R.id.current_address);
@@ -135,15 +138,17 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
         imgBtn1 = getActivity().findViewById(R.id.imgBtn1);
         imgBtn2 = getActivity().findViewById(R.id.imgBtn2);
         imgBtn3 = getActivity().findViewById(R.id.imgBtn3);
-        imgBtn4 = getActivity().findViewById(R.id.imgBtn4);
-        imgBtn5 = getActivity().findViewById(R.id.imgBtn5);
-        imgBtn6 = getActivity().findViewById(R.id.imgBtn6);
-        imgBtn7 = getActivity().findViewById(R.id.imgBtn7);
         imgBtn8 = getActivity().findViewById(R.id.imgBtn8);
-        csh_dzss = getActivity().findViewById(R.id.csh_dzss);
-        csh_cddt = getActivity().findViewById(R.id.csh_cddt);
-        csh_xc = getActivity().findViewById(R.id.csh_xc);
-        csh_czcx = getActivity().findViewById(R.id.csh_czcx);
+        csh1 = getActivity().findViewById(R.id.csh1);
+        csh2 = getActivity().findViewById(R.id.csh2);
+        csh3 = getActivity().findViewById(R.id.csh3);
+        csh4 = getActivity().findViewById(R.id.csh4);
+        csh5 = getActivity().findViewById(R.id.csh5);
+        csh6 = getActivity().findViewById(R.id.csh6);
+        csh7 = getActivity().findViewById(R.id.csh7);
+        csh8 = getActivity().findViewById(R.id.csh8);
+
+
         login_status = getActivity().findViewById(R.id.login_status);
         mSharedPreferences = getActivity().getSharedPreferences("userInfo", getActivity().MODE_PRIVATE);
         //判断当前登录状态
@@ -206,96 +211,17 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
                 startActivity(intent);
             }
         });
-        imgBtn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
-        imgBtn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
-        imgBtn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
-        imgBtn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
+
         imgBtn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转到城生活
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), ThreeFragment.class);
+                intent.setClass(getActivity(), MapActivity.class);
+                MapActivity.parkType = "charge";
                 startActivity(intent);
             }
         });
-        csh_dzss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                            new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
 
-            }
-        });
-        csh_cddt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
-        csh_xc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
-        csh_czcx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("")
-                        .setMessage("敬请期待!")
-                        .setPositiveButton("确定", null)
-                        .show();
-            }
-        });
         TextView nearPark = getActivity().findViewById(R.id.nearPark);
         nearPark.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -307,6 +233,101 @@ public class IndexActivity  extends Fragment implements ViewPager.OnPageChangeLi
                 startActivity(intent);
             }
         });
+
+
+        csh1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://m.weizhang8.cn/";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://m.carbank.cn/sales/20170601_a/?invitecode=hz160940&channel=%e7%99%be%e5%ba%a6SEM%e7%a7%bb%e5%8a%a8g&launchArea=%e5%85%a8%e5%9c%b0%e5%9f%9f&promotionMethod=%e5%8f%8c%e5%90%91%e8%af%8d_%e6%b5%8b%e8%af%95&unit=%e6%b1%bd%e8%bd%a6%e9%87%91%e8%9e%8d_%e5%b9%b3%e5%8f%b0&keyword=%e6%b1%bd%e8%bd%a6%e9%87%91%e8%9e%8d%e5%85%ac%e5%8f%b8&teltype=4000656082";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "https://www.ipaosos.com/wshop/index.php#ca_source=Baidu";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://daijia.xiaojukeji.com/";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://u.pingan.com/upingan/insure/bdwx/bdwx.html?area=c03-bdwap-07&mediasource=C03-BDWAP-1-BQ-30723";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://m.xin.com/tianjin/?channel=a16b46c1064d40488e159740f4&abtest=5_B";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://m.yixiuche.com/";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+        csh8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CarLifeDisPlayActivity.strUrl = "http://price.m.yiche.com/zuidijia/nb1765/?WT.mc_id=mbdyqk__sutengkuan4Sdian";
+                Intent intent = new Intent();
+                //(当前Activity，目标Activity)
+                intent.setClass(getActivity(), CarLifeDisPlayActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        if (jg){
+            if (!SplashActivity.locationTrue){
+                jg = false;
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("")
+                        .setMessage("请允许天津停车使用您的当前位置以此来显示附近停车场。")
+                        .setPositiveButton("确定", null)
+                        .show();
+            }
+        }
 
 
 

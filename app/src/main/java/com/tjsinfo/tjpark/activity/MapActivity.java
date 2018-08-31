@@ -66,7 +66,7 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
     private String personID;
     //停车场类型，用于筛选不同类型的停车场
     public  static  String parkType = "normal";
-
+    private ImageView imageView1,imageView2,imageView3,imageView4,imageView5;
     //返回键
     @Override
     public void onBackPressed() {
@@ -156,20 +156,55 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
                     int height = outMetrics.heightPixels;
                     lp.x = 0; // 新位置X坐标
                     lp.width = width; // 宽度
-                    lp.height = (int) (height * 0.37);// 高度
+                    lp.height = (int) (height * 0.38);// 高度
                     lp.y = height - ((lp.height) + 120);
                     lp.alpha = 0.9f; // 透明
                     dialogWindow.setAttributes(lp);
                     TextView green_placeName = (TextView) dialog.findViewById(R.id.green_placeName);
-                    TextView green_label = (TextView) dialog.findViewById(R.id.green_label);
-                    TextView green_placeDistance = (TextView) dialog.findViewById(R.id.green_placeDistance);
+
                     TextView green_placeAddress = (TextView) dialog.findViewById(R.id.green_placeAddress);
                     TextView green_shareNum = (TextView) dialog.findViewById(R.id.green_shareNum);
+                    ImageView image1 = (ImageView) dialog.findViewById(R.id.image1);
+                    ImageView image2 = (ImageView) dialog.findViewById(R.id.image2);
+                    ImageView image3 = (ImageView) dialog.findViewById(R.id.image3);
+                    ImageView image4 = (ImageView) dialog.findViewById(R.id.image4);
+                    ImageView image5 = (ImageView) dialog.findViewById(R.id.image5);
+                    //类型图片
+                    if (item.park.getLable().equals("地上")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约,共享")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                        image3.setImageResource(R.drawable.gxtb);
+                        image3.setVisibility(View.VISIBLE);
 
+                    }
+                    else if (item.park.getLable().equals("地上,充电")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.cdtb);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约,充电")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                        image3.setImageResource(R.drawable.cdtb);
+                        image3.setVisibility(View.VISIBLE);
+                    }
                     green_placeName.setText(item.park.getPlace_name());
-                    green_label.setText(item.park.getLable());
-                    green_placeDistance.setText("距离: " + item.park.getDistance());
-                    green_placeAddress.setText("地址: " + item.park.getPlace_address());
+                    green_placeAddress.setText("地址: " + item.park.getPlace_address()+"   ["+item.park.getDistance()+"]");
                     green_shareNum.setText("共享车位数: " + item.park.getShare_num());
                     //共享停车场导航按钮监听事件
                     Button green_daoHang = (Button) dialog.findViewById(R.id.green_parkDaoHang);
@@ -223,31 +258,64 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
                     int height = outMetrics.heightPixels;
 
                     lp.width = width; // 宽度
-                    lp.height = (int) (height * 0.42);// 高度
+                    lp.height = (int) (height * 0.40);// 高度
                     lp.alpha = 0.9f; // 透明
                     lp.x = 0; // 新位置X坐标
                     lp.y = height - ((lp.height) + 150); // 新位置Y坐标
                     dialogWindow.setAttributes(lp);
 
 
-
-
                     TextView yellow_placeName = (TextView) dialog.findViewById(R.id.yellow_placeName);
-                    TextView yellow_label = (TextView) dialog.findViewById(R.id.yellow_label);
-                    TextView yellow_placeDistance = (TextView) dialog.findViewById(R.id.yellow_placeDistance);
                     TextView yellow_placeAddress = (TextView) dialog.findViewById(R.id.yellow_placeAddress);
-                    TextView yellow_placeFee = (TextView) dialog.findViewById(R.id.yellow_placeFee);
-                    TextView yellow_placeNum = (TextView) dialog.findViewById(R.id.yellow_placeNum);
-                    TextView yellow_CDFY = (TextView) dialog.findViewById(R.id.yellow_CDFY);
-                    TextView yellow_kongXian = (TextView) dialog.findViewById(R.id.yellow_kongXian);
+                    TextView yellow_fast = (TextView) dialog.findViewById(R.id.yellow_fast);
+
+                    ImageView image1 = (ImageView) dialog.findViewById(R.id.image1);
+                    ImageView image2 = (ImageView) dialog.findViewById(R.id.image2);
+                    ImageView image3 = (ImageView) dialog.findViewById(R.id.image3);
+                    ImageView image4 = (ImageView) dialog.findViewById(R.id.image4);
+                    ImageView image5 = (ImageView) dialog.findViewById(R.id.image5);
+                    //类型图片
+                    if (item.park.getLable().equals("地上")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+
+                    }
+                    else if (item.park.getLable().equals("地上,预约")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约，共享")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                        image3.setImageResource(R.drawable.gxtb);
+                        image3.setVisibility(View.VISIBLE);
+
+                    }
+                    else if (item.park.getLable().equals("地上,充电")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.cdtb);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约,充电")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                        image3.setImageResource(R.drawable.cdtb);
+                        image3.setVisibility(View.VISIBLE);
+                    }
+
                     yellow_placeName.setText(item.park.getPlace_name());
-                    yellow_label.setText(item.park.getLable());
-                    yellow_placeDistance.setText("距离: " + item.park.getDistance());
-                    yellow_placeAddress.setText("地址: " + item.park.getPlace_address());
-                    yellow_placeFee.setText("收费标准: 6元/小时");
-                    yellow_placeNum.setText("车位情况:" + item.park.getSpace_num());
-                    yellow_CDFY.setText("充电费用:" + item.park.getPile_fee());
-                    yellow_kongXian.setText("空闲充电桩:" + String.valueOf(Integer.parseInt(item.park.getSlow_pile_space_num()) + Integer.parseInt(item.park.getFast_pile_space_num())));
+
+                    yellow_placeAddress.setText("地址: " + item.park.getPlace_address()+"   ["+item.park.getDistance()+"]");
+                    yellow_fast.setText("快充数量: " +String.valueOf(Integer.parseInt(item.park.getSlow_pile_space_num()) + Integer.parseInt(item.park.getFast_pile_space_num())));
+
+
                     //充电停车场导航按钮监听事件
                     Button yellow_daoHang = (Button) dialog.findViewById(R.id.yellow_parkDaoHang);
                     yellow_daoHang.setOnClickListener(new View.OnClickListener() {
@@ -300,23 +368,65 @@ public class MapActivity extends Activity implements BaiduMap.OnMapLoadedCallbac
                     int height = outMetrics.heightPixels;
                     lp.x = 0; // 新位置X坐标
                     lp.width = width; // 宽度
-                    lp.height = (int) (height * 0.37);// 高度
+                    lp.height = (int) (height * 0.38);// 高度
                     lp.y = height - ((lp.height) + 120);
                     lp.alpha = 0.9f; // 透明
                     dialogWindow.setAttributes(lp);
                     //获取对应控件
 
                     TextView blue_placeName = (TextView) dialog.findViewById(R.id.blue_placeName);
-                    TextView blue_label = (TextView) dialog.findViewById(R.id.blue_label);
-                    TextView blue_placeDistance = (TextView) dialog.findViewById(R.id.blue_placeDistance);
+
                     TextView blue_placeAddress = (TextView) dialog.findViewById(R.id.blue_placeAddress);
-                    TextView blue_placeFee = (TextView) dialog.findViewById(R.id.blue_placeFee);
+
                     TextView blue_placeNum = (TextView) dialog.findViewById(R.id.blue_placeNum);
+
+                    ImageView image1 = (ImageView) dialog.findViewById(R.id.image1);
+                    ImageView image2 = (ImageView) dialog.findViewById(R.id.image2);
+                    ImageView image3 = (ImageView) dialog.findViewById(R.id.image3);
+                    ImageView image4 = (ImageView) dialog.findViewById(R.id.image4);
+                    ImageView image5 = (ImageView) dialog.findViewById(R.id.image5);
+                    //类型图片
+                    if (item.park.getLable().equals("地上")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+
+                    }
+                    else if (item.park.getLable().equals("地上,预约")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约，共享")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                        image3.setImageResource(R.drawable.gxtb);
+                        image3.setVisibility(View.VISIBLE);
+
+                    }
+                    else if (item.park.getLable().equals("地上,充电")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.cdtb);
+                        image2.setVisibility(View.VISIBLE);
+                    }
+                    else if (item.park.getLable().equals("地上,预约,充电")){
+                        image1.setImageResource(R.drawable.dstb);
+                        image1.setVisibility(View.VISIBLE);
+                        image2.setImageResource(R.drawable.yytb);
+                        image2.setVisibility(View.VISIBLE);
+                        image3.setImageResource(R.drawable.cdtb);
+                        image3.setVisibility(View.VISIBLE);
+                    }
+
+
+
                     blue_placeName.setText(item.park.getPlace_name());
-                    blue_label.setText(item.park.getLable());
-                    blue_placeDistance.setText("距离: " + item.park.getDistance());
-                    blue_placeAddress.setText("地址: " + item.park.getPlace_address());
-                    blue_placeFee.setText("收费标准: 6元/小时");
+
+
+                    blue_placeAddress.setText("地址: " + item.park.getPlace_address() + "   ["+item.park.getDistance()+"]" );
                     blue_placeNum.setText("剩余车位: " + item.park.getSpace_num());
                     Button blue_parkDetail = (Button) dialog.findViewById(R.id.blue_parkDetail);
                     //普通停车场导航按钮监听事件

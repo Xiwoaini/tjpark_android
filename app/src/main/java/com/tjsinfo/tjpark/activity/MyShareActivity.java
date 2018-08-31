@@ -18,6 +18,8 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.tjsinfo.tjpark.R;
 import com.tjsinfo.tjpark.adapter.MyShareAdapter;
@@ -124,7 +126,9 @@ public class MyShareActivity extends AppCompatActivity {
             if (myShareList.size() == 0){
 
                 TjParkUtils.closeDialog(d);
-                Toast.makeText(MyShareActivity.this, "您当前没有发布过车位或当前没有审核通过的车位信息。", Toast.LENGTH_SHORT).show();
+
+                Toast toast=Toast.makeText(MyShareActivity.this,"您当前没有发布过车位或当前没有审核通过的车位信息。", Toast.LENGTH_LONG);
+                showMyToast(toast,10*2000);
                 return;
             }
             MyShareAdapter adapter = new MyShareAdapter(MyShareActivity.this, R.layout.activity_sharelistview,myShareList);
@@ -132,5 +136,20 @@ public class MyShareActivity extends AppCompatActivity {
             TjParkUtils.closeDialog(d);
 
         }};
-
+    public void showMyToast(final Toast toast, final int cnt) {
+        final Timer timer =new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.show();
+            }
+        },0,3000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.cancel();
+                timer.cancel();
+            }
+        }, cnt );
+    }
 }

@@ -7,6 +7,7 @@
         <item name="colorPrimary">@color/normalBack</item>
         <item name="colorPrimaryDark">@color/normalBack</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
 
@@ -59,4 +60,31 @@
 
         </style>
 
-    </resources>
+
+
+    <!-- 选取照片的Activity的样式风格，采取对话框的风格 -->
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@layout/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@layout/push_bottom_out</item>
+    </style>
+
+    <style name="DialogStyleBottom" parent="android:Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">false</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+
+
+
+
+</resources>

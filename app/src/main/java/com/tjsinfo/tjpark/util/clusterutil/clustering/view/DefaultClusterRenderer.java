@@ -127,7 +127,7 @@ public class DefaultClusterRenderer<T extends ClusterItem> implements
         mDensity = context.getResources().getDisplayMetrics().density;
         mIconGenerator = new IconGenerator(context);
         mIconGenerator.setContentView(makeSquareTextView(context));
-                mIconGenerator.setTextAppearance(R.drawable.huangqipao);
+        mIconGenerator.setTextAppearance(R.drawable.huangqipao);
         mIconGenerator.setTextAppearance(R.style.TextAppearance_AppCompat_Body1);
         Drawable background = context.getResources().getDrawable(R.drawable.huangqipao);
         background.setBounds(0,0,30,30);

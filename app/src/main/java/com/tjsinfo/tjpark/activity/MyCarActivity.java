@@ -1,5 +1,6 @@
 package com.tjsinfo.tjpark.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,8 @@ import com.tjsinfo.tjpark.R;
 
 import com.tjsinfo.tjpark.util.NetConnection;
 import com.tjsinfo.tjpark.util.TjParkUtils;
+
+import static com.tjsinfo.tjpark.adapter.CarAdapter.TO_SELECT_PHOTO;
 
 /**
  * Created by panning on 2018/1/12.
@@ -84,7 +87,7 @@ public class MyCarActivity  extends AppCompatActivity {
 
             mSharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
              String customerid=mSharedPreferences.getString("personID","");
-
+            CarAdapter.customerid =  customerid;
             JsonArray jsonArray = null;
             String strUrl="/tjpark/app/AppWebservice/findPlate?customerid="+customerid;
             jsonArray = NetConnection.getJsonArray(strUrl);
@@ -109,6 +112,7 @@ public class MyCarActivity  extends AppCompatActivity {
                 car.setCreated_time(jso.get("created_time").toString().replace("\"",""));
                 car.setCustomer_id(jso.get("customer_id").toString().replace("\"",""));
                 car.setPlace_number(jso.get("place_number").toString().replace("\"",""));
+                car.setIf_certify(jso.get("if_certify").toString().replace("\"",""));
                 myCarList.add(car);
                 i++;
 
@@ -174,7 +178,6 @@ public class MyCarActivity  extends AppCompatActivity {
 
         }
     }
-
 
 
 }

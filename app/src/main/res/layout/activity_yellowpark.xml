@@ -14,7 +14,7 @@
         android:text="停车场详情"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#00a0d8"
+        android:background="@color/colorPrimary"
         android:textSize="10pt"
 
         />
@@ -121,6 +121,8 @@
                         android:gravity="center"
                         android:layout_marginLeft="10dp"
                         android:text="地址"
+                        android:layout_marginRight="20dp"
+
                         />
                 </TableRow>
             </TableLayout>
@@ -233,6 +235,7 @@
                         android:layout_width="37dp"
                         android:layout_height="33dp"
                         android:src="@drawable/kc"
+                        android:layout_marginTop="10dp"
                         />
                     <TextView
                         android:id="@+id/KXCWKC"
@@ -246,6 +249,7 @@
                         android:layout_width="37dp"
                         android:layout_height="33dp"
                         android:src="@drawable/mc"
+                        android:layout_marginTop="10dp"
                         />
                     <TextView
                         android:id="@+id/KXCWMC"
@@ -253,6 +257,7 @@
                         android:layout_height="wrap_content"
                         android:text="空闲2 / 共2"
                         android:layout_marginLeft="5dp"
+
                         />
                     <Button
                         android:id="@+id/XQ"
@@ -270,7 +275,7 @@
                     android:text="以上信息仅供参考，具体收费价格按车场为准。"
                     android:gravity="center"
                     android:textSize="3pt"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     />
 
 
@@ -278,26 +283,26 @@
             <Button
                 android:id="@+id/yellowPark_daoHang"
                 android:layout_weight="1"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:onClick="blueDaoHang"
                 android:text="导航"
                 android:textColor="#FFFFFF"
-                android:background="#00a0d8"
+                android:background="@color/colorPrimary"
                 android:layout_marginRight="1dp"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="10dp"
                 />
             <Button
                 android:id="@+id/yellowPark_yuYue"
                 android:layout_weight="1"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:onClick="yellowPark_yuYue"
                 android:text="预约"
                 android:layout_marginRight="3dp"
                 android:layout_marginLeft="1dp"
                 android:textColor="#FFFFFF"
-                android:background="#00a0d8"
-                android:layout_marginTop="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
                 />
                 </TableRow>
             </TableLayout>

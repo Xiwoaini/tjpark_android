@@ -50,7 +50,6 @@ public class XMLUtil {
         jobnotice.setPrepayid(prepayid.item(0).getTextContent());
         jobnotice.setPackages("Sign=WXPay");
         jobnotice.setNoncestr(noncestr.item(0).getTextContent());
-//        jobnotice.setNoncestr("b8nKD2cnOcwOu1rduNmk1LyDXTTrNRja");
         jobnotice.setTimestamp(String.valueOf(System.currentTimeMillis()).toString().substring(0,10));
         jobnotice.setSign(sign.item(0).getTextContent());
         return  jobnotice;

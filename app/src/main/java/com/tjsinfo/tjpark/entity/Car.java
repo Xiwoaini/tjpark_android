@@ -13,7 +13,7 @@ public class Car  implements Serializable {
     private String customer_id;
     private String created_time;
     private String park_id;
-
+    private String if_certify;
     public String getId() {
         return id;
     }
@@ -52,5 +52,13 @@ public class Car  implements Serializable {
 
     public void setPark_id(String park_id) {
         this.park_id = park_id;
+    }
+
+    public String getIf_certify() {
+        return if_certify;
+    }
+
+    public void setIf_certify(String if_certify) {
+        this.if_certify = if_certify;
     }
 }

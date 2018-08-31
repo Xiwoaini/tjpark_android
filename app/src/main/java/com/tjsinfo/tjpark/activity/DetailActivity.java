@@ -3,6 +3,8 @@ package com.tjsinfo.tjpark.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.tjsinfo.tjpark.entity.Order;
 import com.tjsinfo.tjpark.entity.ParkYuYue;
-import com.tjsinfo.tjpark.util.PayDemoActivity;
+import com.tjsinfo.tjpark.wxapi.PayDemoActivity;
 
 import com.tjsinfo.tjpark.R;
 
@@ -35,6 +37,7 @@ public class DetailActivity  extends AppCompatActivity {
     private TextView detail_paySuccess;
     private Button detail_pay;
     Order order =new Order();
+    private String yuYueMoney;
 
     //初始化
     @Override
@@ -106,7 +109,14 @@ public class DetailActivity  extends AppCompatActivity {
                     //分转元
                     String tmp = jso.get("fee").toString().replace("\"", "");
                     parkYuYue.setReservation_fee(String.valueOf(Double.parseDouble(tmp)/100));
-                    detail_payNeed.setText("共需支付："+parkYuYue.getReservation_fee()+"元");
+                    yuYueMoney = parkYuYue.getReservation_fee();
+
+                    Message msg = new Message();
+                    Bundle data = new Bundle();
+
+                    msg.setData(data);
+                    handler.sendMessage(msg);
+
                 }
             }).start();
 
@@ -162,5 +172,11 @@ public class DetailActivity  extends AppCompatActivity {
 
 
 
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            detail_payNeed.setText("共需支付："+yuYueMoney+"元");
+        }
+    };
 
 }

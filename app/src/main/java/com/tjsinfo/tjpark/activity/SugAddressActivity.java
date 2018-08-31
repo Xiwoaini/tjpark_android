@@ -202,7 +202,7 @@ public class SugAddressActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     JsonObject res = null;
-                    String strUrl = "http://api.map.baidu.com/geocoder/v2/?address="+address+"&output=json&ak=EXj18khot93RCrLj6yizGXo69iCEP5FC&mcode=08:58:81:B0:2A:74:77:E1:75:5F:D4:D2:42:A2:7A:B8:3E:06:8A:2B;com.tjsinfo.tjpark";
+                    String strUrl = "http://api.map.baidu.com/geocoder/v2/?address="+address+"&output=json&ak=EXj18khot93RCrLj6yizGXo69iCEP5FC&mcode=2E:40:4E:76:3C:58:54:1F:41:99:C5:8F:9F:6F:67:19:BF:35:AA:75;com.tjsinfo.tjpark";
                     res = NetConnection.getAddressStatus(strUrl);
                     try{
 //嵌套取坐标

@@ -12,58 +12,110 @@
         android:id="@+id/green_placeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:textSize="17dp"
         android:text="停车场名称"
         android:textColor="#DC143C"
         />
-    <TextView
-        android:id="@+id/green_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="15dp"
-        android:text="停车场类型"
-        android:textSize="12dp"
-        android:textColor="#4876FF"
-        />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/qian"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="invisible"
+                    />
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/qian"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="invisible"
+                    />
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/qian"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="invisible"
+                    />
+                <ImageView
+                    android:id="@+id/image4"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/qian"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="invisible"
+                    />
+                <ImageView
+                    android:id="@+id/image5"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/qian"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="invisible"
+                    />
+
+            </TableRow>
+        </TableLayout>
     <TableRow>
-    <TextView
-        android:id="@+id/green_placeDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
-        android:text="距离"
-        android:textSize="15dp"
-        />
+
+
     </TableRow>
         <TableRow>
-        <TextView
-            android:id="@+id/green_placeAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/cwqk"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cwqk"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:text="停车场地址"
-            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+
             />
-        </TableRow>
     <TextView
         android:id="@+id/green_shareNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
         android:text="共享车位数"
         android:textSize="15dp"
         />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/green_placeAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:text="停车场地址"
+                android:textSize="15dp"
+                />
+        </TableRow>
         <!--横线-->
         <View  android:layout_height="1px"
             android:layout_width="match_parent"
             android:background="#BFBFBF"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             />
 
     </TableLayout>

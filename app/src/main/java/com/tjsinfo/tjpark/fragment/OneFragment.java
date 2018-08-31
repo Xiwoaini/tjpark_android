@@ -156,14 +156,12 @@ public class OneFragment extends Fragment implements BaiduMap.OnMapLoadedCallbac
                     dialogWindow.setAttributes(lp);
                     dialog.setContentView(R.layout.activity_markergreen);
                     TextView green_placeName=(TextView)dialog.findViewById(R.id.green_placeName);
-                    TextView green_label=(TextView)dialog.findViewById(R.id.green_label);
-                    TextView green_placeDistance=(TextView)dialog.findViewById(R.id.green_placeDistance);
+
                     TextView green_placeAddress=(TextView)dialog.findViewById(R.id.green_placeAddress);
                     TextView green_shareNum=(TextView)dialog.findViewById(R.id.green_shareNum);
 
                     green_placeName.setText(item.park.getPlace_name());
-                    green_label.setText(item.park.getLable());
-                    green_placeDistance.setText("距离: "+item.park.getDistance());
+
                     green_placeAddress.setText("地址: "+item.park.getPlace_address());
                     green_shareNum.setText("共享车位数: "+item.park.getShare_num());
                     //共享停车场导航按钮监听事件
@@ -225,21 +223,12 @@ public class OneFragment extends Fragment implements BaiduMap.OnMapLoadedCallbac
                     dialogWindow.setAttributes(lp);
 
                     TextView yellow_placeName=(TextView)dialog.findViewById(R.id.yellow_placeName);
-                    TextView yellow_label=(TextView)dialog.findViewById(R.id.yellow_label);
-                    TextView yellow_placeDistance=(TextView)dialog.findViewById(R.id.yellow_placeDistance);
                     TextView yellow_placeAddress=(TextView)dialog.findViewById(R.id.yellow_placeAddress);
-                    TextView yellow_placeFee=(TextView)dialog.findViewById(R.id.yellow_placeFee);
-                    TextView yellow_placeNum=(TextView)dialog.findViewById(R.id.yellow_placeNum);
-                    TextView yellow_CDFY=(TextView)dialog.findViewById(R.id.yellow_CDFY);
-                    TextView yellow_kongXian=(TextView)dialog.findViewById(R.id.yellow_kongXian);
+
                     yellow_placeName.setText(item.park.getPlace_name());
-                    yellow_label.setText(item.park.getLable());
-                    yellow_placeDistance.setText("距离: "+item.park.getDistance());
+
                     yellow_placeAddress.setText("地址: "+item.park.getPlace_address());
-                    yellow_placeFee.setText("收费标准: 6元/小时");
-                    yellow_placeNum.setText("车位情况:"+item.park.getSpace_num());
-                    yellow_CDFY.setText("充电费用:"+item.park.getPile_fee());
-                        yellow_kongXian.setText("空闲充电桩:"+String.valueOf(Integer.parseInt(item.park.getSlow_pile_space_num())+Integer.parseInt(item.park.getFast_pile_space_num())));
+
                     //充电停车场导航按钮监听事件
                     Button yellow_daoHang =  (Button)dialog.findViewById(R.id.yellow_parkDaoHang);
                     yellow_daoHang.setOnClickListener(new View.OnClickListener() {
@@ -299,16 +288,16 @@ public class OneFragment extends Fragment implements BaiduMap.OnMapLoadedCallbac
                     //获取对应控件
 
                     TextView blue_placeName=(TextView)dialog.findViewById(R.id.blue_placeName);
-                    TextView blue_label=(TextView)dialog.findViewById(R.id.blue_label);
-                    TextView blue_placeDistance=(TextView)dialog.findViewById(R.id.blue_placeDistance);
+
+
                     TextView blue_placeAddress=(TextView)dialog.findViewById(R.id.blue_placeAddress);
-                    TextView blue_placeFee=(TextView)dialog.findViewById(R.id.blue_placeFee);
+
                     TextView blue_placeNum=(TextView)dialog.findViewById(R.id.blue_placeNum);
                     blue_placeName.setText(item.park.getPlace_name());
-                    blue_label.setText(item.park.getLable());
-                    blue_placeDistance.setText("距离: "+item.park.getDistance());
+
+
                     blue_placeAddress.setText("地址: "+item.park.getPlace_address());
-                    blue_placeFee.setText("收费标准: 6元/小时");
+
                     blue_placeNum.setText("剩余车位: "+item.park.getSpace_num());
                     Button blue_parkDetail=(Button)dialog.findViewById(R.id.blue_parkDetail);
                     //普通停车场导航按钮监听事件

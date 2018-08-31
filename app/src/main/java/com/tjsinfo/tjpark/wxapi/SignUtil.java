@@ -67,7 +67,7 @@ public class SignUtil {
 
     //随机字符串生成
     public static  String getRandomString(int length){
-        String base = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZ";
+        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < length; i++) {

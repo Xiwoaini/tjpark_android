@@ -16,7 +16,7 @@
         android:text="我的共享车位"
         android:paddingTop="8dp"
         android:textColor="#FFFFFF"
-        android:background="#00a0d8"
+        android:background="@color/colorPrimary"
         android:textSize="10pt"
 
         />
@@ -91,7 +91,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_height="40dp"
-                android:background="#00a0d8"
+                android:background="@color/colorPrimary"
                 android:textColor="#FFFFFF"
                 android:text="保存"
                 />
