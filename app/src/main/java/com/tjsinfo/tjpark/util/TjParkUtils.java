@@ -24,9 +24,9 @@ import com.tjsinfo.tjpark.R;
 ///ip地址.
 public class TjParkUtils {
     //服务器
-//      public static String windowIp="http://60.29.41.58:3000";
+      public static String windowIp="http://60.29.41.58:3000";
     //本地
-    public static String windowIp="http://192.168.168.61:8080";
+//    public static String windowIp="http://192.168.168.61:8080";
     //221服务器
 //      public static String windowIp="http://192.168.168.221:8080";
 
