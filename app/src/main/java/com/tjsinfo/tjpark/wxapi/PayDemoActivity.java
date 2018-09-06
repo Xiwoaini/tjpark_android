@@ -23,6 +23,7 @@ import com.tjsinfo.tjpark.util.H5PayDemoActivity;
 import com.tjsinfo.tjpark.util.NetConnection;
 import com.tjsinfo.tjpark.util.OrderInfoUtil2_0;
 import com.tjsinfo.tjpark.util.PayResult;
+import com.tjsinfo.tjpark.util.wechatUtil.ConfigUtil;
 
 
 import android.annotation.SuppressLint;
@@ -214,7 +215,7 @@ public class 	PayDemoActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_orderpay);
-		msgApi = WXAPIFactory.createWXAPI(PayDemoActivity.this, Constants.APP_ID);
+		msgApi = WXAPIFactory.createWXAPI(PayDemoActivity.this, ConfigUtil.APPID);
 		Button exitBtn=(Button)findViewById(R.id.exitBtn);
 		exitBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -557,8 +558,8 @@ public class 	PayDemoActivity extends FragmentActivity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-//					String url ="https://api.mch.weixin.qq.com/pay/unifiedorder";
-				String url = "https://wxpay.wxutil.com/pub_v2/app/app_pay.php";
+					String url ="https://api.mch.weixin.qq.com/pay/unifiedorder";
+//				String url = "https://wxpay.wxutil.com/pub_v2/app/app_pay.php";
 //
 				try {
 					byte[] buf = Util.httpGet(url);
@@ -578,7 +579,7 @@ public class 	PayDemoActivity extends FragmentActivity {
 							req.sign = json.getString("sign");
 							req.extData = "app data"; // optional
 
-							msgApi.registerApp(Constants.APP_ID);
+							msgApi.registerApp(ConfigUtil.APPID);
 							// ‘⁄÷ß∏∂÷Æ«∞£¨»Áπ˚”¶”√√ª”–◊¢≤·µΩŒ¢–≈£¨”¶∏√œ»µ˜”√IWXMsg.registerAppΩ´”¶”√◊¢≤·µΩŒ¢–≈
 							msgApi.sendReq(req);
 						} else {
